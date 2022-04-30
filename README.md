@@ -67,6 +67,7 @@ POST '/profile/:id/edit' - Handles profile edit form submission
 ### Models
 
 User
+id
 
 - name: String, required
 - email: String, required
@@ -75,8 +76,12 @@ User
 - creationDate: timestamp
 - bookComments: ObjectId
 - clubComments: ObjectId
-- books: Ask Teachers whether these should be arrays in a User model or have their own model
-- clubs: Ask Teachers whether these should be arrays in a User model or have their own model
+
+Book
+id
+
+- name: String, required, maxlength 300
+- author: String, required
 
 Comments
 
@@ -84,6 +89,22 @@ Comments
 - creator: required, ObjectId //of a user, should hold a referance to the user created the publication
 - createdAt: Date (add timestemps option to the publicationSchema)
 - updatedAt: Date (add timestemps option to the publicationSchema)
+
+Club
+id
+
+- name: String, required, maxlength 300
+- creator: required, ObjectId //of a user, should hold a referance to the user created the publication
+
+Join
+
+- club id -> populate
+- user id
+
+Favorite
+
+- book id
+- user id
 
 ### Wishlist
 
@@ -94,3 +115,22 @@ Comments
 - Friendship (send invite by email)
 
 - Send an email notification to the user on friendship requests
+
+TASKS
+
+Book related tasks:
+
+- Create json for books
+- baseRoute
+- Populate list of books on home
+- Link it to a single book page
+- Single book view
+- Save to list button
+- Saved books in a user model
+
+User:
+
+- Show listed books
+- User information to be displayed
+- Show clubs
+- List of comments
