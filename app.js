@@ -13,6 +13,7 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
+const clubRouter = require('./routes/club-router');
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/club', clubRouter);
 
 const bookRouter = require('./routes/books');
 app.use('/books', bookRouter);
