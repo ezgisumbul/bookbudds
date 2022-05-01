@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@400;500;700&display=swap');
+
 $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-titles: 'Merriweather', serif;
+$font-body: 'Montserrat', sans-serif;
 $grey: hsl(0, 0, 90%);
 
 * {
+  margin: 0;
+  padding: 0;
   &,
   &:before,
   &:after {
@@ -10,12 +16,9 @@ $grey: hsl(0, 0, 90%);
 }
 
 body {
-  max-width: 52em;
-  padding: 0 1em;
-  margin: 0 auto;
-  font-family: sans-serif;
-  font-family: $font-sans;
+  font-family: $font-body;
   line-height: 2;
+  background: #f4f3f0;
 }
 
 a {
@@ -23,8 +26,30 @@ a {
   text-decoration: none;
 }
 
+header {
+  background: #32362c;
+}
 nav {
+  max-width: 1200px;
   display: flex;
+  margin-inline: auto;
+  justify-content: space-around;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+    li {
+      margin-inline: 0.5rem;
+    }
+  }
+
+  a {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+  }
   a,
   button {
     padding: 1em 0;
@@ -82,4 +107,99 @@ textarea {
 
 label {
   margin-bottom: 0.5em;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-block: 150px;
+}
+/**
+ * BOOKS
+ * 
+ */
+
+.items {
+  display: grid;
+  justify-content: center;
+  grid-gap: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 128px));
+}
+.item-info {
+  margin-block: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+}
+.item-info * {
+  font-family: $font-body;
+}
+.item-photo {
+  position: relative;
+
+  img {
+    display: block;
+    position: relative;
+    width: 128px;
+    height: 191px;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 100%;
+    height: 100%;
+    border-bottom-right-radius: 5px;
+    background: #32362c;
+  }
+}
+
+/**
+ * SINGLE
+ * 
+ */
+
+.single {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  justify-content: space-between;
+
+  .single-photo {
+    position: relative;
+    img {
+      position: relative;
+      width: 210px;
+      height: auto;
+      max-width: none;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 100%;
+      height: 100%;
+      border-bottom-right-radius: 5px;
+      background: #32362c;
+    }
+  }
+  .single-info {
+    margin-block: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+  }
+  .single-sidebar {
+    margin-block: 1rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    border-left: 1px gray solid;
+
+    span {
+      display: block;
+      padding-block: 0.5rem;
+      font-weight: 600;
+    }
+  }
 }

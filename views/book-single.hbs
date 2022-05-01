@@ -1,0 +1,41 @@
+<div class="container">
+
+  <h3>{{book.volumeInfo.title}}</h3>
+
+  <div class="single">
+    <div class='single-photo'>
+
+      {{#if book.volumeInfo.imageLinks.medium}}
+      <img src={{book.volumeInfo.imageLinks.medium}} />
+      {{else}}
+      {{#if book.volumeInfo.imageLinks.small}}
+      <img src={{book.volumeInfo.imageLinks.small}} />
+      {{else}}
+      <img src={{book.volumeInfo.imageLinks.thumbnail}} />
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class='single-info'>
+
+      <p>{{#each book.volumeInfo.authors}}
+        {{this}}
+        {{/each}}</p>
+
+      <p>{{{book.volumeInfo.description}}}</p>
+    </div>
+
+    <div class="single-sidebar">
+
+      <p><span>Categories:</span> {{{book.volumeInfo.categories}}}
+      <p><span>Published date:</span>{{book.volumeInfo.publishedDate}}</p>
+      <p><span>Rating:</span>{{book.volumeInfo.averageRating}}</p>
+      <p><span>Page Count:</span>{{book.volumeInfo.pageCount}}</p>
+
+    </div>
+  </div>
+
+  <form action='' method='POST'>
+    <button>Submit</button>
+
+  </form>
+</div>

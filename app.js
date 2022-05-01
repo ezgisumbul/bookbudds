@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const createError = require('http-errors');
 const connectMongo = require('connect-mongo');
+const hbs = require('hbs');
 const expressSession = require('express-session');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
@@ -15,6 +16,7 @@ const authenticationRouter = require('./routes/authentication');
 
 const app = express();
 
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -53,6 +55,9 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
+
+const bookRouter = require('./routes/books');
+app.use('/books', bookRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

@@ -1,0 +1,15 @@
+ {{#if books}}
+<div class='container'>
+  <h2>Awarded Books</h2>
+  <div class="items">
+  {{#each books}}
+    <div class='item'>
+      <div class='item-photo'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></div>
+      <div class='item-info'>
+        <a href='books/book/{{this.id}}'>{{this.volumeInfo.title}}</a>
+      </div>
+    </div>
+  {{/each}}
+  {{/if}}
+  </div>
+  </div>
