@@ -42,6 +42,7 @@ clubRouter.post('/create', routeGuard, (req, res, next) => {
 clubRouter.get('/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   Club.findById(id)
+    .populate('creator')
     .then((club) => {
       res.render('club/club-single', { club });
     })
