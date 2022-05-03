@@ -20,7 +20,7 @@ a {
 }
 
 header {
-  background: #32362c;
+  background: #ff7e68;
 }
 
 nav {
@@ -78,8 +78,8 @@ p:not(:last-child) {
 }
 
 img {
-  width: 100%;
   max-width: 100%;
+  height: auto;
 }
 
 form {
@@ -212,6 +212,41 @@ label {
   display: block;
   padding-block: 0.5rem;
   font-weight: 600;
+}
+
+/**
+ * HERO
+ * 
+ */
+.container.home {
+  margin: 100px auto 0 auto;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-container > * {
+  flex-basis: calc((1200px / 3) - 1.5rem);
+  background: #af9c83;
+  padding: 1rem;
+  color: #fff;
+  line-height: 1.2rem;
+}
+
+.hero-container > * p {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+.hero-container > *:nth-child(2) {
+  margin-inline: 1.5rem;
+}
+
+.hero-container > *:nth-child(3) {
+  clip-path: polygon(0% 0%, 83% 0, 100% 56%, 83% 100%, 0% 100%);
 }
 
 /*# sourceMappingURL=style.css.map */

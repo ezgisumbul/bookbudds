@@ -27,7 +27,7 @@ a {
 }
 
 header {
-  background: #32362c;
+  background: #ff7e68;
 }
 nav {
   max-width: 1200px;
@@ -75,8 +75,8 @@ p {
 }
 
 img {
-  width: 100%;
   max-width: 100%;
+  height: auto;
 }
 
 form {
@@ -201,5 +201,40 @@ label {
       padding-block: 0.5rem;
       font-weight: 600;
     }
+  }
+}
+
+/**
+ * HERO
+ * 
+ */
+.container.home {
+  margin: 100px auto 0 auto;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-container > * {
+  flex-basis: calc((1200px / 3) - 1.5rem);
+  background: #af9c83;
+  padding: 1rem;
+  color: #fff;
+  line-height: 1.2rem;
+  p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+  }
+
+  &:nth-child(1) {
+    //clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+  }
+  &:nth-child(2) {
+    margin-inline: 1.5rem;
+  }
+  &:nth-child(3) {
+    clip-path: polygon(0% 0%, 83% 0, 100% 56%, 83% 100%, 0% 100%);
   }
 }
