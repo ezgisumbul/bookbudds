@@ -5,6 +5,7 @@ const express = require('express');
 const createError = require('http-errors');
 const connectMongo = require('connect-mongo');
 const hbs = require('hbs');
+const helpers = require('handlebars-helpers')(hbs);
 const expressSession = require('express-session');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');

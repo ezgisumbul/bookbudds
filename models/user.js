@@ -20,7 +20,7 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'
   }]
-});
+}, { timestamps: true });
 
 const User = mongoose.model('User', schema);
 

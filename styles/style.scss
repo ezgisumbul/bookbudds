@@ -238,3 +238,21 @@ label {
     clip-path: polygon(0% 0%, 83% 0, 100% 56%, 83% 100%, 0% 100%);
   }
 }
+
+/**
+ * @PROFILE
+ * 
+ */
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin-block-end: 50px;
+}
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  background: #dbd2be;
+  border-radius: 50%;
+}
