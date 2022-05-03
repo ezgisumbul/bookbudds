@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const randomBooks = (req, res, next) => {
-  const term = 'books';
+  const term = 'flowers';
   const subject = 'fantasy + romance';
 
   axios
