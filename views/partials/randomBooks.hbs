@@ -1,16 +1,20 @@
- {{#if books}}
-<div class='container'>
-  <h2>Awarded Books</h2>
+{{#if books}}
+<div class='container inner'>
   <div class="items">
-  {{#each books}}
+    {{#each books}}
     <div class='item'>
-      <div class='item-photo'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></div>
+      <div class='item-photo'><a href='books/book/{{this.id}}'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></a>
+      </div>
       <div class='item-info'>
-        <div><a href='books/book/{{this.id}}'>{{truncate this.volumeInfo.title 30}}</a></div>
-        <div><a href='books/book/{{this.id}}'>View</a></div>
+        <h3><a href='books/book/{{this.id}}'>{{truncate this.volumeInfo.title 30}}</a></h3>
+        <h4>{{this.volumeInfo.authors}}</h4>
+        <p>{{truncate this.volumeInfo.description 100}} ...</p>
+      </div>
+      <div class="item-btn">
+        <a href='books/book/{{this.id}}' class="button">View</a>
       </div>
     </div>
-  {{/each}}
-  {{/if}}
+    {{/each}}
+    {{/if}}
   </div>
-  </div>
+</div>
