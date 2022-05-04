@@ -10,6 +10,19 @@ bookRouter.get('/', (req, res) => {
   res.render('books');
 });
 
+bookRouter.get('/:search', (req, res) => {
+  const searchTerm = req.query.search
+  //console.log(searchTerm);
+  axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`)
+    .then((result) => {
+      const books = result.data.items;
+      res.render("books", { books, searchTerm });
+    }).catch((error) => {
+      console.log(error);
+      response.send('There was an error searching.');
+    });
+});
+
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`)
@@ -61,6 +74,10 @@ bookRouter.post('/book/:id', (req, res, next) => {
       next(error);
     });
 });
+
+
+
+
 
 
 
