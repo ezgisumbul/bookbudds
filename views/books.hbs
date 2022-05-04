@@ -1,5 +1,5 @@
 <div class="container inner">
-  <form action='/books/:q' id="search-form">
+  <form action='/books/book/search/:search' method="post" id="search-form">
     <input type="text" name="search" id="search" placeholder='Search' value="{{searchTerm}}" />
     <select aria-label="Search by">
       <option value="all">All</option>

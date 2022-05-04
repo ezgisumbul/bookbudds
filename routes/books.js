@@ -10,9 +10,12 @@ bookRouter.get('/', (req, res) => {
   res.render('books');
 });
 
-bookRouter.get('/:search', (req, res) => {
-  const searchTerm = req.query.search
-  //console.log(searchTerm);
+bookRouter.post('/book/search/:search', (req, res) => {
+  let searchTerm = req.body.search
+  console.log(searchTerm);
+  if (!searchTerm.length) {
+    searchTerm = 'Awarded+Books';
+  }
   axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`)
     .then((result) => {
       const books = result.data.items;
@@ -74,6 +77,7 @@ bookRouter.post('/book/:id', (req, res, next) => {
       next(error);
     });
 });
+
 
 
 
