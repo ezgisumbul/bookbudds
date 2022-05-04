@@ -56,6 +56,10 @@ nav ul {
   align-items: center;
 }
 
+nav ul:last-of-type {
+  margin-left: 20px;
+}
+
 nav ul li {
   margin-inline: 0.5rem;
 }

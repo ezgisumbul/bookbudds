@@ -68,6 +68,10 @@ nav {
     display: flex;
     align-items: center;
 
+    &:last-of-type {
+      margin-left: 20px;
+    }
+
     li {
       margin-inline: 0.5rem;
     }

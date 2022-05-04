@@ -10,11 +10,17 @@
 <body>
   <header>
     <nav>
-      <a href='/'><img src="/images/logo.png"></a>
+      <a href='/' class="logo"><img src="/images/logo.png"></a>
+
+
       <ul>
         <li><a href='/books'>Books</a></li>
         <li><a href='/clubs'>Clubs</a></li>
+      </ul>
+
+      <ul>
         {{#if user}}
+
         <li><a href='/private'>Profile</a></li>
         <form action='/authentication/sign-out' method='POST'>
           <button>Sign Out</button>
