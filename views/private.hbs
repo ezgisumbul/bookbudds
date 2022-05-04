@@ -7,13 +7,18 @@
     </div>
     <span><strong>Username:</strong>: {{capitalize user.name}}</span>
     <span><strong>Email</strong>: {{user.email}}</span>
-
+    <span><strong>Joined in</strong>: May 2022</span>
   </div>
 
-  {{#each savedBooks}}
-    <div>
-      <div><img src={{imageLinks.thumbnail}} /></div>
-      <p>{{title}} - {{bookId}}</p>
-    </div>
-  {{/each}}
+  <div class='profile-bookshelf'>
+    <h3>{{capitalize user.name}}’s Bookshelf</h3>
+
+    {{#each savedBooks}}
+      <div>
+        <div><img src={{imageLinks.thumbnail}} alt='{{title}}' /></div>
+        <p>{{title}}</p>
+        <button>{{bookId}}</button>
+      </div>
+    {{/each}}
+  </div>
 </div>

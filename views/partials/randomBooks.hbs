@@ -6,7 +6,8 @@
     <div class='item'>
       <div class='item-photo'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></div>
       <div class='item-info'>
-        <a href='books/book/{{this.id}}'>{{this.volumeInfo.title}}</a>
+        <div><a href='books/book/{{this.id}}'>{{truncate this.volumeInfo.title 30}}</a></div>
+        <div><a href='books/book/{{this.id}}'>View</a></div>
       </div>
     </div>
   {{/each}}

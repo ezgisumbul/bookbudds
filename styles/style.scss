@@ -125,6 +125,8 @@ label {
   grid-gap: 5rem;
   grid-template-columns: repeat(auto-fit, minmax(128px, 128px));
 }
+.item {
+}
 .item-info {
   margin-block: 1rem;
   font-size: 0.9rem;

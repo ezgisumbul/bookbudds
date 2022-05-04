@@ -18,6 +18,8 @@ const clubRouter = require('./routes/club-router');
 
 const app = express();
 
+app.use(express.json());
+
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
