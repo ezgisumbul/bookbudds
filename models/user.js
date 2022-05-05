@@ -21,6 +21,12 @@ const schema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter a password']
   },
+  clubs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Club'
+    }
+  ],
   books: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'

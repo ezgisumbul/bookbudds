@@ -1,0 +1,13 @@
+<h1>review edit</h1>
+
+<form method='POST'>
+  <label for='input-message'>Message</label>
+  <textarea
+    id='input-message'
+    name='message'
+    placeholder='Your message...'
+  >{{reviews.message}}</textarea>
+  {{!-- <input type="text" value="{{reviews.message}}" /> --}}
+
+  <button>Edit review</button>
+</form>
