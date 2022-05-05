@@ -1,1 +1,15 @@
-<h1>Books</h1>
+<div class="container inner">
+  <form action='/books/book/search/:search' method="post" id="search-form">
+    <input type="text" name="search" id="search" placeholder='Search' value="{{searchTerm}}" />
+    <select aria-label="Search by">
+      <option value="all">All</option>
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+      <option value="categories">Text</option>
+      <option value="subject">Subject</option>
+    </select>
+    <button>submit</button>
+  </form>
+</div>
+
+{{> randomBooks}}

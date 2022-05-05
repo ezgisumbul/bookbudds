@@ -5,6 +5,7 @@ const express = require('express');
 const createError = require('http-errors');
 const connectMongo = require('connect-mongo');
 const hbs = require('hbs');
+const helpers = require('handlebars-helpers')(hbs);
 const expressSession = require('express-session');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
@@ -14,8 +15,12 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 const clubRouter = require('./routes/club-router');
+const reviewRouter = require('./routes/review');
+const bookRouter = require('./routes/books');
 
 const app = express();
+
+app.use(express.json());
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.set('views', path.join(__dirname, 'views'));
@@ -56,10 +61,15 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
+<<<<<<< HEAD
 app.use('/clubs', clubRouter);
 
 const bookRouter = require('./routes/books');
+=======
+app.use('/club', clubRouter);
+>>>>>>> e7b9921101222a541c2d50684d86a50dd806f6b4
 app.use('/books', bookRouter);
+app.use('/review', reviewRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
