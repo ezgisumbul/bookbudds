@@ -1,9 +1,31 @@
 <form action="/authentication/sign-up" method="POST">
+
   <label for="input-name">Name</label>
+  <div class="name error"></div>
   <input type="text" id="input-name" name="name" placeholder="Your Name" />
+
+
   <label for="input-email">Email</label>
+  <div class="email error"></div>
   <input type="email" id="input-email" name="email" placeholder="Your Email" />
+
+
   <label for="input-password">Password</label>
+  <div class="password error"></div>
   <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
   <button>Sign Up</button>
 </form>
+
+{{#if error}}
+<div class="error-messages">
+  <h3>The following errors ocurred</h3>
+  <p>{{error.message}}</p>
+</div>
+{{/if}}
+
+.error-messages {
+color: red;
+p {
+white-space: break-spaces;
+}
+}
