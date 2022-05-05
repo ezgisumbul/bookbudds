@@ -1,12 +1,11 @@
 <div class="container inner">
   <form action='/books/book/search/:search' method="post" id="search-form">
     <input type="text" name="search" id="search" placeholder='Search' value="{{searchTerm}}" />
-    <select aria-label="Search by">
+    <select name="searchby" class="searchby" aria-label="Search by">
       <option value="all">All</option>
-      <option value="title">Title</option>
-      <option value="author">Author</option>
-      <option value="categories">Text</option>
-      <option value="subject">Subject</option>
+      <option value="intitle">Title</option>
+      <option value="inauthor">Author</option>
+      <option value="categories">Genres</option>
     </select>
     <button>submit</button>
   </form>
