@@ -25,13 +25,15 @@
       <div class="items profile">
         {{#each savedBooks}}
         <div class='item'>
-          <div class='item-photo'><a href='/books/book/{{bookId}}'><img src={{imageLinks.thumbnail}} alt='{{title}}' />
+          <div class='item-photo'>
+            <a href='/books/book/{{bookId}}'>
+              <img src={{imageLinks.thumbnail}} alt='{{title}}' />
+            </a>
           </div>
           <div class='item-info'>
             <h3><a href='/books/book/{{this.id}}'>{{truncate title 30}}</a></h3>
             <h4>{{authors}}</h4>
             <p>{{truncate description 100}} ...</p>
-
           </div>
           <div class="item-btn">
             <a href='/books/book/{{bookId}}' class="button">View</a>
