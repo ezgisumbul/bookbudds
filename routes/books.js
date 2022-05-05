@@ -11,6 +11,26 @@ bookRouter.get('/', (req, res) => {
   res.render('books');
 });
 
+bookRouter.post('/book/search/:search', (req, res) => {
+  let searchTerm = req.body.search;
+  console.log(searchTerm);
+  if (!searchTerm.length) {
+    searchTerm = 'Awarded+Books';
+  }
+  axios
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`
+    )
+    .then((result) => {
+      const books = result.data.items;
+      res.render('books', { books, searchTerm });
+    })
+    .catch((error) => {
+      console.log(error);
+      response.send('There was an error searching.');
+    });
+});
+
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios

@@ -61,7 +61,8 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
-app.use('/club', clubRouter);
+app.use('/clubs', clubRouter);
+
 app.use('/books', bookRouter);
 app.use('/review', reviewRouter);
 
