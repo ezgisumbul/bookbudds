@@ -3,15 +3,15 @@
   <div class="items">
     {{#each books}}
     <div class='item'>
-      <div class='item-photo'><a href='books/book/{{this.id}}'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></a>
+      <div class='item-photo'><a href='/books/book/{{this.id}}'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></a>
       </div>
       <div class='item-info'>
-        <h3><a href='books/book/{{this.id}}'>{{truncate this.volumeInfo.title 30}}</a></h3>
+        <h3><a href='/books/book/{{this.id}}'>{{truncate this.volumeInfo.title 30}}</a></h3>
         <h4>{{this.volumeInfo.authors}}</h4>
         <p>{{truncate this.volumeInfo.description 100}} ...</p>
       </div>
       <div class="item-btn">
-        <a href='books/book/{{this.id}}' class="button">View</a>
+        <a href='/books/book/{{this.id}}' class="button">View</a>
       </div>
     </div>
     {{/each}}

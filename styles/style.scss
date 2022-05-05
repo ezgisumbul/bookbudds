@@ -44,6 +44,9 @@ label,
 button {
   font-family: $font-body;
 }
+button {
+  cursor: pointer;
+}
 
 a {
   color: inherit;
@@ -189,6 +192,17 @@ textarea {
 
 label {
   margin-bottom: 0.5em;
+}
+
+form#search-form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  column-gap: 2rem;
+
+  input {
+    flex-basis: 80%;
+  }
 }
 
 /**
