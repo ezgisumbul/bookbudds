@@ -1,8 +1,9 @@
-<h3>Create a club</h3>
-
-<form action='/clubs/club/create' method='POST'>
+<h3>Edit your club</h3>
+{{!-- action='/clubs/club/{{club._id}}/edit' --}}
+<form method='POST'>
   <label for=''>Name</label>
   <input
+    value='{{club.name}}'
     id='input-name'
     name='name'
     type='text'
@@ -11,11 +12,14 @@
 
   <label for='input-description'>Description</label>
   <input
+    value='{{club.description}}'
     id='input-description'
     name='description'
     type='text'
     placeholder='Write a short description of your club...'
   />
 
-  <button>Create club</button>
+  <button>Edit club</button>
 </form>
+
+{{!-- action='/clubs/club/{{club._id}}/edit' --}}

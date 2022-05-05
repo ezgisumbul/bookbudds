@@ -16,10 +16,18 @@ const schema = new mongoose.Schema({
   passwordHashAndSalt: {
     type: String
   },
-  books: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Book'
-  }]
+  books: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Book'
+    }
+  ],
+  clubs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Club'
+    }
+  ]
 });
 
 const User = mongoose.model('User', schema);

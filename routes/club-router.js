@@ -1,20 +1,14 @@
 const express = require('express');
 const routeGuard = require('../middleware/route-guard');
+const Book = require('../models/book');
+const User = require('.././models/user');
 
 const Club = require('../models/club');
 const Member = require('../models/member');
 
 const clubRouter = new express.Router();
 
-// set app.js the following and change the routes:
-// app.use('/clubs', clubRouter);
-
-// GET '/club/:id' - Renders single club page
-// POST '/club/:id/join' - Handles join to a club
-
-// GET '/clubs' : List of clubs to be rendered
-
-clubRouter.get('/list', (req, res, next) => {
+clubRouter.get('/', (req, res, next) => {
   Club.find()
     .then((clubs) => {
       res.render('club/club-list', { clubs });
@@ -22,68 +16,122 @@ clubRouter.get('/list', (req, res, next) => {
     .catch((err) => next(err));
 });
 
-// POST '/clubs' : New created clubs to be published to the list
-
-clubRouter.post('/list', (req, res) => {
-  res.render('club/club-list');
-});
-
-clubRouter.get('/create', routeGuard, (req, res) => {
+clubRouter.get('/club/create', routeGuard, (req, res) => {
   res.render('club/create');
 });
 
-clubRouter.post('/create', routeGuard, (req, res, next) => {
-  const { name, description } = req.body;
-  Club.create({ name, description, creator: req.user._id })
-    .then(res.redirect('/club/list'))
-    .catch((err) => next(err));
-});
-
-clubRouter.get('/:id', routeGuard, (req, res, next) => {
+clubRouter.get('/club/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
+
   Club.findById(id)
     .populate('creator')
     .then((club) => {
-      res.render('club/club-single', { club });
+      let isClubMember = req.user.clubs.includes(id);
+
+      // console.log(req.user);
+      // console.log(req.user._id);
+      // console.log(req.user.id);
+      // console.log(club.creator.id);
+      // console.log(club.creator._id);
+      let userIsOwner = String(req.user._id) === String(club.creator._id);
+      //Jose does it like follows and I don't understand the reaon of the first check :
+      // let userIsOwner = req.user && String(req.user._id) === String(publication.creator._id);
+      // console.log(userIsOwner);
+      // res.render('club/club-single', { club, userIsOwner, isClubMember }); // can we pass a boolean, seems like we can
+
+      User.find({ clubs: id }).then((members) => {
+        console.log(members);
+        res.render('club/club-single', {
+          club,
+          userIsOwner, // can we pass a boolean, seems like we can
+          isClubMember,
+          members
+        });
+      });
     })
     .catch((err) => next(err));
 });
 
-// if we decide to do full crud on clubs:
+clubRouter.get('/club/:id/edit', (req, res, next) => {
+  const { id } = req.params;
 
-// clubRouter.get('/club/:id/edit', (req, res, next) => {
-//   res.render('club/club-single');
-// });
+  Club.findById(id)
+    .then((club) => {
+      res.render('club/edit', { club });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
-// clubRouter.post('/club/:id/edit', (req, res, next) => {
-//   res.render('club/club-single');
-// });
+clubRouter.post('/', (req, res) => {
+  res.render('club/club-list');
+});
 
-// clubRouter.post('/club/:id/delete', (req, res, next) => {
-//   res.render('club/club-single');
-// });
+clubRouter.post('/club/create', routeGuard, (req, res, next) => {
+  const { name, description } = req.body;
+  Club.create({ name, description, creator: req.user._id })
+    .then(() => {
+      res.redirect('/clubs');
+    })
+    .catch((err) => next(err));
+});
 
-// POST '/club/:id/join' - Handles join to a club
+clubRouter.post('/club/:id/edit', (req, res, next) => {
+  const { name, description } = req.body;
+  const { id } = req.params;
 
-// POST route to submit the form to create a post
-// ****************************************************************************************
+  Club.findByIdAndUpdate(id, { name, description })
+    .then(() => {
+      res.redirect('/clubs');
+      // res.redirect('/clubs/club/${id}');// does not work
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
-// <form action="/post-create" method="POST">
-// router.post('/post-create', (req, res, next) => {
-//   const { title, content, author } = req.body;
-//   // 'author' represents the ID of the user document
+clubRouter.post('/club/:id/delete', (req, res, next) => {
+  const { id } = req.params;
+  // console.log(req.params);
 
-//   Post.create({ title, content, author })
-//     .then((dbPost) => {
-//       // when the new post is created, the user needs to be found and its posts updated with the
-//       // ID of newly created post
-//       return User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
-//     })
-//     .then(() => res.redirect('/posts')) // if everything is fine, redirect to list of posts
-//     .catch((err) => {
-//       console.log(`Err while creating the post in the DB: ${err}`);
-//       next(err);
-//     });
-// });
+  Club.findByIdAndRemove(id)
+    .then(() => {
+      res.redirect('/clubs');
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+clubRouter.post('/club/:id/join', (req, res, next) => {
+  const clubId = req.params.id;
+  // console.log('hello');
+  // console.log(req.params);
+  // console.log(clubId);
+  // console.log(req.user.id);
+
+  Club.findById(clubId)
+    .then((club) => {
+      User.findById(req.user.id).then((user) => {
+        let isClubMember = user.clubs.includes(clubId);
+
+        if (!isClubMember) {
+          User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
+            .then(() => {
+              console.log('club is added to the user');
+              res.redirect('/clubs');
+              console.log('added');
+              // res.redirect('/clubs/club/${id}');// does not work
+            })
+            .catch((err) => next(err));
+        } else {
+          console.log('exists');
+          next();
+        }
+      });
+    })
+    .catch((err) => next(err));
+});
 
 module.exports = clubRouter;
