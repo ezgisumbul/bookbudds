@@ -9,6 +9,7 @@ const userBooks = (req, res, next) => {
     .then((users) => {
       //console.log(users.books)
       const savedBooks = users.books;
+      console.log(savedBooks);
       res.render('private', { savedBooks });
     })
 

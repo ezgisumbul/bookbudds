@@ -10,15 +10,46 @@
     <span><strong>Joined in</strong>: May 2022</span>
   </div>
 
+  <!-- profile-bookshelf -->
   <div class='profile-bookshelf'>
-    <h3>{{capitalize user.name}}’s Bookshelf</h3>
-
-    {{#each savedBooks}}
-      <div>
-        <div><img src={{imageLinks.thumbnail}} alt='{{title}}' /></div>
-        <p>{{title}}</p>
-        <button>{{bookId}}</button>
+    <div class="container inner">
+      <div class="titles">
+        <h2>{{capitalize user.name}}’s Bookshelf</h2>
+        <p>Choice Awards, the only major book awards decided by readers
+          <span>Congratulations to the best books of the year!</span>
+        </p>
       </div>
-    {{/each}}
+    </div>
+    {{#if savedBooks}}
+    <div class='container inner'>
+      <div class="items profile">
+        {{#each savedBooks}}
+        <div class='item'>
+          <div class='item-photo'><a href='/books/book/{{bookId}}'><img src={{imageLinks.thumbnail}} alt='{{title}}' />
+          </div>
+          <div class='item-info'>
+            <h3><a href='/books/book/{{this.id}}'>{{truncate title 30}}</a></h3>
+            <h4>{{authors}}</h4>
+            <p>{{truncate description 100}} ...</p>
+          </div>
+          <div class="item-btn">
+            <a href='/books/book/{{bookId}}' class="button">View</a>
+          </div>
+        </div>
+        {{/each}}
+        {{else}} no books
+        {{/if}}
+      </div>
+    </div>
   </div>
-</div>
+
+  <!-- member clubs -->
+  <div class='profile-bookshelf'>
+    <div class="container inner">
+      <div class="titles">
+        <h2>{{capitalize user.name}}’s Clubs</h2>
+        <p>Choice Awards, the only major book awards decided by readers
+          <span>Congratulations to the best books of the year!</span>
+        </p>
+      </div>
+    </div>

@@ -205,6 +205,10 @@ form#search-form input {
   grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
 }
 
+.items.profile {
+  grid-template-columns: repeat(auto-fill, minmax(340px, 340px));
+}
+
 .items .item {
   display: flex;
   flex-direction: column;

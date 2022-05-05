@@ -216,6 +216,10 @@ form#search-form {
   row-gap: 5rem;
   grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
 
+  &.profile {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 340px));
+  }
+
   .item {
     display: flex;
     flex-direction: column;
