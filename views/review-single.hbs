@@ -1,0 +1,15 @@
+<p>
+  {{reviews.message}}
+</p>
+
+<small>
+  {{reviews.createdAt}}
+</small>
+
+<em>{{review.creator.name}}</em>
+
+<a href='/review/{{reviews._id}}/edit'>Edit review</a>
+
+<form method='POST' action='/review/{{reviews._id}}/delete'>
+  <button>Delete review</button>
+</form>
