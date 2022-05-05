@@ -61,13 +61,8 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
-<<<<<<< HEAD
 app.use('/clubs', clubRouter);
 
-const bookRouter = require('./routes/books');
-=======
-app.use('/club', clubRouter);
->>>>>>> e7b9921101222a541c2d50684d86a50dd806f6b4
 app.use('/books', bookRouter);
 app.use('/review', reviewRouter);
 

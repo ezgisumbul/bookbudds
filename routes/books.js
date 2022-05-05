@@ -12,16 +12,20 @@ bookRouter.get('/', (req, res) => {
 });
 
 bookRouter.post('/book/search/:search', (req, res) => {
-  let searchTerm = req.body.search
+  let searchTerm = req.body.search;
   console.log(searchTerm);
   if (!searchTerm.length) {
     searchTerm = 'Awarded+Books';
   }
-  axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`)
+  axios
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`
+    )
     .then((result) => {
       const books = result.data.items;
-      res.render("books", { books, searchTerm });
-    }).catch((error) => {
+      res.render('books', { books, searchTerm });
+    })
+    .catch((error) => {
       console.log(error);
       response.send('There was an error searching.');
     });
@@ -116,28 +120,6 @@ bookRouter.post('/book/:id', (req, res, next) => {
     });
 });
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> fbe66c9e4d4d75179e7bc9dcbdbbb0270f4cd3bf
 // bookRouter.post('/book/:id', (req, res, next) => {
 //   const { data } = req.body;
 //   Book.create({
