@@ -1,23 +1,43 @@
 <div class="container">
 
-  <h3 class="book-title">{{book.volumeInfo.title}}</h3>
+  <div class="titles">
+    <h2>{{book.volumeInfo.title}}</h2>
+    <p>Author: {{#each book.volumeInfo.authors}}
+      {{this}}
+      {{/each}}
+    </p>
+  </div>
 
-  <div class="single">
-    <div class='single-photo'>
-      {{#if book.volumeInfo.imageLinks.medium}}
-      <img src={{book.volumeInfo.imageLinks.medium}} alt="{{book.volumeInfo.title}}" />
-      {{else}}
-      {{#if book.volumeInfo.imageLinks.small}}
-      <img src={{book.volumeInfo.imageLinks.small}} alt="{{book.volumeInfo.title}}" />
-      {{else}}
-      {{#if book.volumeInfo.imageLinks.thumbnail}}
-      <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="{{book.volumeInfo.title}}" />
-      {{else}}
-      <img src='/images/book-cover.jpg' alt="{{book.volumeInfo.title}}" />
-      {{/if}}
-      {{/if}}
-      {{/if}}
+  <div class="container inner">
 
+<<<<<<< HEAD
+    <div class="single">
+      <div class='single-photo'>
+        {{#if book.volumeInfo.imageLinks.medium}}
+        <img src={{book.volumeInfo.imageLinks.medium}} alt="{{book.volumeInfo.title}}" />
+        {{else}}
+        {{#if book.volumeInfo.imageLinks.small}}
+        <img src={{book.volumeInfo.imageLinks.small}} alt="{{book.volumeInfo.title}}" />
+        {{else}}
+        {{#if book.volumeInfo.imageLinks.thumbnail}}
+        <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="{{book.volumeInfo.title}}" />
+        {{else}}
+        <img src='/images/book-cover.jpg' alt="{{book.volumeInfo.title}}" />
+        {{/if}}
+        {{/if}}
+        {{/if}}
+      </div>
+      <form action='' method='POST'>
+        <button class="fav-btn"> &#9829; </button>
+      </form>
+      <div class='single-info'>
+        <p class="author">{{#each book.volumeInfo.authors}}
+          {{this}}
+          {{/each}}
+        </p>
+        <p>{{book.volumeInfo.description}}</p>
+      </div>
+=======
     </div>
     <form action='' method='POST'>
       <button class="fav-btn"> &#9829; </button>
@@ -29,14 +49,16 @@
       </p>
       <p>{{{book.volumeInfo.description}}}</p>
     </div>
+>>>>>>> a9aeb50f40c9cb8897fbfb21451e90cdbbecd218
 
-    <div class="single-sidebar">
+      <div class="single-sidebar">
 
-      <p><span>Categories:</span> {{{book.volumeInfo.categories}}}
-      <p><span>Published date:</span>{{book.volumeInfo.publishedDate}}</p>
-      <p><span>Rating:</span>{{book.volumeInfo.averageRating}}</p>
-      <p><span>Page Count:</span>{{book.volumeInfo.pageCount}}</p>
+        <p><span>Categories:</span> {{{book.volumeInfo.categories}}}
+        <p><span>Published date:</span>{{book.volumeInfo.publishedDate}}</p>
+        <p><span>Rating:</span>{{book.volumeInfo.averageRating}}</p>
+        <p><span>Page Count:</span>{{book.volumeInfo.pageCount}}</p>
 
+      </div>
     </div>
   </div>
 
