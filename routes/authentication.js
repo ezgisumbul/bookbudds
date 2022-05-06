@@ -12,14 +12,21 @@ const handleSignUpError = (err) => {
   console.log(err.message, err.code);
   // let errors = { email: '', name: '', password: '' };
 
-  // incorrect email
-  if (err.message.includes('email')) {
-    error.message += 'The email provided is invalid.\n';
+  // email validation
+  if (err.message.includes('Please enter an email')) {
+    error.message += 'Please enter an email\n';
   }
 
   // incorrect password
-  if (err.message.includes('password')) {
-    error.message += 'That password is invalid.\n';
+  if (err.message.includes('Please enter a password')) {
+    error.message += 'Please enter a password\n';
+  }
+
+  // name validation
+  if (err.message.includes('Please enter a name')) {
+    error.message += 'Please enter a name\n';
+  } else if (err.message.includes('Minimum Name length')) {
+    error.message += 'Minimum Name length is 6 characters\n';
   }
 
   // duplicate email error
@@ -80,7 +87,7 @@ router.post('/sign-in', (req, res, next) => {
         return Promise.reject(new Error("There's no user with that email."));
       } else {
         user = document;
-        return bcryptjs.compare(password, user.passwordHashAndSalt);
+        return bcryptjs.compare(password, user.password);
       }
     })
     .then((result) => {
@@ -91,8 +98,10 @@ router.post('/sign-in', (req, res, next) => {
         return Promise.reject(new Error('Wrong password.'));
       }
     })
-    .catch((error) => {
-      next(error);
+    .catch((err) => {
+      const error = handleSignUpError(err);
+      res.render('sign-in', { error });
+      //next(error);
     });
 });
 
