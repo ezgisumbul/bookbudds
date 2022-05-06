@@ -87,7 +87,7 @@ router.post('/sign-in', (req, res, next) => {
         return Promise.reject(new Error("There's no user with that email."));
       } else {
         user = document;
-        return bcryptjs.compare(password, user.passwordHashAndSalt);
+        return bcryptjs.compare(password, user.password);
       }
     })
     .then((result) => {

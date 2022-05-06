@@ -62,7 +62,7 @@ app.use('/authentication', authenticationRouter);
 app.use('/clubs', clubRouter);
 
 app.use('/books', bookRouter);
-app.use('/review', reviewRouter);
+app.use('/reviews', reviewRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
