@@ -771,3 +771,30 @@ footer {
   font-size: 0.9rem;
   background: rgba(196, 175, 148, 0.3);
 }
+
+/**
+ * @TODO
+ * 
+ */
+
+.error-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 10px;
+
+  h3 {
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    background: #cd5d49;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  p {
+    white-space: break-spaces;
+    color: #cd5d49;
+    font-size: 0.9rem;
+  }
+}

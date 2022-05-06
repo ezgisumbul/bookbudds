@@ -8,7 +8,14 @@
       <img src="/images/bookbudds-ban.png">
     </div>
 
-    <form action="/authentication/sign-up" method="POST" id="auth-forms">
+    {{#if error}}
+    <div class="error-messages">
+      <h3>Something went wrong</h3>
+      <p>{{error.message}}</p>
+    </div>
+    {{/if}}
+
+    <form action="/authentication/sign-up" method="POST" id="auth-forms" novalidate>
       <div>
         <label for="input-name">Name</label>
         <div class="name error"></div>
