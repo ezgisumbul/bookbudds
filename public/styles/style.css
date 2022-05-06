@@ -204,7 +204,7 @@ label {
 }
 
 /**
- * Book Search
+ * BOOK SEARCH
  * 
  */
 .section-book-search {
@@ -453,7 +453,7 @@ form#search-form button {
 }
 
 /**
- * @PROFILE
+ * PROFILE
  * 
  */
 .profile-info {
@@ -489,6 +489,10 @@ form#search-form button {
   color: white;
 }
 
+/**
+ * REVIEWS
+ * 
+ */
 .reviews {
   display: flex;
   flex-direction: column;
@@ -666,7 +670,110 @@ form#search-form button {
   margin-block: 2rem;
 }
 
-/**  footer
+/**
+ * AUTH FORMS
+ * 
+ */
+.auth-forms-container {
+  max-width: 500px;
+  margin-inline: auto;
+  border: 1px #c5b094 solid;
+  border-radius: 10px;
+  padding: 50px 50px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-forms-container h3 {
+  margin-bottom: 30px;
+  font-size: 1.1875rem;
+  font-family: "Montserrat", sans-serif;
+  color: #3b352d;
+}
+
+.auth-forms-container img {
+  max-width: 200px;
+}
+
+.auth-forms-container form {
+  width: 100%;
+  max-width: 350px;
+  margin-top: 25px;
+  margin-inline: auto;
+  color: #3b352d;
+}
+
+.auth-forms-container form > div {
+  margin-bottom: 20px;
+}
+
+.auth-forms-container form input {
+  background: #f6f6f6;
+  border: 1px #c5b094 solid;
+  border-radius: 3px;
+  height: 40px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 0.9375rem;
+}
+
+.auth-forms-container form label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  display: block;
+}
+
+.auth-forms-container form .auth-forms-actions {
+  position: relative;
+}
+
+.auth-forms-container form .auth-forms-actions span {
+  font-size: 0.8125rem;
+}
+
+.auth-forms-container form .auth-forms-actions span span {
+  font-weight: 700;
+}
+
+.auth-forms-container form .auth-forms-actions .button {
+  position: relative;
+  width: 125px;
+  height: 40px;
+  border: 1px #c5b094 solid;
+  border-radius: 3px;
+  color: #3b352d;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.auth-forms-container form .auth-forms-actions .button:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #c5b094;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.auth-forms-container form .auth-forms-actions .button:hover {
+  color: #fff;
+}
+
+.auth-forms-container form .auth-forms-actions .button:hover:after {
+  top: 0;
+  color: #fff;
+}
+
+/**  FOOTER
  * 
  */
 footer {
