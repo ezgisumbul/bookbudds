@@ -3,7 +3,14 @@
   <div class="items">
     {{#each books}}
     <div class='item'>
-      <div class='item-photo'><a href='/books/book/{{this.id}}'><img src={{this.volumeInfo.imageLinks.thumbnail}} /></a>
+      <div class='item-photo'>
+        <a href='/books/book/{{this.id}}'>
+          {{#if this.volumeInfo.imageLinks.thumbnail}}
+          <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="{{this.volumeInfo.title}}" />
+          {{else}}
+          <img src='/images/book-cover.jpg' alt="{{this.volumeInfo.title}}" />
+          {{/if}}
+        </a>
       </div>
       <div class='item-info'>
         <h3><a href='/books/book/{{this.id}}'>{{truncate this.volumeInfo.title 30}}</a></h3>

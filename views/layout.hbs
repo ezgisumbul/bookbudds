@@ -1,5 +1,7 @@
-<html lang='en'>
+<!DOCTYPE html>
+<html lang="en">
 
+<<<<<<< HEAD
   <head>
     <meta charset='utf-8' />
     <meta
@@ -9,6 +11,15 @@
     <title>{{title}}</title>
     <link rel='stylesheet' href='/styles/style.css' />
   </head>
+=======
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/styles/style.css' />
+</head>
+>>>>>>> 1942f87ecd47265379f9cb87054c46fda9c5635d
 
   <body>
     <header>
@@ -24,6 +35,7 @@
         <ul>
           {{#if user}}
 
+<<<<<<< HEAD
             <li><a href='/private'>Profile</a></li>
             <form action='/authentication/sign-out' method='POST'>
               <button>Sign Out</button>
@@ -38,5 +50,27 @@
     {{{body}}}
     <script src='/scripts/script.js'></script>
   </body>
+=======
+      <ul>
+        {{#if user}}
+
+        <li><a href='/private'>Profile</a></li>
+        <form action='/authentication/sign-out' method='POST'>
+          <button>Sign Out</button>
+        </form>
+        {{else}}
+        <li><a href='/authentication/sign-in'>Log In</a></li>
+        <li><a href='/authentication/sign-up'>Sign Up</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {{{body}}}
+  </main>
+  {{>footer}}
+  <script src='/scripts/script.js'></script>
+</body>
+>>>>>>> 1942f87ecd47265379f9cb87054c46fda9c5635d
 
 </html>
