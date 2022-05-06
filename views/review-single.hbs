@@ -1,15 +1,18 @@
-<p>
-  {{reviews.message}}
-</p>
+<div class='reviews-edit'>
+  <h3>Your review:</h3>
+  <br />
+  <p>{{reviews.message}}</p>
+  <hr />
+  <br />
+  <small>{{reviews.createdAt}}</small>
+  <em>{{review.creator.name}}</em>
 
-<small>
-  {{reviews.createdAt}}
-</small>
+  <div class='review-edit-btns'>
+    <button class='buttons'><a href='/review/{{reviews._id}}/edit'>Edit review</a></button>
+    <form method='POST' action='/review/{{reviews._id}}/delete'>
+      <button class='buttons'>Delete review</button>
+    </form>
 
-<em>{{review.creator.name}}</em>
+  </div>
 
-<a href='/review/{{reviews._id}}/edit'>Edit review</a>
-
-<form method='POST' action='/review/{{reviews._id}}/delete'>
-  <button>Delete review</button>
-</form>
+</div>

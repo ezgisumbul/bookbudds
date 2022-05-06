@@ -10,10 +10,10 @@
 <body>
   <header>
     <nav>
-      <a href='/' class="logo"><img src="/images/logo.png"></a>
-
+      <a href='/' class='logo'><img src='/images/logo.png' /></a>
 
       <ul>
+        <li><a href='/review'>Reviews</a></li>
         <li><a href='/books'>Books</a></li>
         <li><a href='/clubs'>Clubs</a></li>
       </ul>
@@ -32,7 +32,10 @@
       </ul>
     </nav>
   </header>
-  {{{body}}}
+  <main>
+    {{{body}}}
+  </main>
+  {{>footer}}
   <script src='/scripts/script.js'></script>
 </body>
 

@@ -13,13 +13,14 @@ bookRouter.get('/', (req, res) => {
 
 bookRouter.post('/book/search/:search', (req, res) => {
   let searchTerm = req.body.search;
-  console.log(searchTerm);
+  let searchBy = req.body.searchby;
+
   if (!searchTerm.length) {
-    searchTerm = 'Awarded+Books';
+    searchTerm = 'All Books';
   }
   axios
     .get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}+${searchBy}:&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`
     )
     .then((result) => {
       const books = result.data.items;
@@ -31,14 +32,32 @@ bookRouter.post('/book/search/:search', (req, res) => {
     });
 });
 
+/*bookRouter.get('/book/:id', userReviews, (req, res) => {
+  const id = req.params.id;
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((result) => {
+      const book = result.data;
+      res.render('book-single', { book });
+    })
+    .catch((error) => {
+      console.log(error);
+      response.send('There was an error searching.');
+    });
+});*/
+
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
-      //console.log(book);
-      res.render('book-single', { book });
+      const bookId = req.params.id;
+      Review.find({ book: bookId })
+        .populate('creator')
+        .then((reviews) => {
+          res.render('book-single', { book, reviews, bookId });
+        });
     })
     .catch((error) => {
       console.log(error);
@@ -46,23 +65,23 @@ bookRouter.get('/book/:id', (req, res) => {
     });
 });
 
-bookRouter.get('/book/:id', (req, res, next) => {
-  console.log('hello');
+/*bookRouter.get('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
-  console.log(bookId);
+  Review.find({ book: bookId })
+bookRouter.get('/book/:id', (req, res, next) => {
+  const bookId = req.params.id;
   Review
     //.select({ "message", book: bookId })
     .find({ book: bookId })
     .populate('creator')
     .then((reviews) => {
-      console.log(reviews);
       res.render('book-single', { reviews, bookId });
     })
 
     .catch((error) => {
       next(error);
     });
-});
+});*/
 
 bookRouter.post('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
@@ -71,7 +90,6 @@ bookRouter.post('/book/:id', (req, res, next) => {
     .then((result) => {
       Book.findOne({ bookId: bookId })
         .then((book) => {
-          console.log(book);
           if (!book) {
             const {
               title,
