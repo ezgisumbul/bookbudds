@@ -27,7 +27,11 @@
         <div class='item'>
           <div class='item-photo'>
             <a href='/books/book/{{bookId}}'>
+              {{#if imageLinks.thumbnail}}
               <img src={{imageLinks.thumbnail}} alt='{{title}}' />
+              {{else}}
+              <img src='/images/book-cover.jpg' alt="{{title}}" />
+              {{/if}}
             </a>
           </div>
           <div class='item-info'>

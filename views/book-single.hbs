@@ -5,24 +5,28 @@
   <div class="single">
     <div class='single-photo'>
       {{#if book.volumeInfo.imageLinks.medium}}
-      <img src={{book.volumeInfo.imageLinks.medium}} />
+      <img src={{book.volumeInfo.imageLinks.medium}} alt="{{book.volumeInfo.title}}" />
       {{else}}
       {{#if book.volumeInfo.imageLinks.small}}
-      <img src={{book.volumeInfo.imageLinks.small}} />
+      <img src={{book.volumeInfo.imageLinks.small}} alt="{{book.volumeInfo.title}}" />
       {{else}}
-      <img src={{book.volumeInfo.imageLinks.thumbnail}} />
+      {{#if book.volumeInfo.imageLinks.thumbnail}}
+      <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="{{book.volumeInfo.title}}" />
+      {{else}}
+      <img src='/images/book-cover.jpg' alt="{{book.volumeInfo.title}}" />
       {{/if}}
-      {{/if}} 
-      
+      {{/if}}
+      {{/if}}
+
     </div>
-   <form action='' method='POST'>
-    <button class="fav-btn" > &#9829; </button>
-  </form>
+    <form action='' method='POST'>
+      <button class="fav-btn"> &#9829; </button>
+    </form>
     <div class='single-info'>
       <p class="author">{{#each book.volumeInfo.authors}}
-       {{this}}
+        {{this}}
         {{/each}}
-        </p>
+      </p>
       <p>{{{book.volumeInfo.description}}}</p>
     </div>
 
@@ -35,28 +39,28 @@
 
     </div>
   </div>
- 
+
 </div>
 
 
 
 <div class="reviews">
   <div class="reviews-top-text">
-   <h4> Users reviews:</h4>
-   <h4><button class="review-btn" > <a href='/review/create/{{bookId}}'>Write a review</a> </button></h4>
-   </div>
-   
-<div class="review-messages">
-  {{#each reviews}}
-  <p class="review-name-date">
-    <small class="review-creator">{{creator.name}}</small>
-     <small>{{createdAt}}</small>
-  </p>
-  <a href='/review/{{_id}}' class='publication-item'>
-    <div class="review-single">
-      {{message}}
-      </a>
+    <h4> Users reviews:</h4>
+    <h4><button class="review-btn"> <a href='/review/create/{{bookId}}'>Write a review</a> </button></h4>
+  </div>
+
+  <div class="review-messages">
+    {{#each reviews}}
+    <p class="review-name-date">
+      <small class="review-creator">{{creator.name}}</small>
+      <small>{{createdAt}}</small>
+    </p>
+    <a href='/review/{{_id}}' class='publication-item'>
+      <div class="review-single">
+        {{message}}
+    </a>
     <hr>
-    </div> 
-{{/each}}
+  </div>
+  {{/each}}
 </div>
