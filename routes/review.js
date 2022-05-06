@@ -5,6 +5,10 @@ const routeGuard = require('./../middleware/route-guard');
 const reviewRouter = new express.Router();
 const axios = require('axios');
 
+reviewRouter.get('/', (req, res) => {
+  res.render('reviews');
+});
+
 // Renders review creation page
 reviewRouter.get('/create/:id', routeGuard, (req, res) => {
   res.render('review-create');

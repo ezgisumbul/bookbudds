@@ -31,14 +31,32 @@ bookRouter.post('/book/search/:search', (req, res) => {
     });
 });
 
+/*bookRouter.get('/book/:id', userReviews, (req, res) => {
+  const id = req.params.id;
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((result) => {
+      const book = result.data;
+      res.render('book-single', { book });
+    })
+    .catch((error) => {
+      console.log(error);
+      response.send('There was an error searching.');
+    });
+});*/
+
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
-      //console.log(book);
-      res.render('book-single', { book });
+      const bookId = req.params.id;
+      Review.find({ book: bookId })
+        .populate('creator')
+        .then((reviews) => {
+          res.render('book-single', { book, reviews, bookId });
+        });
     })
     .catch((error) => {
       console.log(error);
@@ -46,23 +64,18 @@ bookRouter.get('/book/:id', (req, res) => {
     });
 });
 
-bookRouter.get('/book/:id', (req, res, next) => {
-  console.log('hello');
+/*bookRouter.get('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
-  console.log(bookId);
-  Review
-    //.select({ "message", book: bookId })
-    .find({ book: bookId })
+  Review.find({ book: bookId })
     .populate('creator')
     .then((reviews) => {
-      console.log(reviews);
       res.render('book-single', { reviews, bookId });
     })
 
     .catch((error) => {
       next(error);
     });
-});
+});*/
 
 bookRouter.post('/book/:id', (req, res, next) => {
   const bookId = req.params.id;

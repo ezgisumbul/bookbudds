@@ -1,13 +1,14 @@
-<h1>review edit</h1>
+<div class='reviews-edit'>
+  <form method='POST'>
+    <label for='input-message'>Edit review</label>
+    <textarea
+      id='input-message'
+      name='message'
+      placeholder='Your message...'
+    >{{reviews.message}}</textarea>
+    {{!-- <input type="text" value="{{reviews.message}}" /> --}}
 
-<form method='POST'>
-  <label for='input-message'>Message</label>
-  <textarea
-    id='input-message'
-    name='message'
-    placeholder='Your message...'
-  >{{reviews.message}}</textarea>
-  {{!-- <input type="text" value="{{reviews.message}}" /> --}}
+    <button class='buttons'>Submit changes</button>
+  </form>
 
-  <button>Edit review</button>
-</form>
+</div>
