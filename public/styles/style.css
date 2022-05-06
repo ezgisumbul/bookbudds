@@ -259,6 +259,14 @@ form#search-form select {
   cursor: pointer;
 }
 
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    form#search-form select {
+      padding-inline-start: 40px;
+    }
+  }
+}
+
 form#search-form button {
   min-width: 90px;
   background: #f6f6f6;

@@ -262,6 +262,11 @@ form#search-form {
     text-align: center;
     min-width: 90px;
     cursor: pointer;
+    @media not all and (min-resolution: 0.001dpcm) {
+      @supports (-webkit-appearance: none) {
+        padding-inline-start: 40px;
+      }
+    }
   }
   button {
     min-width: 90px;
