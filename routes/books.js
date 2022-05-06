@@ -30,14 +30,32 @@ bookRouter.post('/book/search/:search', (req, res) => {
     });
 });
 
+/*bookRouter.get('/book/:id', userReviews, (req, res) => {
+  const id = req.params.id;
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((result) => {
+      const book = result.data;
+      res.render('book-single', { book });
+    })
+    .catch((error) => {
+      console.log(error);
+      response.send('There was an error searching.');
+    });
+});*/
+
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
-      //console.log(book);
-      res.render('book-single', { book });
+      const bookId = req.params.id;
+      Review.find({ book: bookId })
+        .populate('creator')
+        .then((reviews) => {
+          res.render('book-single', { book, reviews, bookId });
+        });
     })
     .catch((error) => {
       console.log(error);
@@ -45,11 +63,17 @@ bookRouter.get('/book/:id', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
+/*bookRouter.get('/book/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  Review.find({ book: bookId })
+=======
 bookRouter.get('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
   Review
     //.select({ "message", book: bookId })
     .find({ book: bookId })
+>>>>>>> 1942f87ecd47265379f9cb87054c46fda9c5635d
     .populate('creator')
     .then((reviews) => {
       res.render('book-single', { reviews, bookId });
@@ -58,7 +82,7 @@ bookRouter.get('/book/:id', (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-});
+});*/
 
 bookRouter.post('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
