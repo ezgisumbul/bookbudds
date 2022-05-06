@@ -19,7 +19,9 @@ bookRouter.post('/book/search/:search', (req, res) => {
     searchTerm = 'All Books';
   }
   axios
-    .get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}+${searchBy}:&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`)
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}+${searchBy}:&maxResults=12&keyes&key=${process.env.GBOOKSKEY}`
+    )
     .then((result) => {
       const books = result.data.items;
       res.render('books', { books, searchTerm });
@@ -63,17 +65,14 @@ bookRouter.get('/book/:id', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
 /*bookRouter.get('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
   Review.find({ book: bookId })
-=======
 bookRouter.get('/book/:id', (req, res, next) => {
   const bookId = req.params.id;
   Review
     //.select({ "message", book: bookId })
     .find({ book: bookId })
->>>>>>> 1942f87ecd47265379f9cb87054c46fda9c5635d
     .populate('creator')
     .then((reviews) => {
       res.render('book-single', { reviews, bookId });
@@ -92,7 +91,16 @@ bookRouter.post('/book/:id', (req, res, next) => {
       Book.findOne({ bookId: bookId })
         .then((book) => {
           if (!book) {
-            const { title, authors, description, categories, publishedDate, averageRating, pageCount, imageLinks } = result.data.volumeInfo;
+            const {
+              title,
+              authors,
+              description,
+              categories,
+              publishedDate,
+              averageRating,
+              pageCount,
+              imageLinks
+            } = result.data.volumeInfo;
             Book.create({
               bookId,
               title,

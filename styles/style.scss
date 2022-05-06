@@ -262,6 +262,11 @@ form#search-form {
     text-align: center;
     min-width: 90px;
     cursor: pointer;
+    @media not all and (min-resolution: 0.001dpcm) {
+      @supports (-webkit-appearance: none) {
+        padding-inline-start: 40px;
+      }
+    }
   }
   button {
     min-width: 90px;
@@ -415,7 +420,7 @@ form#search-form {
       width: 100%;
       height: 100%;
       border-bottom-right-radius: 5px;
-      background: #c5b094;
+      background: #32362c;
     }
   }
   .single-info {
@@ -456,8 +461,6 @@ form#search-form {
   border-radius: 50%;
 }
 
-// REVIEWS
-
 .fav-btn {
   border-radius: 50px;
   width: 55px;
@@ -479,6 +482,7 @@ form#search-form {
   }
 }
 
+//reviews
 .reviews {
   display: flex;
   flex-direction: column;
@@ -549,48 +553,6 @@ form#search-form {
   margin-bottom: 1rem;
 }
 
-<<<<<<< HEAD
-.reviews-edit {
-  max-width: 50%;
-  padding: 3rem;
-  margin-top: 10rem;
-  //margin-inline: auto;
-  //margin-block: 150px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 60%;
-  textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #c5b094;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
-  }
-  &.inner {
-    margin-block: 80px;
-  }
-  .buttons {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    margin-right: 0.5rem;
-    font-weight: bold;
-  }
-}
-
-.review-edit-btns {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0.5rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  .buttons {
-    border: none;
-    margin-right: 0.5rem;
-  }
-=======
 /**
  *  footer
  * 
@@ -603,5 +565,4 @@ footer {
   font-weight: 400;
   font-size: 0.9rem;
   background: rgba(196, 175, 148, 0.3);
->>>>>>> 1942f87ecd47265379f9cb87054c46fda9c5635d
 }
