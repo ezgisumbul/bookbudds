@@ -1,13 +1,48 @@
-<h1>Club List</h1>
+<div class='container'>
 
-<form action='/clubs/club/create' method='GET'>
-  <button>Create Club</button>
-</form>
+  <div class='explore-clubs'>
+    <div class='explore-title'>
+      <h3 class='book-title'>Explore All Clubs</h3>
+    </div>
 
-{{#each clubs}}
-  <a href='/clubs/club/{{_id}}'>
+    <div class='explore-btn'>
+      <form action='/clubs/club/create' method='GET'>
+        <button class='button'>Create a club</button>
+      </form>
+    </div>
+  </div>
 
-    <h3>{{name}}</h3>
+  <div class='club-list'>
+    {{#each clubs}}
+      <div club class='club-list-item'>
+        <div class='club-name'>
+          <li>
+            {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
+            <p class='club-list-text'>{{name}}</p>
+            {{! </a> }}
+          </li>
+        </div>
 
-  </a>
-{{/each}}
+        <div class='club-list-view-btn item-btn'>
+
+          <form action='/clubs/club/{{_id}}' method='GET'>
+            <button class='button'>View</button>
+          </form>
+
+        </div>
+      </div>
+
+      {{!-- {{#unless isClubMember}}
+            <div class='club-list-join-btn item-btn'>
+
+              <form action='/clubs/club/{{_id}}/join' method='POST'>
+                <button class='button'>Join</button>
+              </form>
+
+            </div>
+          {{/unless}} --}}
+
+    {{/each}}
+  </div>
+
+</div>

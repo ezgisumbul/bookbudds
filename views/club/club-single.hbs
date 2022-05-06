@@ -1,35 +1,52 @@
 <div class='container'>
-  <h1>Welcome to {{club.name}}</h1>
 
-  <h3>Club Description</h3>
+  <h3 class='book-title'>{{club.name}}</h3>
+  {{! class name should be generalized }}
 
-  <p>{{club.description}}</p>
+  <div class='single'>
+    <div class='single-info'>
+      <p>{{club.description}}</p>
+    </div>
+    <div class='single-sidebar'>
+      <div class='single-sidebar-text'>
+        <p><span>Created by:</span> {{{club.creator.name}}}</p>
+        <p><span>Members:</span> <a href="/clubs/club/{{club._id}}/members">#number</p></a>
+      </div>
 
-  <small>{{club.creator.name}}</small>
+      {{#unless isClubMember}}
 
-  {{#unless isClubMember}}
-    <form action='/clubs/club/{{club._id}}/join' method='POST'>
-      <button>Join</button>
-    </form>
-  {{/unless}}
+        <div class='item-btn'>
+          <form action='/clubs/club/{{club._id}}/join' method='POST'>
+            <button class='button'>Join</button>
+          </form>
+        </div>
 
-  {{#if userIsOwner}}
+      {{/unless}}
 
-    <form action='/clubs/club/{{club._id}}/edit' method='GET'>
-      <button>Edit</button>
-    </form>
+      {{#if userIsOwner}}
+        <div class='item-btn'>
+          <form action='/clubs/club/{{club._id}}/edit' method='GET'>
+            <button class='button'>Edit</button>
+          </form>
+        </div>
 
-    <form action='/clubs/club/{{club._id}}/delete' method='POST'>
-      <button>Delete</button>
-    </form>
+        <div class='item-btn'>
+          <form action='/clubs/club/{{club._id}}/delete' method='POST'>
+            <button class='button'>Delete</button>
+          </form>
+        </div>
 
-  {{/if}}
+      {{/if}}
 
-  <h3>Members</h3>
+    </div>
+  </div>
+{{!-- Placeholder for club posts --}}
+  <h3>Posts</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-  {{#each members}}
-
-    <a href='/profile/{{_id}}'>{{name}}</a>
-
-  {{/each}}
 </div>
