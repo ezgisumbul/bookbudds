@@ -635,7 +635,7 @@ form#search-form {
 
   .button {
     position: relative;
-    width: 125px;
+    width: 180px;
     height: 40px;
     border: 1px $color-brown solid;
     border-radius: 3px;
@@ -666,6 +666,11 @@ form#search-form {
       top: 0;
       color: #fff;
     }
+  }
+
+  .btn-small {
+    width: 125px;
+    height: 40px;
   }
 }
 
