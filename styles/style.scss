@@ -599,7 +599,7 @@ form#search-form {
   }
 }
 
-.club-list {
+.list {
   list-style: none;
   display: flex;
   // align-items: flex-start;
@@ -610,24 +610,38 @@ form#search-form {
   // gap: 1rem;
   // justify-content: space-between;
 
-  .club-list-item {
+  .list-item {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 0.2rem;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
   }
+  .list-view-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .btn-bundle {
+    margin-left: 2rem;
+  }
 
   // .club-name {
   // }
-  .club-list-text {
+  .list-text {
     font-weight: 100;
     font-size: large;
   }
 
+  .shelf-condensed {
+    display: flex;
+    justify-content: space-between;
+    width: 47%;
+  }
+
   .button {
     position: relative;
-    width: 180px;
+    width: 125px;
     height: 40px;
     border: 1px $color-brown solid;
     border-radius: 3px;
@@ -669,6 +683,41 @@ form#search-form {
 .single-sidebar-text {
   margin-block: 2rem;
 }
+
+.create {
+  form {
+    display: flex;
+    width: 100%;
+    font-family: $font-body;
+    // column-gap: 2rem;
+
+    .input-field {
+      flex-basis: 80%;
+      background: #f6f6f6;
+      border: 1px #c5b094 solid;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      height: 50px;
+    }
+  }
+  .button {
+    margin: 2rem auto;
+    position: relative;
+    width: 180px;
+    height: 40px;
+    border: 1px $color-brown solid;
+    border-radius: 3px;
+    color: $color-body-text;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+}
+
 /**  footer
  * 
  */

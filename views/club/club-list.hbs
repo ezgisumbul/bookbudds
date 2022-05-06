@@ -12,18 +12,18 @@
     </div>
   </div>
 
-  <div class='club-list'>
+  <div class='list'>
     {{#each clubs}}
-      <div club class='club-list-item'>
-        <div class='club-name'>
+      <div club class='list-item'>
+        <div class='item-name'>
           <li>
             {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
-            <p class='club-list-text'>{{name}}</p>
+            <p class='list-text'>{{name}}</p>
             {{! </a> }}
           </li>
         </div>
 
-        <div class='club-list-view-btn item-btn'>
+        <div class='list-view-btn item-btn'>
 
           <form action='/clubs/club/{{_id}}' method='GET'>
             <button class='button'>View</button>
