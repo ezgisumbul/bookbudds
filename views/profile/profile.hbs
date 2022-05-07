@@ -12,15 +12,15 @@
       <div>
 
     </div>
-{{!-- 
+{{#if userIsOwner}}
     <div>
       <div class='list-view-btn item-btn'>
         <form action='/profile/{{_id}}' method='GET'>
           <button class='button btn-small'>Edit</button>
         </form>
       </div>
-    </div> --}}
-
+    </div>
+{{/if}}
   </div>
 
   <!-- profile-bookshelf -->

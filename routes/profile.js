@@ -4,20 +4,6 @@ const routeGuard = require('./../middleware/route-guard');
 
 const User = require('./../models/user');
 
-// profileRouter.get('/', routeGuard, (req, res, next) => {
-//   const userId = req.user._id;
-//   User.findById(userId)
-//     .populate('books')
-//     .populate('clubs')
-//     .then((user) => {
-//       const userClubs = user.clubs;
-//       const savedBooks = user.books;
-//       // console.log(user.clubs);
-//       // console.log(user.books);
-//       res.render('private', { userClubs, savedBooks });
-//     });
-// });
-
 profileRouter.get('/:id', routeGuard, (req, res, next) => {
   const profileId = req.params.id;
 
@@ -25,11 +11,17 @@ profileRouter.get('/:id', routeGuard, (req, res, next) => {
     .populate('books')
     .populate('clubs')
     .then((profile) => {
+      let userIsOwner = String(req.user._id) === String(profileId);
       const userClubs = profile.clubs;
       const savedBooks = profile.books;
       // console.log(user.clubs);
       // console.log(user.books);
-      res.render('profile/profile', { profile, userClubs, savedBooks });
+      res.render('profile/profile', {
+        profile,
+        userClubs,
+        savedBooks,
+        userIsOwner
+      });
     })
     .catch((err) => next(err));
 });
