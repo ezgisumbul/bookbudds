@@ -55,7 +55,7 @@
 <div class="reviews">
   <div class="reviews-top-text">
     <h4> Users reviews:</h4>
-    <h4><button class="review-btn"> <a href='/review/create/{{bookId}}'>Write a review</a> </button></h4>
+    <h4><button class="review-btn"> <a href='/reviews/create/{{bookId}}'>Write a review</a> </button></h4>
   </div>
 
   <div class="review-messages">
@@ -64,7 +64,7 @@
       <small class="review-creator">{{creator.name}}</small>
       <small>{{createdAt}}</small>
     </p>
-    <a href='/review/{{_id}}' class='publication-item'>
+    <a href='/reviews/{{_id}}' class='publication-item'>
       <div class="review-single">
         {{message}}
     </a>

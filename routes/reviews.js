@@ -69,7 +69,7 @@ reviewRouter.post('/:id/edit', (req, res, next) => {
   console.log(message);
   Review.findOneAndUpdate({ _id: id, creator: req.user._id }, { message })
     .then(() => {
-      res.redirect(`/review/${id}`);
+      res.redirect(`/reviews/${id}`);
     })
     .catch((error) => {
       next(error);
