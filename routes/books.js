@@ -54,8 +54,11 @@ bookRouter.get('/book/:id', (req, res) => {
       const book = result.data;
       const bookId = req.params.id;
       Review.find({ book: bookId })
+
         .populate('creator')
+        .sort({ createdAt: -1 })
         .then((reviews) => {
+          console.log(reviews);
           res.render('book-single', { book, reviews, bookId });
         });
     })

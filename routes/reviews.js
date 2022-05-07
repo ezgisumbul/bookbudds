@@ -14,6 +14,7 @@ reviewRouter.get('/', (req, res, next) => {
         throw new Error('PUBLICATION_NOT_FOUND');
       } else {
         res.render('reviews', { reviews });
+        //console.log(reviews[0].book); //have to get id of the reviewed book
       }
     })
     .catch((error) => {
@@ -31,14 +32,13 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
 reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
   const { message } = req.body;
   const id = req.params.id;
-  console.log('here' + id);
   Review.create({
     message,
     creator: req.user._id,
     book: req.params.id
   })
     .then(() => {
-      res.redirect('/');
+      res.redirect(`/books/book/${id}`);
     })
     .catch((error) => {
       next(error);
@@ -62,7 +62,7 @@ reviewRouter.get('/:id/edit', routeGuard, (req, res, next) => {
 });
 
 // POST - '/review/:id/edit' - Handles edit form submission.
-reviewRouter.post('/:id/edit', (req, res, next) => {
+reviewRouter.post('/:id/edit', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { message } = req.body;
   console.log(id);
@@ -80,9 +80,12 @@ reviewRouter.post('/:id/edit', (req, res, next) => {
 reviewRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Review.findById(id)
+
     .populate('creator')
     .then((reviews) => {
-      res.render('review-single', { reviews });
+      let isReviewCreator =
+        String(req.user._id) === String(reviews.creator._id);
+      res.render('review-single', { reviews, isReviewCreator });
     })
     .catch((error) => {
       next(error);

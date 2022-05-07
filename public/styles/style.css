@@ -596,6 +596,13 @@ form#search-form button {
   margin-right: 0.5rem;
 }
 
+.review-view-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .author {
   font-size: 1.2rem;
   font-weight: bold;

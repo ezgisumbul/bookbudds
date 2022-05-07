@@ -3,11 +3,12 @@
 <div class="reviews">
   <div class="titles">
     <h2>Latest reviews</h2>
-    <p>Check out the latest user</p></div>
+    <p>Check out the latest user reviews</p></div>
     
     <br><br>
 
  {{#each reviews}}
+
     <p class="review-name-date">
       <small class="review-creator">{{creator.name}}</small>
       <small>{{createdAt}}</small>
@@ -16,6 +17,10 @@
       <div class="review-single">
         {{message}}
     </a><br><br>
+    
+     <div class="review-view-btn"> 
+       <a href='/reviews/{{_id}}' class='publication-item'>See review</a></div> 
+   
     <hr>
   </div>
   {{/each}}
