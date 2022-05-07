@@ -53,6 +53,7 @@ bookRouter.get('/book/:id', (req, res) => {
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
+<<<<<<< HEAD
       const bookId = book.id;
       console.log(bookId);
       Book.findOne({ bookId: bookId })
@@ -76,6 +77,16 @@ bookRouter.get('/book/:id', (req, res) => {
         .catch((error) => {
           console.log(error);
           response.send('There was an error searching.');
+=======
+      const bookId = req.params.id;
+      Review.find({ book: bookId })
+
+        .populate('creator')
+        .sort({ createdAt: -1 })
+        .then((reviews) => {
+          console.log(reviews);
+          res.render('book-single', { book, reviews, bookId });
+>>>>>>> f9619feb1154cdda61bc823933888426f2d84abc
         });
 
       //Book.find()

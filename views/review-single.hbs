@@ -7,12 +7,14 @@
   <small>{{reviews.createdAt}}</small>
   <em>{{review.creator.name}}</em>
 
-  <div class='review-edit-btns'>
-    <button class='buttons'><a href='/reviews/{{reviews._id}}/edit'>Edit review</a></button>
-    <form method='POST' action='/reviews/{{reviews._id}}/delete'>
-      <button class='buttons'>Delete review</button>
-    </form>
+  {{#if isReviewCreator}}
+    <div class='review-edit-btns'>
+      <button class='buttons'><a href='/reviews/{{reviews._id}}/edit'>Edit
+          review</a></button>
+      <form method='POST' action='/reviews/{{reviews._id}}/delete'>
+        <button class='buttons'>Delete review</button>
+      </form>
 
-  </div>
-
+    </div>
+  {{/if}}
 </div>
