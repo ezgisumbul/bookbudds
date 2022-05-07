@@ -15,7 +15,7 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 const clubRouter = require('./routes/club-router');
-const reviewRouter = require('./routes/review');
+const reviewRouter = require('./routes/reviews');
 const bookRouter = require('./routes/books');
 
 const app = express();
@@ -71,7 +71,7 @@ app.use((req, res, next) => {
 
 // Catch all error handler
 app.use((error, req, res, next) => {
-  console.log(error)
+  console.log(error);
   // Set error information, with stack only available in development
   res.locals.message = error.message;
   res.locals.error = req.app.get('env') === 'development' ? error : {};
