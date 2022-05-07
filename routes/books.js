@@ -115,8 +115,9 @@ bookRouter.post('/book/:id', (req, res, next) => {
               .then((book) => {
                 User.findByIdAndUpdate(req.user.id, {
                   $push: { books: book._id }
-                }).then(() => {
-                  res.json('book is saved to your list');
+                }).then((book) => {
+                  const message = "test";
+                  res.redirect('/books/book/' + bookId, { message });
                 });
               })
               .catch((error) => {
