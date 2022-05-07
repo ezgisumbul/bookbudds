@@ -18,7 +18,6 @@ router.get('/', randomBooks, (req, res, next) => {
 // @ezgi: disabled above route as userBooks middleware is handling the render
 // of the page as well and render needs to happen here.
 
-<<<<<<< HEAD
 router.get('/private', routeGuard, (req, res, next) => {
   const userId = req.user._id;
   User.findById(userId)
@@ -32,20 +31,4 @@ router.get('/private', routeGuard, (req, res, next) => {
       res.render('private', { userClubs, savedBooks });
     });
 });
-=======
-// @ezgi: disabled below route and moved the logic to get('/profile/:id') route in profile router
-// router.get('/private', routeGuard, (req, res, next) => {
-//   const userId = req.user._id;
-//   User.findById(userId)
-//     .populate('books')
-//     .populate('clubs')
-//     .then((profile) => {
-//       const userClubs = profile.clubs;
-//       const savedBooks = profile.books;
-//       // console.log(user.clubs);
-//       // console.log(user.books);
-//       res.render('profile/profile', { profile, userClubs, savedBooks });
-//     });
-// });
->>>>>>> f9619feb1154cdda61bc823933888426f2d84abc
 module.exports = router;
