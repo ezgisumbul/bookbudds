@@ -86,11 +86,7 @@ clubRouter.post('/club/:id/edit', (req, res, next) => {
 
   Club.findByIdAndUpdate(id, { name, description })
     .then(() => {
-<<<<<<< HEAD
-      // res.redirect('/clubs');
-=======
       //res.redirect('/clubs');
->>>>>>> 8fd1b2eec99e964f08e018918fd0b5695ce73ad5
       res.redirect(`/clubs/club/${id}`); // does not work
     })
     .catch((err) => {
