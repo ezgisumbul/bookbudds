@@ -1,1 +1,24 @@
-reviews page
+<br><br>
+
+<div class="reviews">
+  <div class="titles">
+    <h2>Latest reviews</h2>
+    <p>Check out the latest user</p></div>
+    
+    <br><br>
+
+ {{#each reviews}}
+    <p class="review-name-date">
+      <small class="review-creator">{{creator.name}}</small>
+      <small>{{createdAt}}</small>
+    </p>
+    <a href='/review/{{_id}}' class='publication-item'>
+      <div class="review-single">
+        {{message}}
+    </a><br><br>
+    <hr>
+  </div>
+  {{/each}}
+
+</div>
+

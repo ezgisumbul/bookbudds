@@ -5,8 +5,20 @@ const routeGuard = require('./../middleware/route-guard');
 const reviewRouter = new express.Router();
 const axios = require('axios');
 
-reviewRouter.get('/', (req, res) => {
-  res.render('reviews');
+reviewRouter.get('/', (req, res, next) => {
+  Review.find()
+    .populate('creator')
+    .sort({ createdAt: -1 })
+    .then((reviews) => {
+      if (!reviews) {
+        throw new Error('PUBLICATION_NOT_FOUND');
+      } else {
+        res.render('reviews', { reviews });
+      }
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 // Renders review creation page
