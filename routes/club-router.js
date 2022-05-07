@@ -86,8 +86,8 @@ clubRouter.post('/club/:id/edit', (req, res, next) => {
 
   Club.findByIdAndUpdate(id, { name, description })
     .then(() => {
-      res.redirect('/clubs');
-      // res.redirect('/clubs/club/${id}');// does not work
+      // res.redirect('/clubs');
+      res.redirect(`/clubs/club/${id}`); // does not work
     })
     .catch((err) => {
       next(err);
@@ -123,9 +123,9 @@ clubRouter.post('/club/:id/join', (req, res, next) => {
           User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
             .then(() => {
               console.log('club is added to the user');
-              res.redirect('/clubs');
+              // res.redirect('/clubs');
               console.log('added');
-              // res.redirect('/clubs/club/${id}');// does not work
+              res.redirect(`/clubs/club/${id}`); // does not work
             })
             .catch((err) => next(err));
         } else {
