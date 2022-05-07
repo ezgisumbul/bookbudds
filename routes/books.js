@@ -2,11 +2,9 @@
 
 const axios = require('axios');
 const express = require('express');
-const { populate } = require('../models/book');
 const Book = require('../models/book');
 const User = require('../models/user');
 const bookRouter = express.Router();
-const Review = require('./../models/review');
 
 bookRouter.get('/', (req, res) => {
   res.render('books');
