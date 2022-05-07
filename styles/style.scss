@@ -212,7 +212,7 @@ label {
 }
 
 /**
- * Book Search
+ * BOOK SEARCH
  * 
  */
 .section-book-search {
@@ -238,7 +238,6 @@ form#search-form {
   flex-direction: row;
   width: 100%;
   font-family: $font-body;
-  // column-gap: 2rem;
 
   input {
     flex-basis: 80%;
@@ -444,7 +443,7 @@ form#search-form {
 }
 
 /**
- * @PROFILE
+ * PROFILE
  * 
  */
 
@@ -482,13 +481,15 @@ form#search-form {
   }
 }
 
-//reviews
+/**
+ * REVIEWS
+ * 
+ */
+
 .reviews {
   display: flex;
   flex-direction: column;
-  //align-items: center;
   justify-content: center;
-  //align-content: center;
   margin-left: auto;
   margin-right: auto;
   max-width: 60%;
@@ -510,7 +511,6 @@ form#search-form {
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f3f0;
-  //color: black;
   background: {
     image: linear-gradient(45deg, #c5b094 50%, transparent 50%);
     position: 100%;
@@ -527,7 +527,6 @@ form#search-form {
 
 .review-single {
   margin-bottom: 3rem;
-  //font-size: 0.9rem;
 }
 .review-creator {
   font-weight: bold;
@@ -596,7 +595,269 @@ form#search-form {
 }
 
 /**
- *  footer
+ * CLUB-LIST
+ * 
+ */
+
+.explore-clubs {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: space-between;
+
+  .button {
+    position: relative;
+    width: 180px;
+    height: 40px;
+    border: 1px $color-brown solid;
+    border-radius: 3px;
+    color: $color-body-text;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: $color-brown;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transition: all 0.3s;
+    }
+    &:hover {
+      color: #fff;
+    }
+    &:hover:after {
+      top: 0;
+      color: #fff;
+    }
+  }
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  .list-item {
+    display: flex;
+    margin-bottom: 0.2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .list-view-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .btn-bundle {
+    margin-left: 2rem;
+  }
+
+  // .club-name {
+  // }
+  .list-text {
+    font-weight: 100;
+    font-size: large;
+  }
+
+  .shelf-condensed {
+    display: flex;
+    justify-content: space-between;
+    width: 47%;
+  }
+
+  .button {
+    position: relative;
+    width: 180px;
+    height: 40px;
+    border: 1px $color-brown solid;
+    border-radius: 3px;
+    color: $color-body-text;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: $color-brown;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transition: all 0.3s;
+    }
+    &:hover {
+      color: #fff;
+    }
+    &:hover:after {
+      top: 0;
+      color: #fff;
+    }
+  }
+
+  .btn-small {
+    width: 125px;
+    height: 40px;
+  }
+}
+
+/**
+ * CLUB-SINGLE
+ * 
+ */
+
+.single-sidebar-text {
+  margin-block: 2rem;
+}
+.create {
+  form {
+    display: flex;
+    width: 100%;
+    font-family: $font-body;
+    // column-gap: 2rem;
+
+    .input-field {
+      flex-basis: 80%;
+      background: #f6f6f6;
+      border: 1px #c5b094 solid;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      height: 50px;
+    }
+  }
+  .button {
+    margin: 2rem auto;
+    position: relative;
+    width: 180px;
+    height: 40px;
+    border: 1px $color-brown solid;
+    border-radius: 3px;
+    color: $color-body-text;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+}
+
+/**  footer
+/**
+ * AUTH FORMS
+ * 
+ */
+
+.auth-forms-container {
+  max-width: 500px;
+  margin-inline: auto;
+  border: 1px $color-brown solid;
+  border-radius: 10px;
+  padding: 50px 50px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 1.1875rem;
+    font-family: $font-body;
+    color: $color-body-text;
+  }
+  img {
+    max-width: 200px;
+  }
+  form {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 25px;
+    margin-inline: auto;
+    color: $color-body-text;
+
+    & > div {
+      margin-bottom: 20px;
+    }
+
+    input {
+      background: #f6f6f6;
+      border: 1px $color-brown solid;
+      border-radius: 3px;
+      height: 40px;
+      width: 100%;
+      max-width: 350px;
+      font-size: 0.9375rem;
+    }
+    label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      display: block;
+    }
+    .auth-forms-actions {
+      position: relative;
+
+      span {
+        font-size: 0.8125rem;
+
+        & span {
+          font-weight: 700;
+        }
+      }
+
+      .button {
+        position: relative;
+        width: 125px;
+        height: 40px;
+        border: 1px $color-brown solid;
+        border-radius: 3px;
+        color: $color-body-text;
+        font-weight: 700;
+        font-size: 0.9375rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: all 0.3s;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: $color-brown;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          transition: all 0.3s;
+        }
+        &:hover {
+          color: #fff;
+        }
+        &:hover:after {
+          top: 0;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+/**  FOOTER
  * 
  */
 footer {
@@ -607,4 +868,31 @@ footer {
   font-weight: 400;
   font-size: 0.9rem;
   background: rgba(196, 175, 148, 0.3);
+}
+
+/**
+ * @TODO
+ * 
+ */
+
+.error-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 10px;
+
+  h3 {
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    background: #cd5d49;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  p {
+    white-space: break-spaces;
+    color: #cd5d49;
+    font-size: 0.9rem;
+  }
 }

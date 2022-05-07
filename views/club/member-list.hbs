@@ -1,0 +1,33 @@
+<div class='container'>
+  <h3 class='book-title'>Members</h3>
+
+  <div class='list'>
+    {{#each members}}
+      <div club class='list-item'>
+        <div class='item-name'>
+          <li>
+            {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
+            <p class='list-text'>{{name}}</p>
+            {{! </a> }}
+          </li>
+        </div>
+
+        <div class='list-view-btn item-btn'>
+          <div class='btn-bundle'>
+            <form action='/profile/{{_id}}/follow' method='GET'>
+              <button class='button'>Follow</button>
+            </form>
+          </div>
+
+          <div class='btn-bundle'>
+            <form action='/profile/{{_id}}' method='GET'>
+              <button class='button'>View</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    {{/each}}
+  </div>
+</div>

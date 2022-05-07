@@ -9,8 +9,9 @@ const userBooks = (req, res, next) => {
     .then((users) => {
       //console.log(users.books)
       const savedBooks = users.books;
-      console.log(savedBooks);
-      res.render('private', { savedBooks });
+      // console.log(savedBooks);
+      // res.render('private', { savedBooks }); // @ezgi: we shouldn't render the page inside the middleware. we should find a way to pass the savedBooks object to the render method in the base router
+      next(); //@ezgi: without next, we are stuck in middleware. I've added a next()
     })
 
     // .then((books) => {
@@ -30,7 +31,7 @@ const userBooks = (req, res, next) => {
     .catch((error) => {
       console.log(error);
       next(error);
-    })
-}
+    });
+};
 
 module.exports = userBooks;

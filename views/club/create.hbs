@@ -1,21 +1,28 @@
-<h3>Create a club</h3>
+<div class='container'>
 
-<form action='/clubs/club/create' method='POST'>
-  <label for=''>Name</label>
-  <input
-    id='input-name'
-    name='name'
-    type='text'
-    placeholder='Enter club name.'
-  />
+  <h3 class='book-title'>Create a club</h3>
 
-  <label for='input-description'>Description</label>
-  <input
-    id='input-description'
-    name='description'
-    type='text'
-    placeholder='Write a short description of your club...'
-  />
+  <div class='create'>
+    <form action='/clubs/club/create' method='POST'>
+      <label for=''>Name</label>
+      <input
+        class='input-field'
+        id='input-name'
+        name='name'
+        type='text'
+        placeholder='Enter club name.'
+      />
 
-  <button>Create club</button>
-</form>
+      <label for='input-description'>Description</label>
+      <textarea
+        class='input-field'
+        id='input-description'
+        name='description'
+        placeholder='Write a short description of your club...'
+      ></textarea>
+
+      <button class='button'>Create club</button>
+    </form>
+  </div>
+
+</div>

@@ -8,6 +8,8 @@ const Member = require('../models/member');
 
 const clubRouter = new express.Router();
 
+// Sometimes I use id sometimes I use clubId. Should be refactored.
+
 clubRouter.get('/', (req, res, next) => {
   Club.find()
     .then((clubs) => {
@@ -26,6 +28,7 @@ clubRouter.get('/club/:id', routeGuard, (req, res, next) => {
   Club.findById(id)
     .populate('creator')
     .then((club) => {
+      // I moved the member logic to another route so this route to be refactored
       let isClubMember = req.user.clubs.includes(id);
 
       // console.log(req.user);
@@ -132,6 +135,16 @@ clubRouter.post('/club/:id/join', (req, res, next) => {
       });
     })
     .catch((err) => next(err));
+});
+
+clubRouter.get('/club/:id/members', (req, res, next) => {
+  const clubId = req.params.id;
+
+  Club.findById(clubId).then(() => {
+    User.find({ clubs: clubId }).then((members) => {
+      res.render('club/member-list', { members });
+    });
+  });
 });
 
 module.exports = clubRouter;
