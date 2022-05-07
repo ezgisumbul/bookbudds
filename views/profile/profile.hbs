@@ -1,0 +1,111 @@
+<div class='container'>
+  <h1>{{capitalize profile.name}}</h1>
+
+  <div class='profile-info'>
+    <div class='profile-photo'>
+      <img src='/images/surveillance_re_8tkl.svg' />
+
+      </div>
+        <span><strong>Username:</strong>: {{capitalize profile.name}}</span>
+        <span><strong>Email</strong>: {{profile.email}}</span>
+        <span><strong>Joined in</strong>: May 2022</span>
+      <div>
+
+    </div>
+{{#if userIsOwner}}
+    <div>
+      <div class='list-view-btn item-btn'>
+        <form action='/profile/{{_id}}' method='GET'>
+          <button class='button btn-small'>Edit</button>
+        </form>
+      </div>
+    </div>
+{{/if}}
+  </div>
+
+  <!-- profile-bookshelf -->
+  <div class='profile-bookshelf'>
+    <div class="container inner">
+      <div class="titles">
+        <h2>{{capitalize profile.name}}’s Bookshelf</h2>
+        <p>Choice Awards, the only major book awards decided by readers
+          <span>Congratulations to the best books of the year!</span>
+        </p>
+      </div>
+    </div>
+    {{#if savedBooks}}
+    <div class='container inner'>
+      <div class="items profile">
+        {{#each savedBooks}}
+        <div class='item'>
+          <div class='item-photo'>
+            <a href='/books/book/{{bookId}}'>
+              {{#if imageLinks.thumbnail}}
+              <img src={{imageLinks.thumbnail}} alt='{{title}}' />
+              {{else}}
+              <img src='/images/book-cover.jpg' alt="{{title}}" />
+              {{/if}}
+            </a>
+          </div>
+          <div class='item-info'>
+            <h3><a href='/books/book/{{this.id}}'>{{truncate title 30}}</a></h3>
+            <h4>{{authors}}</h4>
+            <p>{{{truncate description 100}}} ...</p>
+          </div>
+          <div class="item-btn">
+            <a href='/books/book/{{bookId}}' class="button">View</a>
+          </div>
+        </div>
+        {{/each}}
+        {{else}} no books
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <!-- member clubs -->
+  <div class='profile-bookshelf'>
+
+    <div class="container inner">
+
+      <div class="titles">
+        <h2>{{capitalize profile.name}}’s Clubs</h2>
+        <p>Choice Awards, the only major book awards decided by readers
+          <span>Congratulations to the best books of the year!</span>
+        </p>
+      </div>
+
+
+
+{{#if userClubs}}
+    <div class='container inner'>
+      
+        <div class='list'>
+        {{#each userClubs}}
+        <div club class='list-item shelf-condensed'>
+          <div class='item-name'>
+            <li>
+            {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
+              <p class='list-text'>{{name}}</p>
+            {{! </a> }}
+            </li>
+          </div>
+
+          <div class='list-view-btn item-btn'>
+            <form action='/clubs/club/{{_id}}' method='GET'>
+              <button class='button btn-small'>View</button>
+            </form>
+          </div>
+        </div>    
+        {{/each}} 
+      </div>
+{{else}} no clubs
+  
+    </div>
+{{/if}}
+
+
+
+    </div>
+
+  </div>
