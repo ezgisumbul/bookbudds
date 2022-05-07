@@ -2,6 +2,7 @@
 
 const axios = require('axios');
 const express = require('express');
+const { populate } = require('../models/book');
 const Book = require('../models/book');
 const User = require('../models/user');
 const bookRouter = express.Router();
@@ -52,12 +53,33 @@ bookRouter.get('/book/:id', (req, res) => {
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
-      const bookId = req.params.id;
-      Review.find({ book: bookId })
-        .populate('creator')
-        .then((reviews) => {
-          res.render('book-single', { book, reviews, bookId });
+      const bookId = book.id;
+      console.log(bookId);
+      Book.findOne({ bookId: bookId })
+        .then((match) => {
+          if (match) {
+            console.log("book is there")
+            const book_id = book._id;
+            console.log(book_id);
+            User.find({ books: book_id })
+              .then(() => {
+                const notifyMessage = "book is there";
+                res.render('book-single', { notifyMessage, match, book });
+              })
+          } else {
+            console.log("book is not there")
+            res.render('book-single', { book });
+          }
+        })
+
+
+        .catch((error) => {
+          console.log(error);
+          response.send('There was an error searching.');
         });
+
+      //Book.find()
+      // res.render('book-single', { book });
     })
     .catch((error) => {
       console.log(error);
@@ -115,9 +137,10 @@ bookRouter.post('/book/:id', (req, res, next) => {
               .then((book) => {
                 User.findByIdAndUpdate(req.user.id, {
                   $push: { books: book._id }
-                }).then((book) => {
-                  const message = "test";
-                  res.redirect('/books/book/' + bookId, { message });
+                }).then(() => {
+                  //const notifyMessage = "books is saved";
+                  console.log("book is saved");
+                  res.redirect(`/books/book/${bookId}`);
                 });
               })
               .catch((error) => {
@@ -125,7 +148,9 @@ bookRouter.post('/book/:id', (req, res, next) => {
                 next(error);
               });
           } else {
-            res.json('You already have this book in your list ');
+            console.log("already in list");
+            res.redirect(`/books/book/${bookId}`);
+
           }
         })
         .catch((error) => {

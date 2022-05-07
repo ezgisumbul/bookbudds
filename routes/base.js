@@ -26,8 +26,8 @@ router.get('/private', routeGuard, (req, res, next) => {
     .then((user) => {
       const userClubs = user.clubs;
       const savedBooks = user.books;
-      // console.log(user.clubs);
-      // console.log(user.books);
+      //console.log(user.clubs);
+      //console.log(user.books);
       res.render('private', { userClubs, savedBooks });
     });
 });
