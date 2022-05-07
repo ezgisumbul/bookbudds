@@ -34,7 +34,7 @@ clubRouter.get('/club/:id', routeGuard, (req, res, next) => {
       // console.log(req.user);
       // console.log(req.user._id);
       // console.log(req.user.id);
-      // console.log(club.creator.id);
+      console.log(club.creator.id);
       // console.log(club.creator._id);
       let userIsOwner = String(req.user._id) === String(club.creator._id);
       //Jose does it like follows and I don't understand the reaon of the first check :

@@ -1,6 +1,7 @@
 <div class="container">
 
   <div class="titles">
+    {{notifyMessage}}
     <h2>{{book.volumeInfo.title}}</h2>
     <p>Author: {{#each book.volumeInfo.authors}}
       {{this}}
@@ -29,6 +30,7 @@
       <form action='' method='POST'>
         <button class="fav-btn"> &#9829; </button>
       </form>
+      {{message}}
       <div class='single-info'>
         <p class="author">{{#each book.volumeInfo.authors}}
           {{this}}
@@ -60,6 +62,8 @@
 
   <div class="review-messages">
     {{#each reviews}}
+
+    
     <p class="review-name-date">
       <small class="review-creator">{{creator.name}}</small>
       <small>{{createdAt}}</small>
@@ -67,9 +71,14 @@
     <a href='/reviews/{{_id}}' class='publication-item'>
       <div class="review-single">
         {{message}}
-    </a>
-    <br><br>
+    </a>  
+   
+     <div class="review-view-btn"> 
+       <a href='/reviews/{{_id}}' class='publication-item' class="review-see-btn">See review</a></div> 
+ 
     <hr>
-  </div>
+  </div> 
+
   {{/each}}
+
 </div>
