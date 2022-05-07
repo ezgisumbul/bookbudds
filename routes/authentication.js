@@ -4,7 +4,6 @@ const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 
-
 // handle errors
 const handleSignUpError = (err) => {
   const error = new Error();
@@ -47,8 +46,7 @@ const handleSignUpError = (err) => {
   */
 
   return error;
-}
-
+};
 
 const router = new Router();
 
@@ -66,7 +64,7 @@ router.post('/sign-up', async (req, res, next) => {
   })
     .then((user) => {
       req.session.userId = user._id;
-      res.redirect('/private');
+      res.redirect(`/profile/${user._id}`);
     })
     .catch((err) => {
       const error = handleSignUpError(err);
@@ -93,7 +91,7 @@ router.post('/sign-in', (req, res, next) => {
     .then((result) => {
       if (result) {
         req.session.userId = user._id;
-        res.redirect('/private');
+        res.redirect(`/profile/${user._id}`);
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }
