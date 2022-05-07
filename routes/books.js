@@ -56,16 +56,13 @@ bookRouter.get('/book/:id', (req, res) => {
       Book.findOne({ bookId: bookId })
         .then((match) => {
           if (match) {
-            console.log("book is there")
             const book_id = book._id;
-            console.log(book_id);
             User.find({ books: book_id })
               .then(() => {
-                const notifyMessage = "book is there";
+                const notifyMessage = "This book is in your list";
                 res.render('book-single', { notifyMessage, match, book });
               })
           } else {
-            console.log("book is not there")
             res.render('book-single', { book });
           }
         })
