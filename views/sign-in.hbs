@@ -1,33 +1,7 @@
 <div class="container">
 
   <div class="auth-forms-container">
-
-    <h3>Log Into Your Account</h3>
-
-    <div class="book-search-banner">
-      <img src="/images/bookbudds-ban.png">
-    </div>
-
-    {{#if error}}
-    <div class="error-messages">
-      <h3>Something went wrong</h3>
-      <p>{{error.message}}</p>
-    </div>
-    {{/if}}
-
-    <form action="/authentication/sign-in" method="POST" id="auth-forms" novalidate>
-      <div>
-        <label for="input-email">Email</label>
-        <input type="email" id="input-email" name="email" placeholder="Your Email" />
-      </div>
-
-      <div>
-        <label for="input-password">Password</label>
-        <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
-      </div>
-
-      <div class="auth-forms-actions">
-        <button class="button">Sign In</button> <span>Forgot password? <span>Reset password</span></span>
-
-      </div>
-    </form>
+    {{> login}}
+  </div>
+  
+</div>
