@@ -3,13 +3,18 @@ const express = require('express');
 const Review = require('./../models/review');
 const routeGuard = require('./../middleware/route-guard');
 const reviewRouter = new express.Router();
+const Book = require('../models/book');
+const User = require('../models/user');
+const bookRouter = express.Router();
 const axios = require('axios');
 
 reviewRouter.get('/', (req, res, next) => {
   Review.find()
     .populate('creator')
+    //.populate('book')
     .sort({ createdAt: -1 })
     .then((reviews) => {
+      console.log(reviews);
       if (!reviews) {
         throw new Error('PUBLICATION_NOT_FOUND');
       } else {
@@ -37,6 +42,7 @@ reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
     creator: req.user._id,
     book: req.params.id
   })
+
     .then(() => {
       res.redirect(`/books/book/${id}`);
     })

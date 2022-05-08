@@ -8,19 +8,21 @@
     <br><br>
 
  {{#each reviews}}
+ 
+ <a class="review-creator" href='/books/book/{{book.id}}' class='publication-item' class="review-see-btn">{{book.id}}</a>
 
     <p class="review-name-date">
-      <small class="review-creator">{{creator.name}}</small>
+      <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item' class="review-see-btn">{{creator.name}}</a>
       <small>{{createdAt}}</small>
     </p>
     <a href='/reviews/{{_id}}' class='publication-item'>
       <div class="review-single">
         {{message}}
-    </a><br><br>
-    
+    </a>
+  
      <div class="review-view-btn"> 
        <a href='/reviews/{{_id}}' class='publication-item'>See review</a></div> 
-   
+  
     <hr>
   </div>
   {{/each}}
