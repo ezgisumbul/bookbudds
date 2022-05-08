@@ -1,21 +1,28 @@
 <div class='container'>
-  <h1>{{capitalize profile.name}}</h1>
 
-  <div class='profile-info'>
+  <div class="profile-info-intro">
+
     <div class='profile-photo'>
-      <img src="{{profile.picture}}" alt="{{profile.name}}">
+      <img src="{{profile.picture}}" alt="{{profile.name}}" />
     </div>
-    <span><strong>Username:</strong>: {{capitalize profile.name}}</span>
-    <span><strong>Email</strong>: {{profile.email}}</span>
-    <span><strong>Joined in</strong>: {{date profile.createdAt}}</span>
 
-    {{#if userIsOwner}}
-    <div class="item-btn">
-      <a class="button" href="/profile/edit">Edit Profile</a>
+    <div class="titles">
+      <h2>{{capitalize profile.name}}’s Profile</h2>
+      <p><strong>Joined in:</strong> {{date profile.createdAt}}</p>
     </div>
-    {{/if}}
+
   </div>
 
+  <div class='profile-info'>
+    <p><strong>Username:</strong>: {{capitalize profile.name}}</p>
+    <p><strong>Email</strong>: {{profile.email}}</p>
+  </div>
+
+  {{#if userIsOwner}}
+  <div class="item-btn">
+    <a class="button" href="/profile/edit">Edit Profile</a>
+  </div>
+  {{/if}}
 
   <!-- profile-bookshelf -->
   <div class='profile-bookshelf'>
@@ -68,8 +75,6 @@
           <span>Congratulations to the best books of the year!</span>
         </p>
       </div>
-
-
 
       {{#if userClubs}}
       <div class='container inner'>

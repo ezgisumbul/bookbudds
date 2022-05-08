@@ -447,17 +447,22 @@ form#search-form {
  * 
  */
 
-.profile-info {
+.profile-info-intro {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
   margin-block-end: 50px;
 }
+.profile-info {
+  margin: 60px 0 30px 0px;
+}
 .profile-photo {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background: #dbd2be;
   border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .fav-btn {
