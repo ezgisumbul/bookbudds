@@ -32,20 +32,6 @@ bookRouter.post('/book/search/:search', (req, res) => {
     });
 });
 
-/*bookRouter.get('/book/:id', userReviews, (req, res) => {
-  const id = req.params.id;
-  axios
-    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
-    .then((result) => {
-      const book = result.data;
-      res.render('book-single', { book });
-    })
-    .catch((error) => {
-      console.log(error);
-      response.send('There was an error searching.');
-    });
-});*/
-
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios
@@ -54,7 +40,6 @@ bookRouter.get('/book/:id', (req, res) => {
       const book = result.data;
       const bookId = req.params.id;
       Review.find({ book: bookId })
-
         .populate('creator')
         .sort({ createdAt: -1 })
         .then((reviews) => {
@@ -68,21 +53,39 @@ bookRouter.get('/book/:id', (req, res) => {
     });
 });
 
-/*bookRouter.get('/book/:id', (req, res, next) => {
-  const bookId = req.params.id;
-  Review.find({ book: bookId })
-bookRouter.get('/book/:id', (req, res, next) => {
-  const bookId = req.params.id;
-  Review
-    //.select({ "message", book: bookId })
-    .find({ book: bookId })
-    .populate('creator')
-    .then((reviews) => {
-      res.render('book-single', { reviews, bookId });
-    })
+// Latest changes that were added that removed the review
+/*
+bookRouter.get('/book/:id', (req, res) => {
+  const id = req.params.id;
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((result) => {
+      const book = result.data;
+      const bookId = book.id;
+      console.log(bookId);
+      Book.findOne({ bookId: bookId })
+        .then((match) => {
+          if (match) {
+            const book_id = book._id;
+            User.find({ books: book_id }).then(() => {
+              const notifyMessage = 'This book is in your list';
+              res.render('book-single', { notifyMessage, match, book });
+            });
+          } else {
+            res.render('book-single', { book });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          response.send('There was an error searching.');
+        });
 
+      //Book.find()
+      // res.render('book-single', { book });
+    })
     .catch((error) => {
-      next(error);
+      console.log(error);
+      response.send('There was an error searching.');
     });
 });*/
 
@@ -119,7 +122,9 @@ bookRouter.post('/book/:id', (req, res, next) => {
                 User.findByIdAndUpdate(req.user.id, {
                   $push: { books: book._id }
                 }).then(() => {
-                  res.json('book is saved to your list');
+                  //const notifyMessage = "books is saved";
+                  console.log('book is saved');
+                  res.redirect(`/books/book/${bookId}`);
                 });
               })
               .catch((error) => {
@@ -127,7 +132,8 @@ bookRouter.post('/book/:id', (req, res, next) => {
                 next(error);
               });
           } else {
-            res.json('You already have this book in your list ');
+            console.log('already in list');
+            res.redirect(`/books/book/${bookId}`);
           }
         })
         .catch((error) => {

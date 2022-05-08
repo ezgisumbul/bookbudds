@@ -765,6 +765,69 @@ form#search-form {
   }
 }
 
+/**  redirect page
+ * 
+ * 
+ */
+
+.redirect {
+  // display: flex;
+  // flex-direction: column;
+
+  // width: 40%;
+  .redirect-btn {
+    margin-top: 2rem;
+    position: relative;
+    width: 125px;
+    height: 40px;
+    border: 1px $color-brown solid;
+    border-radius: 3px;
+    color: $color-body-text;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: $color-brown;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transition: all 0.3s;
+    }
+    &:hover {
+      color: #fff;
+    }
+    &:hover:after {
+      top: 0;
+      color: #fff;
+    }
+  }
+  // the below changes don't have an affect as the login partial belongs to another
+  // container class which has margin top value
+  // .redirect-login-box {
+  //   margin-top: 0;
+  //   padding-top: 0;
+  //   .container {
+  //     margin: 0;
+  //   }
+  //   .auth-forms-container {
+  //     margin: 0;
+  //   }
+  // }
+  // .redirect-btn-box {
+  //   margin-top: 0;
+  //   padding-top: 0;
+  // }
+}
+
 /**  footer
 /**
  * AUTH FORMS

@@ -26,9 +26,12 @@
         {{/if}}
         {{/if}}
       </div>
+      {{#unless notifyMessage}}
       <form action='' method='POST'>
         <button class="fav-btn"> &#9829; </button>
       </form>
+      {{/unless}}
+      {{message}}
       <div class='single-info'>
         <p class="author">{{#each book.volumeInfo.authors}}
           {{this}}
@@ -38,6 +41,7 @@
       </div>
 
       <div class="single-sidebar">
+        <div>{{notifyMessage}}</div>
 
         <p><span>Categories:</span> {{{book.volumeInfo.categories}}}
         <p><span>Published date:</span>{{book.volumeInfo.publishedDate}}</p>
@@ -61,8 +65,6 @@
   <div class="review-messages">
     {{#each reviews}}
 
-
-    
     <p class="review-name-date">
        <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item' class="review-see-btn">{{creator.name}}</a>
       <small>{{createdAt}}</small>
@@ -70,13 +72,14 @@
     <a href='/reviews/{{_id}}' class='publication-item'>
       <div class="review-single">
         {{message}}
-    </a>  
-   
-     <div class="review-view-btn"> 
-       <a href='/reviews/{{_id}}' class='publication-item' class="review-see-btn">See review</a></div> 
- 
+    </a>
+
+    <div class="review-view-btn">
+      <a href='/reviews/{{_id}}' class='publication-item' class="review-see-btn">See review</a>
+    </div>
+
     <hr>
-  </div> 
+  </div>
 
   {{/each}}
 
