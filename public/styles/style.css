@@ -865,6 +865,11 @@ form#search-form button {
   font-size: 0.9375rem;
 }
 
+.auth-forms-container form input[type='file'] {
+  color: rgba(0, 0, 0, 0);
+  height: auto;
+}
+
 .auth-forms-container form label {
   font-size: 0.8125rem;
   font-weight: 500;

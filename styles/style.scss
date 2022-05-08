@@ -872,6 +872,11 @@ form#search-form {
       width: 100%;
       max-width: 350px;
       font-size: 0.9375rem;
+
+      &[type='file'] {
+        color: rgba(0, 0, 0, 0);
+        height: auto;
+      }
     }
     label {
       font-size: 0.8125rem;

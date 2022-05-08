@@ -3,6 +3,7 @@
 const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
+const fileUpload = require('./../middleware/file-upload');
 
 // handle errors
 const handleSignUpError = (err) => {
@@ -30,6 +31,7 @@ const handleSignUpError = (err) => {
 
   // duplicate email error
   if (err.code === 11000) {
+    console.log(err)
     error.message += 'That email is already registered.\n';
   }
 
@@ -54,13 +56,19 @@ router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
 
-router.post('/sign-up', async (req, res, next) => {
+router.post('/sign-up', fileUpload.single('picture'), async (req, res, next) => {
   const { name, email, password } = req.body;
+
+  let picture;
+  if (req.file) {
+    picture = req.file.path;
+  }
 
   return User.create({
     name,
     email,
-    password
+    password,
+    picture
   })
     .then((user) => {
       req.session.userId = user._id;

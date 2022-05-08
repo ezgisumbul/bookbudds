@@ -15,7 +15,7 @@
     </div>
     {{/if}}
 
-    <form action="/authentication/sign-up" method="POST" id="auth-forms" novalidate>
+    <form action="/authentication/sign-up" method="POST" id="auth-forms" enctype="multipart/form-data" novalidate>
       <div>
         <label for="input-name">Name</label>
         <div class="name error"></div>
@@ -33,6 +33,11 @@
         <label for="input-password">Password</label>
         <div class="password error"></div>
         <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
+      </div>
+
+      <div>
+        <label for="input-picture">Profile photo</label>
+        <input id="input-picture" type="file" accept="image/*" name="picture" value="test" />
       </div>
 
       <div class="auth-forms-actions">

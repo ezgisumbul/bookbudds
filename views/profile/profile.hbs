@@ -3,25 +3,19 @@
 
   <div class='profile-info'>
     <div class='profile-photo'>
-      <img src='/images/surveillance_re_8tkl.svg' />
-
-      </div>
-        <span><strong>Username:</strong>: {{capitalize profile.name}}</span>
-        <span><strong>Email</strong>: {{profile.email}}</span>
-        <span><strong>Joined in</strong>: May 2022</span>
-      <div>
-
+      <img src="{{profile.picture}}" alt="{{profile.name}}">
     </div>
-{{#if userIsOwner}}
-    <div>
-      <div class='list-view-btn item-btn'>
-        <form action='/profile/{{_id}}' method='GET'>
-          <button class='button btn-small'>Edit</button>
-        </form>
-      </div>
+    <span><strong>Username:</strong>: {{capitalize profile.name}}</span>
+    <span><strong>Email</strong>: {{profile.email}}</span>
+    <span><strong>Joined in</strong>: {{date profile.createdAt}}</span>
+
+    {{#if userIsOwner}}
+    <div class="item-btn">
+      <a class="button" href="/profile/edit">Edit Profile</a>
     </div>
-{{/if}}
+    {{/if}}
   </div>
+
 
   <!-- profile-bookshelf -->
   <div class='profile-bookshelf'>
@@ -77,32 +71,33 @@
 
 
 
-{{#if userClubs}}
-    <div class='container inner'>
-      
-        <div class='list'>
-        {{#each userClubs}}
-        <div club class='list-item shelf-condensed'>
-          <div class='item-name'>
-            <li>
-            {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
-              <p class='list-text'>{{name}}</p>
-            {{! </a> }}
-            </li>
-          </div>
+      {{#if userClubs}}
+      <div class='container inner'>
 
-          <div class='list-view-btn item-btn'>
-            <form action='/clubs/club/{{_id}}' method='GET'>
-              <button class='button btn-small'>View</button>
-            </form>
+        <div class='list'>
+          {{#each userClubs}}
+          <div club class='list-item shelf-condensed'>
+            <div class='item-name'>
+              <li>
+                {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
+                  <p class='list-text'>{{name}}</p>
+                  {{!
+                </a> }}
+              </li>
+            </div>
+
+            <div class='list-view-btn item-btn'>
+              <form action='/clubs/club/{{_id}}' method='GET'>
+                <button class='button btn-small'>View</button>
+              </form>
+            </div>
           </div>
-        </div>    
-        {{/each}} 
+          {{/each}}
+        </div>
+        {{else}} no clubs
+
       </div>
-{{else}} no clubs
-  
-    </div>
-{{/if}}
+      {{/if}}
 
 
 
