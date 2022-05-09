@@ -30,7 +30,12 @@ const schema = new mongoose.Schema({
   books: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'
-  }]
+  }],
+  picture: {
+    type: String,
+    default: '/images/surveillance_re_8tkl.svg'
+  }
+
 }, { timestamps: true });
 
 schema.pre('save', async function (next) {

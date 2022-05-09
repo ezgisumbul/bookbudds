@@ -2,7 +2,6 @@
 
 const axios = require('axios');
 const express = require('express');
-const { populate } = require('../models/book');
 const Book = require('../models/book');
 const User = require('../models/user');
 const bookRouter = express.Router();
@@ -33,20 +32,6 @@ bookRouter.post('/book/search/:search', (req, res) => {
     });
 });
 
-/*bookRouter.get('/book/:id', userReviews, (req, res) => {
-  const id = req.params.id;
-  axios
-    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
-    .then((result) => {
-      const book = result.data;
-      res.render('book-single', { book });
-    })
-    .catch((error) => {
-      console.log(error);
-      response.send('There was an error searching.');
-    });
-});*/
-
 bookRouter.get('/book/:id', (req, res) => {
   const id = req.params.id;
   axios
@@ -55,12 +40,44 @@ bookRouter.get('/book/:id', (req, res) => {
       const book = result.data;
       const bookId = req.params.id;
       Review.find({ book: bookId })
-
         .populate('creator')
         .sort({ createdAt: -1 })
         .then((reviews) => {
           console.log(reviews);
           res.render('book-single', { book, reviews, bookId });
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      response.send('There was an error searching.');
+    });
+});
+
+// Latest changes that were added that removed the review
+/*
+bookRouter.get('/book/:id', (req, res) => {
+  const id = req.params.id;
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((result) => {
+      const book = result.data;
+      const bookId = book.id;
+      console.log(bookId);
+      Book.findOne({ bookId: bookId })
+        .then((match) => {
+          if (match) {
+            const book_id = book._id;
+            User.find({ books: book_id }).then(() => {
+              const notifyMessage = 'This book is in your list';
+              res.render('book-single', { notifyMessage, match, book });
+            });
+          } else {
+            res.render('book-single', { book });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          response.send('There was an error searching.');
         });
 
       //Book.find()
@@ -69,24 +86,6 @@ bookRouter.get('/book/:id', (req, res) => {
     .catch((error) => {
       console.log(error);
       response.send('There was an error searching.');
-    });
-});
-
-/*bookRouter.get('/book/:id', (req, res, next) => {
-  const bookId = req.params.id;
-  Review.find({ book: bookId })
-bookRouter.get('/book/:id', (req, res, next) => {
-  const bookId = req.params.id;
-  Review
-    //.select({ "message", book: bookId })
-    .find({ book: bookId })
-    .populate('creator')
-    .then((reviews) => {
-      res.render('book-single', { reviews, bookId });
-    })
-
-    .catch((error) => {
-      next(error);
     });
 });*/
 

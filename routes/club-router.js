@@ -1,15 +1,17 @@
 const express = require('express');
+const fileUpload = require('./../middleware/file-upload');
 const routeGuard = require('../middleware/route-guard');
 const User = require('.././models/user');
 const Club = require('../models/club');
 
-const clubRouter = new express.Router();
+const clubRouter = express.Router();
 
 // Sometimes I use id sometimes I use clubId. Should be refactored.
 
 clubRouter.get('/', (req, res, next) => {
   Club.find()
     .then((clubs) => {
+      console.log(clubs);
       res.render('club/club-list', { clubs });
     })
     .catch((err) => next(err));
@@ -55,19 +57,38 @@ clubRouter.post('/', (req, res) => {
   res.render('club/club-list');
 });
 
-clubRouter.post('/club/create', routeGuard, (req, res, next) => {
-  const { name, description } = req.body;
-  Club.create({ name, description, creator: req.user._id, memberCount: 1 })
-    .then((club) => {
+clubRouter.post(
+  '/club/create',
+  routeGuard,
+  fileUpload.single('picture'),
+  async (req, res, next) => {
+    const { name, description } = req.body;
+    Club.create({
+      name,
+      description,
+      creator: req.user._id,
+      memberCount: 1
+    }).then((club) => {
       const clubId = club._id;
       User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
         () => {
           res.redirect(`/clubs/club/${clubId}`);
         }
       );
-    })
-    .catch((err) => next(err));
-});
+
+      // let picture;
+      // if (req.file) {
+      //   picture = req.file.path;
+      // }
+
+      // Club.create({ name, description, creator: req.user._id, picture })
+      //   .then(() => {
+      //     res.redirect('/clubs');
+      //   })
+      //   .catch((err) => next(err));
+    });
+  }
+);
 
 clubRouter.post('/club/:id/edit', (req, res, next) => {
   const { name, description } = req.body;

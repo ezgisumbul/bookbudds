@@ -21,6 +21,11 @@ const profileRouter = require('./routes/profile');
 
 const app = express();
 
+// Format dates nicely in hbs
+hbs.registerHelper('date', (value) => {
+  return `${value.toLocaleDateString([], { day: '2-digit', month: 'long', year: 'numeric' })}`;
+});
+
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

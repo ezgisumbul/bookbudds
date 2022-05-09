@@ -30,17 +30,16 @@
   <div class='list'>
     {{#each clubs}}
       <div club class='list-item'>
+        {{!-- <div class='profile-photo'>
+          <img src='{{picture}}' alt='{{name}}' />
+        </div> --}}
         <div class='item-name'>
           <li>
             {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
             <p class='list-text'>{{name}}</p>
-            {{! </a> }}
+            {{!
+          </a> }}
           </li>
-        </div>
-
-        <div class='list-view-btn item-btn'>
-          <small></small>
-
         </div>
 
         <div class='list-view-btn item-btn'>
@@ -53,14 +52,14 @@
       </div>
 
       {{!-- {{#unless isClubMember}}
-            <div class='club-list-join-btn item-btn'>
+    <div class='club-list-join-btn item-btn'>
 
-              <form action='/clubs/club/{{_id}}/join' method='POST'>
-                <button class='button'>Join</button>
-              </form>
+      <form action='/clubs/club/{{_id}}/join' method='POST'>
+        <button class='button'>Join</button>
+      </form>
 
-            </div>
-          {{/unless}} --}}
+    </div>
+    {{/unless}} --}}
 
     {{/each}}
   </div>

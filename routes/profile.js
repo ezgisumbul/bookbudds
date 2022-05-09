@@ -1,8 +1,13 @@
 const express = require('express');
-const profileRouter = express.Router();
-const routeGuard = require('./../middleware/route-guard');
-
 const User = require('./../models/user');
+const routeGuard = require('./../middleware/route-guard');
+const fileUpload = require('./../middleware/file-upload');
+
+const profileRouter = express.Router();
+
+profileRouter.get('/edit', routeGuard, (req, res, next) => {
+  res.render('profile/edit', { profile: req.user });
+});
 
 profileRouter.get('/:id', routeGuard, (req, res, next) => {
   const profileId = req.params.id;
