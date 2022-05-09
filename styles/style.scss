@@ -606,13 +606,32 @@ form#search-form {
  * 
  */
 
-.explore-clubs {
+.main-title {
+  margin-bottom: 2rem;
+}
+
+.banner {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 4rem;
+
+  .banner-img-box {
+    img {
+      width: 700px;
+      margin: 0;
+    }
+    #club-single {
+      width: 550px;
+    }
+
+    #members {
+      width: 550px;
+    }
+  }
 
   .button {
+    margin-top: 4rem;
     position: relative;
     width: 180px;
     height: 40px;

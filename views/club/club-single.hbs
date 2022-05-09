@@ -3,25 +3,42 @@
   <h3 class='book-title'>{{club.name}}</h3>
   {{! class name should be generalized }}
 
+    <div class='banner'>
+    <div class='titles'>
+      <h3 class="sub-title">Welcome to the club!</h3>
+      <p>Join our clubs created by users to share your thoughts with others
+        <br />
+        <span>and make new friends!</span>
+      </p>
+
+      <div class='banner-btn'>
+        {{#unless isClubMember}}
+
+        <form action='/clubs/club/{{club._id}}/join' method='POST'>
+          <button class='button'>Join</button>
+        </form>
+
+      {{/unless}}
+      </div>
+    </div>
+
+    <div class='banner-img-box'>
+      <img id="club-single" src='/images/club-single.png' alt='book-club' />
+    </div>
+  </div>
+
   <div class='single'>
     <div class='single-info'>
+      <h3 class="main-title">Description</h3>
       <p>{{club.description}}</p>
     </div>
     <div class='single-sidebar'>
       <div class='single-sidebar-text'>
         <p><span>Created by:</span> {{{club.creator.name}}}</p>
-        <p><span>Members:</span> <a href="/clubs/club/{{club._id}}/members">#number</p></a>
+        <p><span>Members:</span> <a href="/clubs/club/{{club._id}}/members">{{club.memberCount}}</p></a>
       </div>
 
-      {{#unless isClubMember}}
 
-        <div class='item-btn'>
-          <form action='/clubs/club/{{club._id}}/join' method='POST'>
-            <button class='button'>Join</button>
-          </form>
-        </div>
-
-      {{/unless}}
 
       {{#if userIsOwner}}
         <div class='item-btn'>

@@ -53,31 +53,6 @@ bookRouter.get('/book/:id', (req, res) => {
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
-<<<<<<< HEAD
-      const bookId = book.id;
-      console.log(bookId);
-      Book.findOne({ bookId: bookId })
-        .then((match) => {
-          if (match) {
-            console.log("book is there")
-            const book_id = book._id;
-            console.log(book_id);
-            User.find({ books: book_id })
-              .then(() => {
-                const notifyMessage = "book is there";
-                res.render('book-single', { notifyMessage, match, book });
-              })
-          } else {
-            console.log("book is not there")
-            res.render('book-single', { book });
-          }
-        })
-
-
-        .catch((error) => {
-          console.log(error);
-          response.send('There was an error searching.');
-=======
       const bookId = req.params.id;
       Review.find({ book: bookId })
 
@@ -86,7 +61,6 @@ bookRouter.get('/book/:id', (req, res) => {
         .then((reviews) => {
           console.log(reviews);
           res.render('book-single', { book, reviews, bookId });
->>>>>>> f9619feb1154cdda61bc823933888426f2d84abc
         });
 
       //Book.find()
@@ -150,7 +124,7 @@ bookRouter.post('/book/:id', (req, res, next) => {
                   $push: { books: book._id }
                 }).then(() => {
                   //const notifyMessage = "books is saved";
-                  console.log("book is saved");
+                  console.log('book is saved');
                   res.redirect(`/books/book/${bookId}`);
                 });
               })
@@ -159,9 +133,8 @@ bookRouter.post('/book/:id', (req, res, next) => {
                 next(error);
               });
           } else {
-            console.log("already in list");
+            console.log('already in list');
             res.redirect(`/books/book/${bookId}`);
-
           }
         })
         .catch((error) => {

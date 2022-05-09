@@ -6,7 +6,7 @@
       <img src='/images/surveillance_re_8tkl.svg' />
 
       </div>
-        <span><strong>Username:</strong>: {{capitalize profile.name}}</span>
+        <span><strong>Name:</strong>: {{capitalize profile.name}}</span>
         <span><strong>Email</strong>: {{profile.email}}</span>
         <span><strong>Joined in</strong>: May 2022</span>
       <div>
@@ -15,7 +15,7 @@
 {{#if userIsOwner}}
     <div>
       <div class='list-view-btn item-btn'>
-        <form action='/profile/{{_id}}' method='GET'>
+        <form action='/profile/{{profile._id}}/edit' method='GET'>
           <button class='button btn-small'>Edit</button>
         </form>
       </div>

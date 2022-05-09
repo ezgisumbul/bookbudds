@@ -1,3 +1,4 @@
+const { unique } = require('handlebars-helpers/lib/array');
 const mongoose = require('mongoose');
 
 const clubSchema = new mongoose.Schema(
@@ -5,7 +6,8 @@ const clubSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      maxlength: 200
+      maxlength: 200,
+      unique: true
     },
     description: {
       type: String,
@@ -21,6 +23,10 @@ const clubSchema = new mongoose.Schema(
 
     picture: {
       type: String
+    },
+
+    memberCount: {
+      type: Number
     }
   },
   { timestamps: true }

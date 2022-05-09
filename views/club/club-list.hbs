@@ -1,15 +1,30 @@
 <div class='container'>
 
-  <div class='explore-clubs'>
-    <div class='explore-title'>
-      <h3 class='book-title'>Explore All Clubs</h3>
+  <div class='banner'>
+    <div class='titles'>
+      <h3 class='book-title'>Not part of a book club yet?</h3>
+      <p>Join our clubs created by users to share your thoughts with others
+        <br />
+        <span>or create a club now!</span>
+      </p>
+
+      <div class='banner-btn'>
+        <form action='/clubs/club/create' method='GET'>
+          <button class='button'>Create a club</button>
+        </form>
+      </div>
     </div>
 
-    <div class='explore-btn'>
-      <form action='/clubs/club/create' method='GET'>
-        <button class='button'>Create a club</button>
-      </form>
+    <div class='banner-img-box'>
+      <img src='/images/book-club.png' alt='book-club' />
     </div>
+  </div>
+
+  <div class='explore-clubs'>
+    <div class='explore-title'>
+      <h3 class='main-title'>Explore All Clubs</h3>
+    </div>
+
   </div>
 
   <div class='list'>
@@ -21,6 +36,11 @@
             <p class='list-text'>{{name}}</p>
             {{! </a> }}
           </li>
+        </div>
+
+        <div class='list-view-btn item-btn'>
+          <small></small>
+
         </div>
 
         <div class='list-view-btn item-btn'>

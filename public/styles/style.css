@@ -613,14 +613,32 @@ form#search-form button {
  * CLUB-LIST
  * 
  */
-.explore-clubs {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  justify-content: space-between;
+.main-title {
+  margin-bottom: 2rem;
 }
 
-.explore-clubs .button {
+.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.banner .banner-img-box img {
+  width: 700px;
+  margin: 0;
+}
+
+.banner .banner-img-box #club-single {
+  width: 550px;
+}
+
+.banner .banner-img-box #members {
+  width: 550px;
+}
+
+.banner .button {
+  margin-top: 4rem;
   position: relative;
   width: 180px;
   height: 40px;
@@ -636,7 +654,7 @@ form#search-form button {
   transition: all 0.3s;
 }
 
-.explore-clubs .button:after {
+.banner .button:after {
   content: '';
   position: absolute;
   top: 100%;
@@ -648,11 +666,11 @@ form#search-form button {
   transition: all 0.3s;
 }
 
-.explore-clubs .button:hover {
+.banner .button:hover {
   color: #fff;
 }
 
-.explore-clubs .button:hover:after {
+.banner .button:hover:after {
   top: 0;
   color: #fff;
 }
