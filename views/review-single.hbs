@@ -1,5 +1,5 @@
 <div class='reviews-edit'>
-  <h3>Your review:</h3>
+  <h3>{{bookTitle}}</h3>
   <br />
   <p>{{reviews.message}}</p>
   <hr />
@@ -8,12 +8,13 @@
   <em>{{review.creator.name}}</em>
 
   {{#if isReviewCreator}}
-  <div class='review-edit-btns'>
-    <button class='buttons'><a href='/reviews/{{reviews._id}}/edit'>Edit review</a></button>
-    <form method='POST' action='/reviews/{{reviews._id}}/delete'>
-      <button class='buttons'>Delete review</button>
-    </form>
+    <div class='review-edit-btns'>
+      <button class='buttons'><a href='/reviews/{{reviews._id}}/edit'>Edit
+          review</a></button>
+      <form method='POST' action='/reviews/{{reviews._id}}/delete'>
+        <button class='buttons'>Delete review</button>
+      </form>
 
-  </div>
+    </div>
   {{/if}}
 </div>
