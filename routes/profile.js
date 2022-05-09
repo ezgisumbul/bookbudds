@@ -19,7 +19,7 @@ profileRouter.get('/:id', routeGuard, (req, res, next) => {
       let userIsOwner = String(req.user._id) === String(profileId);
       const userClubs = profile.clubs;
       const savedBooks = profile.books;
-      // console.log(user.clubs);
+      console.log(userClubs);
       // console.log(user.books);
       res.render('profile/profile', {
         profile,

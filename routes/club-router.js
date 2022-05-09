@@ -57,37 +57,40 @@ clubRouter.post('/', (req, res) => {
   res.render('club/club-list');
 });
 
-clubRouter.post(
-  '/club/create',
-  routeGuard,
-  fileUpload.single('picture'),
-  async (req, res, next) => {
-    const { name, description } = req.body;
-    Club.create({
-      name,
-      description,
-      creator: req.user._id,
-      memberCount: 1
-    }).then((club) => {
-      const clubId = club._id;
-      User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
-        () => {
-          res.redirect(`/clubs/club/${clubId}`);
-        }
-      );
+clubRouter.post('/club/create', routeGuard, fileUpload.single('picture'), async (req, res, next) => {
+  const { name, description } = req.body;
 
-      // let picture;
-      // if (req.file) {
-      //   picture = req.file.path;
-      // }
-
-      // Club.create({ name, description, creator: req.user._id, picture })
-      //   .then(() => {
-      //     res.redirect('/clubs');
-      //   })
-      //   .catch((err) => next(err));
-    });
+  let picture;
+  if (req.file) {
+    picture = req.file.path;
   }
+
+  Club.create({
+    name,
+    description,
+    creator: req.user._id,
+    picture,
+    memberCount: 1
+  }).then((club) => {
+    const clubId = club._id;
+    User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
+      () => {
+        res.redirect(`/clubs/club/${clubId}`);
+      }
+    );
+
+    // let picture;
+    // if (req.file) {
+    //   picture = req.file.path;
+    // }
+
+    // Club.create({ name, description, creator: req.user._id, picture })
+    //   .then(() => {
+    //     res.redirect('/clubs');
+    //   })
+    //   .catch((err) => next(err));
+  });
+}
 );
 
 clubRouter.post('/club/:id/edit', (req, res, next) => {
