@@ -890,7 +890,6 @@ form#search-form button {
 }
 
 .auth-forms-container form input[type='file'] {
-  color: rgba(0, 0, 0, 0);
   height: auto;
 }
 

@@ -89,6 +89,7 @@ reviewRouter.get('/:id', (req, res, next) => {
 
     .populate('creator')
     .then((reviews) => {
+      console.log(reviews)
       let isReviewCreator =
         String(req.user._id) === String(reviews.creator._id);
       res.render('review-single', { reviews, isReviewCreator });
