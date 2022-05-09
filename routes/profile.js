@@ -5,9 +5,9 @@ const fileUpload = require('./../middleware/file-upload');
 
 const profileRouter = express.Router();
 
-profileRouter.get('/edit', routeGuard, (req, res, next) => {
-  res.render('profile/edit', { profile: req.user });
-});
+// profileRouter.get('/edit', routeGuard, (req, res, next) => {
+//   res.render('profile/edit', { profile: req.user });
+// });
 
 profileRouter.get('/:id', routeGuard, (req, res, next) => {
   const profileId = req.params.id;
