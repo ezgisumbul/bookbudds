@@ -1,8 +1,8 @@
 const express = require('express');
+const fileUpload = require('./../middleware/file-upload');
 const routeGuard = require('../middleware/route-guard');
 const Book = require('../models/book');
 const User = require('.././models/user');
-
 const Club = require('../models/club');
 const Member = require('../models/member');
 
@@ -13,6 +13,7 @@ const clubRouter = new express.Router();
 clubRouter.get('/', (req, res, next) => {
   Club.find()
     .then((clubs) => {
+      console.log(clubs);
       res.render('club/club-list', { clubs });
     })
     .catch((err) => next(err));
@@ -71,9 +72,15 @@ clubRouter.post('/', (req, res) => {
   res.render('club/club-list');
 });
 
-clubRouter.post('/club/create', routeGuard, (req, res, next) => {
+clubRouter.post('/club/create', routeGuard, fileUpload.single('picture'), async (req, res, next) => {
   const { name, description } = req.body;
-  Club.create({ name, description, creator: req.user._id })
+
+  let picture;
+  if (req.file) {
+    picture = req.file.path;
+  }
+
+  Club.create({ name, description, creator: req.user._id, picture })
     .then(() => {
       res.redirect('/clubs');
     })
