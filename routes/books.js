@@ -15,6 +15,8 @@ bookRouter.post('/book/search/:search', (req, res) => {
   let searchTerm = req.body.search;
   let searchBy = req.body.searchby;
 
+  console.log(searchBy);
+
   if (!searchTerm.length) {
     searchTerm = 'All Books';
   }
@@ -24,7 +26,7 @@ bookRouter.post('/book/search/:search', (req, res) => {
     )
     .then((result) => {
       const books = result.data.items;
-      res.render('books', { books, searchTerm });
+      res.render('books', { books, searchTerm, searchBy });
     })
     .catch((error) => {
       console.log(error);
