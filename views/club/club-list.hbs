@@ -29,29 +29,29 @@
 
   <div class='list'>
     {{#each clubs}}
-      <div club class='list-item'>
-        {{!-- <div class='profile-photo'>
-          <img src='{{picture}}' alt='{{name}}' />
-        </div> --}}
-        <div class='item-name'>
-          <li>
-            {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
+    <div club class='list-item'>
+      {{!-- <div class='profile-photo'>
+        <img src='{{picture}}' alt='{{name}}' />
+      </div> --}}
+      <div class='item-name'>
+        <li>
+          {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
             <p class='list-text'>{{name}}</p>
             {{!
           </a> }}
-          </li>
-        </div>
-
-        <div class='list-view-btn item-btn'>
-
-          <form action='/clubs/club/{{_id}}' method='GET'>
-            <button class='button'>View</button>
-          </form>
-
-        </div>
+        </li>
       </div>
 
-      {{!-- {{#unless isClubMember}}
+      <div class='list-view-btn item-btn'>
+
+        <form action='/clubs/club/{{_id}}' method='GET'>
+          <button class='button'>View</button>
+        </form>
+
+      </div>
+    </div>
+
+    {{!-- {{#unless isClubMember}}
     <div class='club-list-join-btn item-btn'>
 
       <form action='/clubs/club/{{_id}}/join' method='POST'>
