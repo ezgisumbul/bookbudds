@@ -31,6 +31,10 @@ reviewRouter.get('/', (req, res, next) => {
 reviewRouter.get('/create/:id', routeGuard, (req, res) => {
   const { id } = req.params;
   // console.log(id);
+
+  // Here we are accessing the book title through API and not through
+  // database as the bookTitle is not saved yet. It will be saved when
+  // post('/create/:id') route is executed.
   axios
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((book) => {
@@ -38,6 +42,7 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
       // console.log(bookTitle);
       res.render('review-create', { bookTitle });
     })
+    .then(() => {})
     .catch((err) => next(err));
 });
 
@@ -46,13 +51,23 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
 reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
   const { message } = req.body;
   const id = req.params.id;
-  console.log('HELLO' + id);
-  Review.create({
-    message,
-    creator: req.user._id,
-    book: req.params.id
-  })
 
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((book) => {
+      console.log(book);
+      const bookTitle = book.data.volumeInfo.title;
+      const bookCover = book.data.volumeInfo.imageLinks;
+      const bookAuthor = book.data.volumeInfo.authors;
+      Review.create({
+        message,
+        creator: req.user._id,
+        book: req.params.id,
+        bookTitle: bookTitle,
+        bookCover: bookCover,
+        bookAuthor: bookAuthor
+      });
+    })
     .then(() => {
       res.redirect(`/books/book/${id}`);
     })

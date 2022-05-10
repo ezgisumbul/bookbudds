@@ -4,7 +4,7 @@
     <h2>{{book.volumeInfo.title}}</h2>
     <p>Author: {{#each book.volumeInfo.authors}}
       {{this}}
-      {{/each}}
+      {{/each}} 
     </p>
   </div>
 
@@ -61,9 +61,20 @@
     <h4> Users reviews:</h4>
     <h4><button class="review-btn"> <a href='/reviews/create/{{bookId}}'>Write a review</a> </button></h4>
   </div>
+{{!-- 
+  <h1>{{bookId}}</h1>
+
+  <h1>{{book}}</h1>
+
+   <h1>{{id}}</h1>
+    <h1>{{bookTitle}}</h1> --}}
 
   <div class="review-messages">
     {{#each reviews}}
+
+    {{!-- <h1>{{book.volumeInfo.title}}</h1>
+
+    <h1>{{bookTitle}}</h1> --}}
 
     <p class="review-name-date">
        <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item' class="review-see-btn">{{creator.name}}</a>
