@@ -40,14 +40,16 @@ bookRouter.get('/book/:id', (req, res) => {
     .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
     .then((result) => {
       const book = result.data;
-      const bookId = req.params.id;
-      Review.find({ book: bookId })
+      // console.log(result.data);
+      const bookId = result.data.id;
+      Review.find({ book: id })
         .populate('creator')
         .sort({ createdAt: -1 })
         .then((reviews) => {
           console.log(reviews);
-          res.render('book-single', { book, reviews, bookId });
-        });
+          res.render('book-single', { book, id, bookId, reviews });
+        })
+        .catch((err) => next(err));
     })
     .catch((error) => {
       console.log(error);
@@ -163,5 +165,44 @@ bookRouter.post('/book/:id', (req, res, next) => {
 
 //     });
 // });
+
+// single review page
+bookRouter.get('/book/:id/review/:revId', (req, res, next) => {
+  const bookId = req.params.id;
+  const id = req.params.revId;
+  // console.log(req.params);
+  // console.log(bookId);
+  // console.log(id);
+  console.log('book ID: ', req.params['id']);
+  console.log('review ID: ', req.params['revId']);
+
+  Review.findById(id)
+    .populate('creator')
+    .then((reviews) => {
+      // console.log(reviews);
+      // console.log(reviews.book);
+      axios
+        .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+        .then((book) => {
+          const bookTitle = book.data.volumeInfo.title;
+          // @ezgi: to fix following issue: https://trello.com/c/gHZMqvJq
+          if (req.user) {
+            let isReviewCreator =
+              String(req.user._id) === String(reviews.creator._id);
+            res.render('review-single', {
+              reviews,
+              isReviewCreator,
+              bookTitle
+            });
+          } else {
+            res.render('review-single', { reviews, bookTitle });
+          }
+        })
+        .catch((err) => next(err));
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 module.exports = bookRouter;
