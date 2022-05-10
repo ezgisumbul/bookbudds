@@ -1,9 +1,30 @@
-<br><br>
+
+
 
 <div class="reviews">
-  <div class="titles">
-    <h2>Latest reviews</h2>
-    <p>Check out the latest user reviews</p></div>
+  
+   <div class='banner'><div class='reviews-img'>
+      <img src='/images/user_reviews_2.png' alt='book-club' />
+    </div>
+    <div class='titles'>
+      <h3 class='book-title'>Join a conversation!</h3>
+      <p>See what other people say about the latest releases and old classics. Share your own opinion!
+        <br>
+        {{#unless user}}
+       <span> Not a member yet?</span>
+       {{/unless}}
+      </p>
+      {{#unless user}}
+      <div class='banner-btn'>
+        <form action='/authentication/sign-up' method='GET'>
+          <button class='button'>Join Bookbudds</button>
+        </form>
+      </div>
+      {{/unless}}
+    </div>
+
+    
+  </div>
     
     <br><br>
 
