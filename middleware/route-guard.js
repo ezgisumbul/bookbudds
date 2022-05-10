@@ -7,12 +7,6 @@ module.exports = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    res.locals.prevUrl = req.headers.referer;
-    let prvUrl = res.locals.prevUrl;
-
-
-
-    //console.log(prvUrl);
     // const error = new Error('AUTHENTICATION_REQUIRED');
     // error.status = 401;
     // next(error);

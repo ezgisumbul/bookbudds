@@ -8,6 +8,13 @@
         <span>or create a club now!</span>
       </p>
 
+      {{#if isLogged}}
+      logged
+      {{else}}
+      not logged
+      {{/if}}
+
+
       <div class='banner-btn'>
         <form action='/clubs/club/create' method='GET'>
           <button class='button'>Create a club</button>
@@ -30,15 +37,12 @@
   <div class='list'>
     {{#each clubs}}
     <div club class='list-item'>
-      {{!-- <div class='profile-photo'>
-        <img src='{{picture}}' alt='{{name}}' />
-      </div> --}}
       <div class='item-name'>
         <li>
-          {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
-            <p class='list-text'>{{name}}</p>
-            {{!
-          </a> }}
+          <p class='list-text'>{{name}}</p>
+          <p class='list-text'>{{description}}</p>
+          {{date createdAt}}
+          <a href="profile/{{creator.id}}">{{creator.name}}</a>
         </li>
       </div>
 
