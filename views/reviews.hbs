@@ -3,7 +3,8 @@
 
 <div class="reviews">
   
-   <div class='banner'><div class='reviews-img'>
+   <div class='banner'>
+     <div class='reviews-img'>
       <img src='/images/user_reviews_2.png' alt='book-club' />
     </div>
     <div class='titles'>
@@ -28,28 +29,14 @@
     <br><br>
 
  
-{{!--   {{#each reviews}}
- <a class="review-creator" href='/books/book/{{book.id}}' class='publication-item' class="review-see-btn">{{book.id}}</a>
 
-    <p class="review-name-date">
-      <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item' class="review-see-btn">{{creator.name}}</a>
-      <small>{{createdAt}}</small>
-    </p>
-    <a href='/reviews/{{_id}}' class='publication-item'>
-      <div class="review-single">
-        {{message}}
-    </a>
-  
-     <div class="review-view-btn"> 
-       <a href='/reviews/{{_id}}' class='publication-item'>See review</a></div> 
-  
-    <hr>
+
+ 
+
+  <div class="latest-reviews">
+<h2>Latest reviews:</h2>
   </div>
-  {{/each}}
---}}
 
-
-  <br><br>
 
   {{#each reviews}}
 
@@ -62,24 +49,31 @@
 
 <div>
 
-  <a class="review-creator" href='/books/book/{{book.id}}' class='publication-item'
-    class="review-see-btn">{{book.id}}</a>
+  
 
 
 
-  <p class="review-name-date">
+  <div class="review-name-date">
+    
+    <div><a class="review-creator" href='/books/book/{{book.id}}' class='publication-item'
+    class="review-see-btn">{{book.id}}</a> 
+    review writren by: 
     <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
-      class="review-see-btn">{{creator.name}}</a>
-    <small>{{date createdAt}}</small>
-  </p>
+      class="review-see-btn">{{creator.name}}</a></div>
+
+    <div><small>{{date createdAt}}</small></div>
+    
+  </div>
   <a href='/reviews/{{_id}}' class='publication-item'>
     <div class="review-single">
       {{message}}
   </a>
 
   <div class="review-view-btn">
-    <a href='/reviews/{{_id}}' class='publication-item'>See review</a>
+   {{!--<a href='/reviews/{{_id}}' class='publication-item'>See review</a>--}} 
+    <h4><button class="see-review-btn"> <a href='/reviews/{{_id}}' >See review</a> </button></h4>
   </div>
+
   <hr>
 </div>
   </div>
