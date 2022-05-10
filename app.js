@@ -25,6 +25,9 @@ const app = express();
 hbs.registerHelper('date', (value) => {
   return `${value.toLocaleDateString([], { day: '2-digit', month: 'long', year: 'numeric' })}`;
 });
+hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.set('views', path.join(__dirname, 'views'));

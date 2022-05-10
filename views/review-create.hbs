@@ -2,6 +2,9 @@
 
   <form method='POST'>
     <label for='input-message'>What did you think of
+      {{! here the book title comes from API and not from 
+      database as the review is yet to be created in the database 
+      with submission of this form here: }}
       <span style='font-weight: bold;'>{{bookTitle}}</span>?</label>
     <textarea
       name='message'

@@ -9,11 +9,12 @@
     <div class="search-form-books">
       <form action='/books/book/search/:search' method="post" id="search-form">
         <input type="text" name="search" id="search" placeholder='Search Books' value="{{searchTerm}}" />
+
         <select name="searchby" class="searchby" aria-label="Search by">
-          <option value="all">All</option>
-          <option value="intitle">Title</option>
-          <option value="inauthor">Author</option>
-          <option value="categories">Genres</option>
+          <option value="all" {{#ifEquals searchBy "all" }} selected {{/ifEquals}}>All</option>
+          <option value="intitle" {{#ifEquals searchBy "intitle" }} selected {{/ifEquals}}>Title</option>
+          <option value="inauthor" {{#ifEquals searchBy "inauthor" }} selected {{/ifEquals}}>Author</option>
+          <option value="categories" {{#ifEquals searchBy "categories" }} selected {{/ifEquals}}>Genres</option>
         </select>
         <button>Go</button>
       </form>

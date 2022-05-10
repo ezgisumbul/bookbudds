@@ -15,8 +15,24 @@ const reviewSchema = new mongoose.Schema(
     },
     book: {
       type: mongoose.Schema.Types.ObjectId,
-      // required: false,
+      required: true,
       ref: 'Book'
+    },
+    bookTitle: {
+      type: String,
+      required: true
+    },
+
+    bookCover: {
+      type: Object,
+      of: Array,
+      required: true
+    },
+
+    bookAuthor: {
+      type: Object,
+      of: Array,
+      required: true
     }
   },
   { timestamps: true }
