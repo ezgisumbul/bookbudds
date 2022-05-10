@@ -1,39 +1,39 @@
 <div class='container'>
 
   <div class='profile-info'>
-  <div class="profile-info-intro">
+    <div class="profile-info-intro">
 
-    <div class='profile-photo'>
-      <img src="{{profile.picture}}" alt="{{profile.name}}" />
-    </div>
-
-
-
-    <div class="titles">
-      <h2>{{capitalize profile.name}}’s Profile</h2>
-      <p><strong>Joined in:</strong> {{date profile.createdAt}}</p>
-    </div>
-
-  </div>
-
-  <div class='profile-info'>
-    <p><strong>Username:</strong>: {{capitalize profile.name}}</p>
-    <p><strong>Email</strong>: {{profile.email}}</p>
-  </div>
-
-  {{!-- {{#if userIsOwner}}
-  <div class="item-btn">
-    <a class="button" href="/profile/edit">Edit Profile</a>
-  </div>
-  {{/if}} --}}
-
-  {{#if userIsOwner}}
-      <div class='list-view-btn item-btn'>
-        <form action='/profile/{{profile._id}}/edit' method='GET'>
-          <button class='button btn-small'>Edit</button>
-        </form>
+      <div class='profile-photo'>
+        <img src="{{profile.picture}}" alt="{{profile.name}}" />
       </div>
-  {{/if}}
+
+
+
+      <div class="titles">
+        <h2>{{capitalize profile.name}}’s Profile</h2>
+        <p><strong>Joined in:</strong> {{date profile.createdAt}}</p>
+      </div>
+
+    </div>
+
+    <div class='profile-info'>
+      <p><strong>Username:</strong>: {{capitalize profile.name}}</p>
+      <p><strong>Email</strong>: {{profile.email}}</p>
+    </div>
+
+    {{!-- {{#if userIsOwner}}
+    <div class="item-btn">
+      <a class="button" href="/profile/edit">Edit Profile</a>
+    </div>
+    {{/if}} --}}
+
+    {{#if userIsOwner}}
+    <div class='list-view-btn item-btn'>
+      <form action='/profile/{{profile._id}}/edit' method='GET'>
+        <button class='button btn-small'>Edit</button>
+      </form>
+    </div>
+    {{/if}}
 
   </div>
 
@@ -95,6 +95,9 @@
         <div class='list'>
           {{#each userClubs}}
           <div club class='list-item shelf-condensed'>
+            <div class='profile-photo'>
+              <img src="{{picture}}" alt="{{name}}" />
+            </div>
             <div class='item-name'>
               <li>
                 {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
@@ -122,4 +125,4 @@
     </div>
 
   </div>
-    </div>
+</div>

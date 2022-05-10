@@ -29,7 +29,16 @@ reviewRouter.get('/', (req, res, next) => {
 
 // Renders review creation page
 reviewRouter.get('/create/:id', routeGuard, (req, res) => {
-  res.render('review-create');
+  const { id } = req.params;
+  // console.log(id);
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((book) => {
+      const bookTitle = book.data.volumeInfo.title;
+      // console.log(bookTitle);
+      res.render('review-create', { bookTitle });
+    })
+    .catch((err) => next(err));
 });
 
 // Handles review creation
@@ -37,6 +46,7 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
 reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
   const { message } = req.body;
   const id = req.params.id;
+  console.log('HELLO' + id);
   Review.create({
     message,
     creator: req.user._id,
@@ -86,12 +96,19 @@ reviewRouter.post('/:id/edit', routeGuard, (req, res, next) => {
 reviewRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Review.findById(id)
-
     .populate('creator')
     .then((reviews) => {
-      let isReviewCreator =
-        String(req.user._id) === String(reviews.creator._id);
-      res.render('review-single', { reviews, isReviewCreator });
+      // @ezgi: to fix following issue: https://trello.com/c/gHZMqvJq
+      if (req.user) {
+        let isReviewCreator =
+          String(req.user._id) === String(reviews.creator._id);
+        res.render('review-single', {
+          reviews,
+          isReviewCreator
+        });
+      } else {
+        res.render('review-single', { reviews });
+      }
     })
     .catch((error) => {
       next(error);

@@ -23,13 +23,12 @@
       {{/unless}}
     </div>
 
-    
   </div>
     
     <br><br>
 
- {{#each reviews}}
  
+{{!--   {{#each reviews}}
  <a class="review-creator" href='/books/book/{{book.id}}' class='publication-item' class="review-see-btn">{{book.id}}</a>
 
     <p class="review-name-date">
@@ -47,6 +46,45 @@
     <hr>
   </div>
   {{/each}}
+--}}
 
+
+  <br><br>
+
+  {{#each reviews}}
+
+  <div class="review-single-all">
+
+
+    <div class='review-profile-photo'>
+    <img src="{{creator.picture}}" alt="{{creator.name}}" />
+  </div>
+
+<div>
+
+  <a class="review-creator" href='/books/book/{{book.id}}' class='publication-item'
+    class="review-see-btn">{{book.id}}</a>
+
+
+
+  <p class="review-name-date">
+    <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
+      class="review-see-btn">{{creator.name}}</a>
+    <small>{{date createdAt}}</small>
+  </p>
+  <a href='/reviews/{{_id}}' class='publication-item'>
+    <div class="review-single">
+      {{message}}
+  </a>
+
+  <div class="review-view-btn">
+    <a href='/reviews/{{_id}}' class='publication-item'>See review</a>
+  </div>
+  <hr>
+</div>
+  </div>
 </div>
 
+{{/each}}
+
+</div>

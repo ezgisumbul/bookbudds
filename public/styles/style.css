@@ -518,8 +518,8 @@ form#search-form button {
   display: block;
   margin-left: auto;
   margin-right: 5rem;
-  width: 50%;
-  width: 450px;
+  max-width: 50%;
+  max-width: 450px;
   height: auto;
 }
 
@@ -528,6 +528,16 @@ form#search-form button {
   justify-content: space-between;
   margin-bottom: 3rem;
   font-size: 1.5rem;
+}
+
+.review-profile-photo {
+  max-width: 100px;
+  max-height: 100px;
+  background: #dbd2be;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-right: 2rem;
 }
 
 .review-btn {
@@ -551,8 +561,13 @@ form#search-form button {
   background-position: 0;
 }
 
+.review-single-all {
+  display: flex;
+}
+
 .review-single {
   margin-bottom: 3rem;
+  width: 700px;
 }
 
 .review-creator {
@@ -562,6 +577,7 @@ form#search-form button {
 }
 
 .review-name-date {
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
@@ -905,7 +921,6 @@ form#search-form button {
 }
 
 .auth-forms-container form input[type='file'] {
-  color: rgba(0, 0, 0, 0);
   height: auto;
 }
 
