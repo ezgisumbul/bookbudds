@@ -426,6 +426,10 @@ form#search-form button {
   line-height: 20px;
 }
 
+.item-info p {
+  font-weight: 100;
+}
+
 .item-btn {
   margin-top: auto;
 }
@@ -542,6 +546,30 @@ form#search-form button {
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
+}
+
+.items-profile {
+  margin-top: 2rem;
+}
+
+.profile-empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-empty-state .btn-bundle {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.profile-empty-state .btn-bundle span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  display: block;
+  font-weight: 700;
 }
 
 .fav-btn {

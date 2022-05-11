@@ -415,6 +415,9 @@ form#search-form {
     font-size: 0.875rem;
     line-height: 20px;
   }
+  p {
+    font-weight: 100;
+  }
 }
 .item-btn {
   margin-top: auto;
@@ -526,6 +529,29 @@ form#search-form {
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
+}
+.items-profile {
+  margin-top: 2rem;
+}
+
+.profile-empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .btn-bundle {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+
+    span {
+      font-size: 0.875rem;
+      font-weight: 400;
+      display: block;
+      font-weight: 700;
+    }
+  }
 }
 
 .fav-btn {
