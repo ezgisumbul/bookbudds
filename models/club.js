@@ -22,7 +22,8 @@ const clubSchema = new mongoose.Schema(
     },
 
     picture: {
-      type: String
+      type: String,
+      default: '/images/deneme-2.png'
     },
 
     memberCount: {

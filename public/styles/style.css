@@ -756,6 +756,17 @@ form#search-form button {
   margin-bottom: 4rem;
 }
 
+.banner-btn {
+  margin-top: 2rem;
+}
+
+.banner-single-member {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  max-width: 1060px;
+}
+
 .banner-img-box {
   max-width: 500px;
   margin-inline: auto;
@@ -769,6 +780,15 @@ form#search-form button {
   width: 550px;
 }
 
+.member-box {
+  max-width: 800px;
+}
+
+.member-photo {
+  width: 70px;
+  height: 70px;
+}
+
 .list {
   list-style: none;
   display: flex;
@@ -780,7 +800,14 @@ form#search-form button {
   margin-bottom: 0.2rem;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.list .list-item .member-pic-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .list .list-view-btn {
@@ -884,6 +911,10 @@ form#search-form button {
   justify-content: center;
   overflow: hidden;
   transition: all 0.3s;
+}
+
+.single-column .single-info {
+  margin-bottom: 4rem;
 }
 
 /**  redirect page
