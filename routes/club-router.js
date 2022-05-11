@@ -133,32 +133,35 @@ clubRouter.post('/club/:id/delete', (req, res, next) => {
 
 clubRouter.post('/club/:id/join', (req, res, next) => {
   const clubId = req.params.id;
+  console.log("join page");
 
   Club.findById(clubId)
     .then((club) => {
-      User.findById(req.user.id).then((user) => {
-        let isClubMember = user.clubs.includes(clubId);
+      User.findById(req.user.id)
+        .then((user) => {
+          let isClubMember = user.clubs.includes(clubId);
 
-        if (!isClubMember) {
-          User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
-            .then(() => {
-              User.countDocuments({ clubs: clubId }, function (err, count) {
-                // const memberCount = count;
-                Club.findByIdAndUpdate(clubId, {
-                  memberCount: count
-                }).catch((err) => next(err));
-              });
-            })
-            .then(() => {
-              console.log('club is added to the user');
-              res.redirect(`/clubs/club/${clubId}`); // does not work
-            })
-            .catch((err) => next(err));
-        } else {
-          console.log('this club exists for the user');
-          next();
-        }
-      });
+          if (!isClubMember) {
+            User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
+              .then(() => {
+                User.countDocuments({ clubs: clubId }, function (err, count) {
+                  // const memberCount = count;
+                  Club.findByIdAndUpdate(clubId, {
+                    memberCount: count
+                  }).catch((err) => next(err));
+                });
+              })
+              .then(() => {
+                console.log('club is added to the user');
+                res.redirect(`/clubs/club/${clubId}`); // does not work
+              })
+              .catch((err) => next(err));
+          } else {
+            console.log('this club exists for the user');
+            res.redirect(`/clubs/club/${clubId}`);
+            //next();
+          }
+        });
     })
     .catch((err) => next(err));
 });

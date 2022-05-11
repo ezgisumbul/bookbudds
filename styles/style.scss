@@ -746,7 +746,8 @@ form#search-form {
   max-width: 500px;
   margin-inline: auto;
 
-  &.review-banner {
+  &.review-banner,
+  &.profile-banner {
     max-width: 350px;
   }
 }
@@ -1045,6 +1046,7 @@ form#search-form {
   }
 }
 .crud-forms-container {
+  width: 100%;
   margin-top: 50px;
 }
 
