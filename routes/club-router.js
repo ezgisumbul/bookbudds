@@ -9,10 +9,17 @@ const clubRouter = express.Router();
 // Sometimes I use id sometimes I use clubId. Should be refactored.
 
 clubRouter.get('/', (req, res, next) => {
+  let isLogged;
+
   Club.find()
+    .populate('creator')
     .then((clubs) => {
-      console.log(clubs);
-      res.render('club/club-list', { clubs });
+      if (req.user) {
+        isLogged = true;
+      } else {
+        isLogged = false;
+      }
+      res.render('club/club-list', { clubs, isLogged });
     })
     .catch((err) => next(err));
 });
@@ -73,11 +80,11 @@ clubRouter.post('/club/create', routeGuard, fileUpload.single('picture'), async 
     memberCount: 1
   }).then((club) => {
     const clubId = club._id;
-    User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
-      () => {
+    User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
+      .then(() => {
         res.redirect(`/clubs/club/${clubId}`);
       }
-    );
+      );
 
     // let picture;
     // if (req.file) {

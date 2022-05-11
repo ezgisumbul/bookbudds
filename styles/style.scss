@@ -161,6 +161,69 @@ nav {
   }
 }
 
+p.quote {
+  font-size: 0.8125rem;
+}
+.block {
+  display: block;
+}
+.text-center {
+  text-align: center;
+}
+
+.button {
+  position: relative;
+  width: 125px;
+  height: 40px;
+  border: 1px $color-brown solid;
+  border-radius: 3px;
+  color: $color-body-text;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: $color-brown;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 0.3s;
+  }
+  &:hover {
+    color: #fff;
+  }
+  &:hover:after {
+    top: 0;
+    color: #fff;
+  }
+}
+
+.page-hero {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-inline: auto;
+  align-items: center;
+
+  .banner-img-box {
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  .button {
+    width: auto;
+    min-width: 125px;
+    margin-top: 1rem;
+  }
+}
+
 /**
  * HOME
  * 
@@ -675,59 +738,21 @@ form#search-form {
 
 .banner {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 4rem;
+}
 
-  .banner-img-box {
-    img {
-      width: 700px;
-      margin: 0;
-    }
-    #club-single {
-      width: 550px;
-    }
+.banner-img-box {
+  max-width: 500px;
+  margin-inline: auto;
+}
 
-    #members {
-      width: 550px;
-    }
-  }
+#club-single {
+  width: 550px;
+}
 
-  .button {
-    margin-top: 4rem;
-    position: relative;
-    width: 180px;
-    height: 40px;
-    border: 1px $color-brown solid;
-    border-radius: 3px;
-    color: $color-body-text;
-    font-weight: 700;
-    font-size: 0.9375rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: all 0.3s;
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: $color-brown;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      transition: all 0.3s;
-    }
-    &:hover {
-      color: #fff;
-    }
-    &:hover:after {
-      top: 0;
-      color: #fff;
-    }
-  }
+#members {
+  width: 550px;
 }
 
 .list {
@@ -1051,5 +1076,68 @@ footer {
     white-space: break-spaces;
     color: #cd5d49;
     font-size: 0.9rem;
+  }
+}
+
+.clubs-reviews {
+  .list-item {
+    display: flex;
+    gap: 2rem;
+    margin-block: 4rem;
+    margin-block-end: 100px;
+
+    .photo {
+      max-width: 150px;
+      max-height: 150px;
+      min-width: 150px;
+      min-height: 150px;
+      background: #dbd2be;
+      border-radius: 50%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+    .creator {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 70%;
+      gap: 1rem;
+    }
+    .post-date {
+      margin-left: auto;
+      font-size: 0.875rem;
+      flex: 0 0 20%;
+      text-align: right;
+    }
+    p {
+      font-size: 0.875rem;
+    }
+    .list-view-btn.item-btn {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .button {
+      width: 180px;
+      padding-left: 40px;
+
+      .material-symbols-outlined {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        color: $color-orange;
+        border-right: 1px $color-brown solid;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+        transition: 0.5s;
+      }
+      &:hover .material-symbols-outlined {
+        color: #fff;
+      }
+    }
   }
 }
