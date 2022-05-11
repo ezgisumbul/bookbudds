@@ -9,6 +9,7 @@ const bookRouter = express.Router();
 const axios = require('axios');
 
 reviewRouter.get('/', (req, res, next) => {
+  let isLogged;
   Review.find()
     .populate('creator')
     //.populate('book')
