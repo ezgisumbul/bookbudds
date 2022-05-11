@@ -754,6 +754,11 @@ form#search-form {
 .banner-img-box {
   max-width: 500px;
   margin-inline: auto;
+
+  &.review-banner,
+  &.profile-banner {
+    max-width: 300px;
+  }
 }
 
 #club-single {
@@ -970,7 +975,8 @@ form#search-form {
  * 
  */
 
-.auth-forms-container {
+.auth-forms-container,
+.crud-forms-container {
   max-width: 500px;
   margin-inline: auto;
   border: 1px $color-brown solid;
@@ -1000,7 +1006,8 @@ form#search-form {
       margin-bottom: 20px;
     }
 
-    input {
+    input,
+    textarea {
       background: #f6f6f6;
       border: 1px $color-brown solid;
       border-radius: 3px;
@@ -1067,6 +1074,10 @@ form#search-form {
     }
   }
 }
+.crud-forms-container {
+  width: 100%;
+  margin-top: 50px;
+}
 
 /**  FOOTER
  * 
@@ -1124,12 +1135,30 @@ footer {
       border-radius: 50%;
       object-fit: cover;
       overflow: hidden;
+
+      &.cover {
+        max-width: initial;
+        max-height: initial;
+        background: none;
+        border-radius: 0;
+      }
     }
     .creator {
       display: flex;
       flex-direction: column;
       flex-basis: 70%;
       gap: 1rem;
+    }
+    .name {
+      font-weight: 700;
+    }
+    .member {
+      font-size: 0.875rem;
+      margin-top: -15px;
+
+      span {
+        font-weight: 500;
+      }
     }
     .post-date {
       margin-left: auto;
@@ -1138,7 +1167,7 @@ footer {
       text-align: right;
     }
     p {
-      font-size: 0.875rem;
+      font-size: 0.9063rem;
     }
     .list-view-btn.item-btn {
       display: flex;

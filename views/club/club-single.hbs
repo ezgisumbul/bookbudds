@@ -2,12 +2,16 @@
 
   {{! class name should be generalized }}
 
+<<<<<<< HEAD
     <div class='banner banner-single-member'>
 
     <div class='banner-img-box'>
       <img id="club-single" src='/images/club-single.png' alt='book-club' />
     </div>
 
+=======
+  <div class='banner'>
+>>>>>>> 57532e6a01dcf372432e0df8edbd40a8bdf22898
     <div class='titles'>
       {{!-- <h3 class="sub-title">Join a conversation!</h3> --}}
       <h3 class="book-title">Join a conversation!</h3>
@@ -23,6 +27,11 @@
         <form action='/clubs/club/{{club._id}}/join' method='POST'>
           <button class='button'>Join</button>
         </form>
+<<<<<<< HEAD
+=======
+
+        {{/unless}}
+>>>>>>> 57532e6a01dcf372432e0df8edbd40a8bdf22898
       </div>
       {{/unless}}
 
@@ -70,30 +79,22 @@
 
 
       {{#if userIsOwner}}
-        <div class='item-btn'>
-          <form action='/clubs/club/{{club._id}}/edit' method='GET'>
-            <button class='button'>Edit</button>
-          </form>
-        </div>
+      <div class='item-btn'>
+        <form action='/clubs/club/{{club._id}}/edit' method='GET'>
+          <button class='button'>Edit</button>
+        </form>
+      </div>
 
-        <div class='item-btn'>
-          <form action='/clubs/club/{{club._id}}/delete' method='POST'>
-            <button class='button'>Delete</button>
-          </form>
-        </div>
+      <div class='item-btn'>
+        <form action='/clubs/club/{{club._id}}/delete' method='POST'>
+          <button class='button'>Delete</button>
+        </form>
+      </div>
 
       {{/if}}
 
     </div>
   </div>
-{{!-- Placeholder for club posts --}}
-  <h3>Posts</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 </div>
 
