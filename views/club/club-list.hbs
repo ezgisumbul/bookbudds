@@ -1,71 +1,79 @@
 <div class='container'>
 
-  <div class='banner'>
-    <div class='titles'>
-      <h3 class='book-title'>Not part of a book club yet?</h3>
-      <p>Join our clubs created by users to share your thoughts with others
-        <br />
-        <span>or create a club now!</span>
-      </p>
-
-      {{#if isLogged}}
-      logged
-      {{else}}
-      not logged
-      {{/if}}
-
-
-      <div class='banner-btn'>
-        <form action='/clubs/club/create' method='GET'>
-          <button class='button'>Create a club</button>
-        </form>
-      </div>
-    </div>
+  <div class="page-hero">
 
     <div class='banner-img-box'>
-      <img src='/images/book-club.png' alt='book-club' />
-    </div>
-  </div>
-
-  <div class='explore-clubs'>
-    <div class='explore-title'>
-      <h3 class='main-title'>Explore All Clubs</h3>
+      <img src='/images/book-club.png' alt='BookBudds Book-Club' />
     </div>
 
+    <p class="quote text-center">
+      <span class="block"><strong>Not part of a book club yet?</strong></span>
+      <span>Join our BookBudds club community and share your thoughts with others.</span>
+    </p>
+
+    {{#if isLogged}}
+
+    <form action='/clubs/club/create' method='GET'>
+      <button class='button'>Create a Club</button>
+    </form>
+
+    {{else}}
+    <a href="authentication/sign-up" class="button">Sign Up</a>
+    {{/if}}
+  </div>
+</div>
+
+
+<div class="container inner">
+
+  <div class="titles">
+    <h2>Our Community Clubs</h2>
+    <p>Latest created clubs
+      <span>in BookBudds community</span>
+    </p>
   </div>
 
-  <div class='list'>
+
+  <section class="clubs-reviews">
+
     {{#each clubs}}
-    <div club class='list-item'>
-      <div class='item-name'>
-        <li>
-          <p class='list-text'>{{name}}</p>
-          <p class='list-text'>{{description}}</p>
-          {{date createdAt}}
-          <a href="profile/{{creator.id}}">{{creator.name}}</a>
-        </li>
+
+    <div class="list-item">
+      <div class="photo"><img src="{{picture}}" alt="{{name}}" /></div>
+
+      <div class="creator">
+
+        <div class="name">{{name}}</div>
+        <div class="name">Created By:{{creator.name}}</div>
+        <p>{{description}}</p>
+
+        <div class='list-view-btn item-btn'>
+
+          <form action='/clubs/club/{{_id}}' method='GET'>
+            <button class='button'>
+              <span class="material-symbols-outlined">
+                auto_stories
+              </span>
+
+              Club</button>
+          </form>
+          <a href="/profile/{{creator._id}}" class="button profile-btn">View Profile
+            <span class="material-symbols-outlined">
+              person_filled
+            </span>
+
+
+          </a>
+
+        </div>
       </div>
 
-      <div class='list-view-btn item-btn'>
-
-        <form action='/clubs/club/{{_id}}' method='GET'>
-          <button class='button'>View</button>
-        </form>
-
-      </div>
+      <div class="post-date">Created: {{date createdAt}}</div>
     </div>
 
-    {{!-- {{#unless isClubMember}}
-    <div class='club-list-join-btn item-btn'>
 
-      <form action='/clubs/club/{{_id}}/join' method='POST'>
-        <button class='button'>Join</button>
-      </form>
-
-    </div>
-    {{/unless}} --}}
 
     {{/each}}
-  </div>
 
+  </section>
 </div>

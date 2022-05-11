@@ -10,6 +10,6 @@ module.exports = (req, res, next) => {
     // const error = new Error('AUTHENTICATION_REQUIRED');
     // error.status = 401;
     // next(error);
-    res.render('authentication/redirect', { prvUrl });
+    res.render('authentication/redirect');
   }
 };
