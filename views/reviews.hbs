@@ -11,23 +11,15 @@
       <span>See what other people say about the latest releases and old classics. Share your own opinion!</span>
     </p>
 
+    {{#if isLogged}}
+    <form action='/authentication/sign-up' method='GET'>
+      <button class='button'>Join Bookbudds</button>
+    </form>
+    {{else}}
+    <a href="authentication/sign-up" class="button">Sign Up</a>
+    {{/if}}
   </div>
 </div>
-
-
-
-
-{{#unless user}}
-<span> Not a member yet?</span>
-{{/unless}}
-</p>
-{{#unless user}}
-<div class='banner-btn'>
-  <form action='/authentication/sign-up' method='GET'>
-    <button class='button'>Join Bookbudds</button>
-  </form>
-</div>
-{{/unless}}
 
 {{#if reviews.length}}
 

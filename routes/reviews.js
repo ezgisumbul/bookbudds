@@ -14,13 +14,12 @@ reviewRouter.get('/', (req, res, next) => {
     //.populate('book')
     .sort({ createdAt: -1 })
     .then((reviews) => {
-      console.log(reviews);
-      if (!reviews) {
-        throw new Error('PUBLICATION_NOT_FOUND');
+      if (req.user) {
+        isLogged = true;
       } else {
-        res.render('reviews', { reviews });
-        //console.log(reviews[0].book); //have to get id of the reviewed book
+        isLogged = false;
       }
+      res.render('reviews', { reviews, isLogged });
     })
     .catch((error) => {
       next(error);
@@ -42,7 +41,7 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
       // console.log(bookTitle);
       res.render('review-create', { bookTitle });
     })
-    .then(() => {})
+    .then(() => { })
     .catch((err) => next(err));
 });
 
