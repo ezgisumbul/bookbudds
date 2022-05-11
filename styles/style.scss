@@ -741,6 +741,15 @@ form#search-form {
   justify-content: space-between;
   margin-bottom: 4rem;
 }
+.banner-btn {
+  margin-top: 2rem;
+}
+.banner-single-member {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  max-width: 1060px;
+}
 
 .banner-img-box {
   max-width: 500px;
@@ -759,6 +768,14 @@ form#search-form {
 #members {
   width: 550px;
 }
+.member-box {
+  max-width: 800px;
+}
+
+.member-photo {
+  width: 70px;
+  height: 70px;
+}
 
 .list {
   list-style: none;
@@ -770,7 +787,13 @@ form#search-form {
     margin-bottom: 0.2rem;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    .member-pic-name {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
   }
   .list-view-btn {
     display: flex;
@@ -874,6 +897,12 @@ form#search-form {
     justify-content: center;
     overflow: hidden;
     transition: all 0.3s;
+  }
+}
+
+.single-column {
+  .single-info {
+    margin-bottom: 4rem;
   }
 }
 
