@@ -1,28 +1,32 @@
 <div class='container'>
 
-  <h3 class='book-title'>Create a club</h3>
+  <div class="page-hero">
 
-  <div class='create'>
-    <form action='/clubs/club/create' method='POST' enctype="multipart/form-data" novalidate>
+    <div class='banner-img-box'>
+      <img src='/images/book-club.png' alt='BookBudds Book-Club' />
+    </div>
 
-      <div>
-        <label for=''>Name</label>
-        <input class='input-field' id='input-name' name='name' type='text' placeholder='Enter club name' />
-      </div>
+    <div class='crud-forms-container'>
+      <h3>Create a club</h3>
+      <form action='/clubs/club/create' method='POST' enctype="multipart/form-data" novalidate>
+        <div>
+          <label for=''>Name</label>
+          <input class='input-field' id='input-name' name='name' type='text' placeholder='Enter club name' />
+        </div>
 
-      <div>
-        <label for='input-description'>Description</label>
-        <textarea class='input-field' id='input-description' name='description'
-          placeholder='Write a short description of your club'></textarea>
-      </div>
+        <div>
+          <label for='input-description'>Description</label>
+          <textarea class='input-field' id='input-description' name='description'
+            placeholder='Write a short description of your club'></textarea>
+        </div>
 
-      <div>
-        <label for="input-picture">Profile photo</label>
-        <input id="input-picture" type="file" accept="image/*" name="picture" value="test" />
-      </div>
+        <div>
+          <label for="input-picture">Profile photo</label>
+          <input id="input-picture" type="file" accept="image/*" name="picture" value="test" />
+        </div>
 
-      <button class='button'>Create club</button>
-    </form>
+        <button class='button'>Create club</button>
+      </form>
+    </div>
   </div>
-
 </div>

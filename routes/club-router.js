@@ -106,6 +106,11 @@ clubRouter.post('/club/:id/edit', (req, res, next) => {
 
   Club.findByIdAndUpdate(id, { name, description })
     .then(() => {
+      if (req.user) {
+        isLogged = true;
+      } else {
+        isLogged = false;
+      }
       //res.redirect('/clubs');
       res.redirect(`/clubs/club/${id}`); // does not work
     })

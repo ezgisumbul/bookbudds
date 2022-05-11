@@ -24,6 +24,7 @@
 </div>
 
 
+{{#if clubs.length}}
 <div class="container inner">
 
   <div class="titles">
@@ -32,7 +33,6 @@
       <span>in BookBudds community</span>
     </p>
   </div>
-
 
   <section class="clubs-reviews">
 
@@ -43,37 +43,30 @@
 
       <div class="creator">
 
-        <div class="name">{{name}}</div>
-        <div class="name">Created By:{{creator.name}}</div>
+        <div class="name">{{capitalize name}}</div>
+        <div class="member"><span>Created By:</span> {{capitalize creator.name}}</div>
         <p>{{description}}</p>
 
         <div class='list-view-btn item-btn'>
 
           <form action='/clubs/club/{{_id}}' method='GET'>
             <button class='button'>
-              <span class="material-symbols-outlined">
-                auto_stories
-              </span>
-
-              Club</button>
+              <span class="material-symbols-outlined">auto_stories</span>
+              Club
+            </button>
           </form>
           <a href="/profile/{{creator._id}}" class="button profile-btn">View Profile
             <span class="material-symbols-outlined">
               person_filled
             </span>
-
-
           </a>
-
         </div>
       </div>
 
       <div class="post-date">Created: {{date createdAt}}</div>
     </div>
 
-
-
     {{/each}}
-
   </section>
+  {{/if}}
 </div>

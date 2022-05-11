@@ -1,14 +1,22 @@
-<div class='reviews-edit'>
-  <h3>{{reviews.bookTitle}}</h3>
-  <form method='POST'>
-    <label for='input-message'>Edit review</label>
-    <textarea
-      id='input-message'
-      name='message'
-      placeholder='Your message...'
-    >{{reviews.message}}</textarea>
+<div class='container'>
 
-    <button class='buttons'>Submit changes</button>
-  </form>
+  <div class="page-hero">
 
+    <div class='banner-img-box'>
+      <img src='/images/book-club.png' alt='BookBudds Book-Club' />
+    </div>
+
+    <div class='crud-forms-container'>
+      <h3>{{reviews.bookTitle}}</h3>
+
+      <form method='POST'>
+        <div>
+          <label for='input-message'>Edit review</label>
+          <textarea id='input-message' name='message' placeholder='Your message...'>{{reviews.message}}</textarea>
+        </div>
+
+        <button class='button'>Edit Review</button>
+      </form>
+    </div>
+  </div>
 </div>
