@@ -39,15 +39,23 @@
 
   <!-- profile-bookshelf -->
   <div class='profile-bookshelf'>
-    <div class="container inner">
+    {{!-- <div class="container inner">
       <div class="titles">
         <h2>{{capitalize profile.name}}’s Bookshelf</h2>
         <p>Choice Awards, the only major book awards decided by readers
           <span>Congratulations to the best books of the year!</span>
         </p>
       </div>
-    </div>
+    </div> --}}
     {{#if savedBooks}}
+    <div class="container inner">
+      <div class="titles">
+        <h2>{{capitalize profile.name}}’s Bookshelf</h2>
+        <p>All the books you have saved
+          <span>are one click away!</span>
+        </p>
+      </div>
+    </div>
     <div class='container inner'>
       <div class="items profile">
         {{#each savedBooks}}
@@ -71,7 +79,21 @@
           </div>
         </div>
         {{/each}}
-        {{else}} no books
+        {{else}} 
+        <div class="container inner">
+          <div class="items profile profile-empty-state"> {{!-- <div class="profile-empty-state"> --}}
+            <div class="titles">
+              <h2>{{capitalize profile.name}}’s Bookshelf</h2>
+              <p>Currently, you don't have any saved books in your bookshelf.
+                <span>Check out our library to add some!</span>
+              </p>
+            </div>
+            <div class="item-btn">
+              <a href='/books' class="button">Search books</a>
+            </div>
+          </div>
+
+    </div>
         {{/if}}
       </div>
     </div>
@@ -80,16 +102,24 @@
   <!-- member clubs -->
   <div class='profile-bookshelf'>
 
-    <div class="container inner">
+    {{!-- <div class="container inner">
 
       <div class="titles">
         <h2>{{capitalize profile.name}}’s Clubs</h2>
         <p>Choice Awards, the only major book awards decided by readers
           <span>Congratulations to the best books of the year!</span>
         </p>
-      </div>
+      </div> --}}
 
       {{#if userClubs}}
+      <div class="container inner">
+      <div class="titles">
+          <h2>{{capitalize profile.name}}’s Clubs</h2>
+          <p>Access all the clubs you joined
+            <span>do not miss new content!</span>
+          </p>
+      </div>
+    </div>
       <div class='container inner'>
 
         <div class='list'>
@@ -115,7 +145,29 @@
           </div>
           {{/each}}
         </div>
-        {{else}} no clubs
+        {{else}}
+        <div class="container inner">
+          <div class="items profile profile-empty-state"> {{!-- <div class="profile-empty-state"> --}}
+            <div class="titles">
+              <h2>{{capitalize profile.name}}’s Clubs</h2>
+              <p>You are not part of any clubs yet. 
+              <span> To share your thoughts with others,</span>
+              </p>
+            </div>
+            <div class="btn-bundle">
+              <div class="item-btn">
+                <a href='/clubs' class="button">Explore clubs</a>
+              </div>
+
+              <div><span>or</span></div>
+
+              <div class="item-btn">
+                <a href='/clubs/club/create' class="button">Create a club</a>
+              </div>
+            </div>
+            
+          </div>
+        </div>
 
       </div>
       {{/if}}
