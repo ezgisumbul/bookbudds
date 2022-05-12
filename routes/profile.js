@@ -35,18 +35,26 @@ profileRouter.get('/:id/edit', routeGuard, (req, res, next) => {
     .catch((err) => next(err));
 });
 
-profileRouter.post('/:id/edit', routeGuard, (req, res) => {
-  const { name, email } = req.body;
+profileRouter.post(
+  '/:id/edit',
+  routeGuard,
+  fileUpload.single('picture'),
+  (req, res) => {
+    const { name, email } = req.body;
+    const userId = req.params.id;
+    let picture;
+    if (req.file) {
+      picture = req.file.path;
+    }
 
-  const userId = req.params.id;
-
-  User.findByIdAndUpdate(userId, { name, email })
-    .then(() => {
-      res.redirect(`/profile/${userId}`);
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+    User.findByIdAndUpdate(userId, { name, email, picture })
+      .then(() => {
+        res.redirect(`/profile/${userId}`);
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+);
 
 module.exports = profileRouter;

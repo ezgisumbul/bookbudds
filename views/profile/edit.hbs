@@ -32,6 +32,12 @@
           />
         </div>
 
+        {{#if profile.picture}}
+          <img src='{{profile.picture}}' alt='Existing Picture' />
+        {{/if}}
+        <label for='input-picture'>An illustrative picture</label>
+        <input id='input-picture' type='file' accept='image/*' name='picture' />
+
         <button class='button'>Edit club</button>
       </form>
     </div>
