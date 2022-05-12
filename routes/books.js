@@ -8,7 +8,7 @@ const bookRouter = express.Router();
 const Review = require('./../models/review');
 
 bookRouter.get('/', (req, res) => {
-  res.render('books');
+  res.render('book/books');
 });
 
 bookRouter.post('/book/search/:search', (req, res) => {
@@ -26,7 +26,7 @@ bookRouter.post('/book/search/:search', (req, res) => {
     )
     .then((result) => {
       const books = result.data.items;
-      res.render('books', { books, searchTerm, searchBy });
+      res.render('book/books', { books, searchTerm, searchBy });
     })
     .catch((error) => {
       console.log(error);
@@ -50,7 +50,13 @@ bookRouter.get('/book/:id', (req, res) => {
         .sort({ createdAt: -1 })
         .then((reviews) => {
           console.log(reviews);
-          res.render('book-single', { bookTitle, book, id, bookId, reviews });
+          res.render('book/book-single', {
+            bookTitle,
+            book,
+            id,
+            bookId,
+            reviews
+          });
         })
         .catch((err) => next(err));
     })
@@ -76,10 +82,10 @@ bookRouter.get('/book/:id', (req, res) => {
             const book_id = book._id;
             User.find({ books: book_id }).then(() => {
               const notifyMessage = 'This book is in your list';
-              res.render('book-single', { notifyMessage, match, book });
+              res.render('book/book-single', { notifyMessage, match, book });
             });
           } else {
-            res.render('book-single', { book });
+            res.render('book/book-single', { book });
           }
         })
         .catch((error) => {
@@ -88,7 +94,7 @@ bookRouter.get('/book/:id', (req, res) => {
         });
 
       //Book.find()
-      // res.render('book-single', { book });
+      // res.render('book/book-single', { book });
     })
     .catch((error) => {
       console.log(error);
