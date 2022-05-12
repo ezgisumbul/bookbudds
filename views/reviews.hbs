@@ -1,78 +1,69 @@
+<div class='container'>
 
+  <div class="page-hero">
 
-
-<div class="reviews">
-  
-   <div class='banner'>
-     <div class='reviews-img'>
+    <div class='banner-img-box review-banner'>
       <img src='/images/user_reviews_2.png' alt='book-club' />
     </div>
-    <div class='titles'>
-      <h3 class='book-title'>Join a conversation!</h3>
-      <p>See what other people say about the latest releases and old classics. Share your own opinion!
-        <br>
-        {{#unless user}}
-       <span> Not a member yet?</span>
-       {{/unless}}
-      </p>
-      {{#unless user}}
-      <div class='banner-btn'>
-        <form action='/authentication/sign-up' method='GET'>
-          <button class='button'>Join Bookbudds</button>
-        </form>
+
+    <p class="quote text-center">
+      <span class="block"><strong>Share your thoughts!</strong></span>
+      <span>See what other people say about the latest releases and old classics. Share your own opinion!</span>
+    </p>
+
+
+    {{#if isLogged}}
+    <form action='/authentication/sign-up' method='GET'>
+      <button class='button'>Join Bookbudds</button>
+    </form>
+    {{else}}
+    <a href="authentication/sign-up" class="button">Sign Up</a>
+    {{/if}}
+  </div>
+</div>
+
+{{#if reviews.length}}
+
+<div class="container inner">
+
+  <div class="titles">
+    <h2>Our Community Reviews</h2>
+    <p>Latest Reviews
+      <span>in BookBudds community</span>
+    </p>
+  </div>
+
+  <section class="clubs-reviews">
+
+    {{#each reviews}}
+    <div class="list-item">
+      <div class="photo cover"><a href='/books/book/{{book.id}}'><img src="{{bookCover.thumbnail}}"
+            alt="{{creator.name}}" /></a></div>
+      <div class="creator">
+        <div class="name"><a href='/books/book/{{book.id}}'>{{bookTitle}}</a></div>
+        <div class="member"><span>Review By:</span> {{capitalize creator.name}}</div>
+        <p>{{message}}</p>
+
+        <div class='list-view-btn item-btn'>
+
+          <a href="/reviews/{{_id}}" class="button profile-btn">Review
+            <span class="material-symbols-outlined">
+              visibility
+            </span>
+          </a>
+
+          <a href="/profile/{{creator.id}}" class="button profile-btn">View Profile
+            <span class="material-symbols-outlined">
+              person_filled
+            </span>
+          </a>
+        </div>
       </div>
-      {{/unless}}
+
+      <div class="post-date">Created: {{date createdAt}}</div>
     </div>
 
-  </div>
-    
-    <br><br>
-
- 
-
-
- 
-
-  <div class="latest-reviews">
-<h2>Latest reviews:</h2>
-  </div>
-
-
-  {{#each reviews}}
-
-  <div class="review-single-all">
-    <div class='review-profile-photo'>
-    <img src="{{creator.picture}}" alt="{{creator.name}}" />
-  </div>
-
-<div>
-
-  <div class="review-name-date">
-    
-    <div><a class="review-creator" href='/books/book/{{book.id}}' class='publication-item'
-    class="review-see-btn">{{bookTitle}}</a> 
-    review writren by:
-    <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
-      class="review-see-btn">{{creator.name}}</a></div>
-
-    <div><small>{{date createdAt}}</small></div>
-    
-  </div>
-  <a href='/reviews/{{_id}}' class='publication-item'>
-    <div class="review-single">
-      {{message}}
-  </a>
-
-  <div class="review-view-btn">
-   {{!--<a href='/reviews/{{_id}}' class='publication-item'>See review</a>--}} 
-    <h4><button class="see-review-btn"> <a href='/reviews/{{_id}}' >See review</a> </button></h4>
-  </div>
-
-  <hr>
-</div>
-  </div>
-</div>
-
-{{/each}}
-
+    {{/each}}
+  </section>
+  {{/if}}
 </div>

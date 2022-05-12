@@ -129,6 +129,21 @@ nav {
     padding-block: 20px;
   }
 }
+
+.container-single-book {
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-top: 70px;
+
+  &.inner {
+    margin-block: 80px;
+  }
+  &.footer {
+    margin: 0 auto;
+    padding-block: 20px;
+  }
+}
+
 .titles {
   h2 {
     font-size: 1.375rem;
@@ -556,17 +571,18 @@ form#search-form {
   }
 }
 
-.see-review-btn {
+.under-book-btn {
   border-radius: 3px;
   border-color: #c5b094;
-  border-width: 2px;
-  width: 100px;
+  border-width: 1px;
+  margin-right: 1rem;
+  width: 150px;
   font-size: 0.7rem;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f3f0;
+  background-color: rgb(247, 247, 247);
   background: {
-    image: linear-gradient(45deg, #c5b094 50%, transparent 50%);
+    image: linear-gradient(45deg, #ff7e67 50%, transparent 50%);
     position: 100%;
     size: 400%;
   }
@@ -588,18 +604,19 @@ form#search-form {
 .review-single-all {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 .review-single {
   margin-bottom: 3rem;
-  max-width: 900px;
-  min-width: 900px;
+  //max-width: 900px;
+  width: 1000px;
 }
 .review-creator {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: italic;
 }
 

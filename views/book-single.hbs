@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-single-book">
 
   <div class="titles">
     <h2>{{book.volumeInfo.title}}</h2>
-    <p>Author: {{#each book.volumeInfo.authors}}
+    <p> <b>Author:</b>  {{#each book.volumeInfo.authors}}
       {{this}}
       {{/each}} 
     </p>
@@ -27,18 +27,14 @@
         {{/if}}
       </div>
       {{#unless notifyMessage}}
-      <form action='' method='POST'>
-        <button class="fav-btn"> &#9829; </button>
-      </form>
+     
       {{/unless}}
       {{message}}
+      
       <div class='single-info'>
-        <p class="author">{{#each book.volumeInfo.authors}}
-          {{this}}
-          {{/each}}
-        </p>
         <p>{{book.volumeInfo.description}}</p>
       </div>
+       
 
       <div class="single-sidebar">
         <div>{{notifyMessage}}</div>
@@ -50,7 +46,15 @@
 
       </div>
     </div>
+    
+   {{!--<form action='' method='POST'>
+        <button class="fav-btn"> &#9829; </button>
+      </form> --}} 
+    <button class="under-book-btn"> <a href='' > + Bookshelf </a> </button>
+    <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}' > Write review </a> </button>
+  
   </div>
+  
 
 </div>
 
@@ -58,8 +62,11 @@
 
 <div class="reviews">
   <div class="reviews-top-text">
-    <h4> Users reviews:</h4>
-    <h4><button class="review-btn"> <a href='/reviews/create/{{bookId}}'>Write a review</a> </button></h4>
+    <div class="titles">
+    <h2>Community reviews</h2>
+    <p>See what other people think of this book.</p>
+  </div>
+    {{!-- <h4><button class="review-btn"> <a href='/reviews/create/{{bookId}}'>Write a review</a> </button></h4>--}}
   </div>
 {{!-- 
   <h1>{{bookId}}</h1>
@@ -69,29 +76,38 @@
    <h1>{{id}}</h1>
     <h1>{{bookTitle}}</h1> --}}
 
-  <div class="review-messages">
-    {{#each reviews}}
+ <div>
+    
+  {{#each reviews}}
 
-    {{!-- <h1>{{book.volumeInfo.title}}</h1>
-
-    <h1>{{bookTitle}}</h1> --}}
-
-    <p class="review-name-date">
-       <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item' class="review-see-btn">{{creator.name}}</a>
-      <small>{{date createdAt}}</small>
-    </p>
-    <a href='/reviews/{{_id}}' class='publication-item'>
-      <div class="review-single">
-        {{message}}
-    </a>
-
-    <div class="review-view-btn">
-      <a href='/reviews/{{_id}}' class='publication-item' class="review-see-btn">See review</a>
-    </div>
-
-    <hr>
+  <div class="review-single-all">
+    <div class='review-profile-photo'>
+    <img src="{{creator.picture}}" alt="{{creator.name}}" />
   </div>
 
-  {{/each}}
+<div>
 
+  <div class="review-name-date">
+    
+    <div>
+    <small> writren by</small>
+    <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
+      class="review-see-btn">{{creator.name}}</a></div>
+
+    <div><small>{{date createdAt}}</small></div>
+    
+  </div>
+  <a href='/reviews/{{_id}}' class='publication-item'>
+    <div class="review-single">
+      {{message}}
+  </a>
+
+  <div class="review-view-btn">
+    <h4><button class="under-book-btn"> <a href='/reviews/{{_id}}' >See review</a> </button></h4>
+  </div>
+
+  <hr>
+</div>
+  </div></div>
+{{/each}}
 </div>
