@@ -173,9 +173,9 @@ clubRouter.post('/club/:id/join', (req, res, next) => {
 clubRouter.get('/club/:id/members', (req, res, next) => {
   const clubId = req.params.id;
 
-  Club.findById(clubId).then(() => {
+  Club.findById(clubId).then((club) => {
     User.find({ clubs: clubId }).then((members) => {
-      res.render('club/member-list', { members });
+      res.render('club/member-list', { club, members });
     });
   });
 });

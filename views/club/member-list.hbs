@@ -1,58 +1,55 @@
 <div class='container'>
 
-  <div class='banner banner-single-member'>
-    <div class='banner-img-box'>
-      <img id='members' src='/images/members.png' alt='book-club' />
+  <div class="page-hero">
+
+    <div class='banner-img-box banner-single-member'>
+      <img src='/images/members.png' alt='members' />
     </div>
 
-    <div class='titles'>
-      <h3 class='book-title'>Beter together!</h3>
-      <p>Find people with similar interests!
-        <br />
-        <span>Check out club members!</span>
-      </p>
-
-    </div>
-
+    <p class="quote text-center">
+      <span class="block"><strong>Beter together!</strong></span>
+      <span>Find people with similar interests!</span>
+      <span> Check out club members!</span>
+    </p>
   </div>
+</div>
 
 </div>
 <div class='reviews member-box'>
-  <h3 class='main-title'>Members</h3>
+  <div class="titles">
+    <h2>Members of {{club.name}}</h2>
+    <p>See who is in our
+      <span>{{club.name}} community</span>
+    </p>
+  </div>
 
-  <div class='list'>
+<section class="clubs-reviews">
+
     {{#each members}}
-      <div club class='list-item'>
-        {{! <div class="review-single-all"> }}
-        <div class='member-pic-name'>
-          <div class='review-profile-photo member-photo'>
-            <img src='{{picture}}' alt='{{name}}' />
-          </div>
-          <div class='item-name'>
-            <li>
-              {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
-              <p class='list-text'>{{name}}</p>
-              {{! </a> }}
-            </li>
-          </div>
-        </div>
+
+    <div class="list-item">
+
+      <div class="photo"><img src="{{picture}}" alt="{{name}}" /></div>
+
+
+      <div class="creator">
+
+        <div class="name">{{capitalize name}}</div>
+        <div class="member"><span>Joined BookBudds:</span> {{date createdAt}}</div>
+
 
         <div class='list-view-btn item-btn'>
-          <div class='btn-bundle'>
-            <form action='/profile/{{_id}}/follow' method='GET'>
-              <button class='button'>Follow</button>
-            </form>
-          </div>
 
-          <div class='btn-bundle'>
-            <form action='/profile/{{_id}}' method='GET'>
-              <button class='button'>View</button>
-            </form>
-          </div>
+          <a href="/profile/{{_id}}" class="button profile-btn">View Profile
+            <span class="material-symbols-outlined">
+              person_filled
+            </span>
+          </a>
+        </div>
 
         </div>
-      </div>
-
-    {{/each}}
-  </div>
+        </div>
+        
+{{/each}}
+</section>
 </div>
