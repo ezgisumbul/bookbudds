@@ -1,4 +1,4 @@
-const { unique } = require('handlebars-helpers/lib/array');
+// const { unique } = require('handlebars-helpers/lib/array');
 const mongoose = require('mongoose');
 
 const clubSchema = new mongoose.Schema(
@@ -23,7 +23,7 @@ const clubSchema = new mongoose.Schema(
 
     picture: {
       type: String,
-      default: '/images/deneme-2.png'
+      default: '/images/club-pp-default.png'
     },
 
     memberCount: {

@@ -1,7 +1,7 @@
 const express = require('express');
-const fileUpload = require('./../middleware/file-upload');
+const fileUpload = require('../middleware/file-upload');
 const routeGuard = require('../middleware/route-guard');
-const User = require('.././models/user');
+const User = require('../models/user');
 const Club = require('../models/club');
 
 const clubRouter = express.Router();
