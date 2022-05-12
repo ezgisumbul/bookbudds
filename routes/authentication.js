@@ -19,8 +19,8 @@ const handleSignUpError = (err) => {
   if (err.message.includes('Please enter a valid email')) {
     error.message += 'Please enter a valid email\n';
   }
-  if (err.message.includes('There\'s no user with that email')) {
-    error.message += 'There\'s no user with that email\n';
+  if (err.message.includes("There's no user with that email")) {
+    error.message += "There's no user with that email\n";
   }
   // password validation
   if (err.message.includes('Please enter a password')) {
@@ -62,35 +62,39 @@ const handleSignUpError = (err) => {
 const router = new Router();
 
 router.get('/sign-up', (req, res, next) => {
-  res.render('sign-up');
+  res.render('authentication/sign-up');
 });
 
-router.post('/sign-up', fileUpload.single('picture'), async (req, res, next) => {
-  const { name, email, password } = req.body;
+router.post(
+  '/sign-up',
+  fileUpload.single('picture'),
+  async (req, res, next) => {
+    const { name, email, password } = req.body;
 
-  let picture;
-  if (req.file) {
-    picture = req.file.path;
-  }
+    let picture;
+    if (req.file) {
+      picture = req.file.path;
+    }
 
-  return User.create({
-    name,
-    email,
-    password,
-    picture
-  })
-    .then((user) => {
-      req.session.userId = user._id;
-      res.redirect(`/profile/${user._id}`);
+    return User.create({
+      name,
+      email,
+      password,
+      picture
     })
-    .catch((err) => {
-      const error = handleSignUpError(err);
-      res.render('sign-up', { error, name, email });
-    });
-});
+      .then((user) => {
+        req.session.userId = user._id;
+        res.redirect(`/profile/${user._id}`);
+      })
+      .catch((err) => {
+        const error = handleSignUpError(err);
+        res.render('authentication/sign-up', { error, name, email });
+      });
+  }
+);
 
 router.get('/sign-in', (req, res, next) => {
-  res.render('sign-in');
+  res.render('authentication/sign-in');
 });
 
 router.post('/sign-in', (req, res, next) => {
@@ -115,7 +119,7 @@ router.post('/sign-in', (req, res, next) => {
     })
     .catch((err) => {
       const error = handleSignUpError(err);
-      res.render('sign-in', { error, email });
+      res.render('authentication/sign-in', { error, email });
       //next(error);
     });
 });

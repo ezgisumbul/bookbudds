@@ -64,40 +64,44 @@ clubRouter.post('/', (req, res) => {
   res.render('club/club-list');
 });
 
-clubRouter.post('/club/create', routeGuard, fileUpload.single('picture'), async (req, res, next) => {
-  const { name, description } = req.body;
+clubRouter.post(
+  '/club/create',
+  routeGuard,
+  fileUpload.single('picture'),
+  async (req, res, next) => {
+    const { name, description } = req.body;
 
-  let picture;
-  if (req.file) {
-    picture = req.file.path;
-  }
+    let picture;
+    if (req.file) {
+      picture = req.file.path;
+    }
 
-  Club.create({
-    name,
-    description,
-    creator: req.user._id,
-    picture,
-    memberCount: 1
-  }).then((club) => {
-    const clubId = club._id;
-    User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
-      .then(() => {
-        res.redirect(`/clubs/club/${clubId}`);
-      }
+    Club.create({
+      name,
+      description,
+      creator: req.user._id,
+      picture,
+      memberCount: 1
+    }).then((club) => {
+      const clubId = club._id;
+      User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
+        () => {
+          res.redirect(`/clubs/club/${clubId}`);
+        }
       );
 
-    // let picture;
-    // if (req.file) {
-    //   picture = req.file.path;
-    // }
+      // let picture;
+      // if (req.file) {
+      //   picture = req.file.path;
+      // }
 
-    // Club.create({ name, description, creator: req.user._id, picture })
-    //   .then(() => {
-    //     res.redirect('/clubs');
-    //   })
-    //   .catch((err) => next(err));
-  });
-}
+      // Club.create({ name, description, creator: req.user._id, picture })
+      //   .then(() => {
+      //     res.redirect('/clubs');
+      //   })
+      //   .catch((err) => next(err));
+    });
+  }
 );
 
 clubRouter.post('/club/:id/edit', (req, res, next) => {
@@ -133,35 +137,35 @@ clubRouter.post('/club/:id/delete', (req, res, next) => {
 
 clubRouter.post('/club/:id/join', (req, res, next) => {
   const clubId = req.params.id;
-  console.log("join page");
+  console.log('join page');
 
   Club.findById(clubId)
     .then((club) => {
-      User.findById(req.user.id)
-        .then((user) => {
-          let isClubMember = user.clubs.includes(clubId);
+      User.findById(req.user.id).then((user) => {
+        let isClubMember = user.clubs.includes(clubId);
+        console.log(user);
 
-          if (!isClubMember) {
-            User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
-              .then(() => {
-                User.countDocuments({ clubs: clubId }, function (err, count) {
-                  // const memberCount = count;
-                  Club.findByIdAndUpdate(clubId, {
-                    memberCount: count
-                  }).catch((err) => next(err));
-                });
-              })
-              .then(() => {
-                console.log('club is added to the user');
-                res.redirect(`/clubs/club/${clubId}`); // does not work
-              })
-              .catch((err) => next(err));
-          } else {
-            console.log('this club exists for the user');
-            res.redirect(`/clubs/club/${clubId}`);
-            //next();
-          }
-        });
+        if (!isClubMember) {
+          User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
+            .then(() => {
+              User.countDocuments({ clubs: clubId }, function (err, count) {
+                // const memberCount = count;
+                Club.findByIdAndUpdate(clubId, {
+                  memberCount: count
+                }).catch((err) => next(err));
+              });
+            })
+            .then(() => {
+              console.log('club is added to the user');
+              res.redirect(`/clubs/club/${clubId}`); // does not work
+            })
+            .catch((err) => next(err));
+        } else {
+          console.log('this club exists for the user');
+          res.redirect(`/clubs/club/${clubId}`);
+          //next();
+        }
+      });
     })
     .catch((err) => next(err));
 });

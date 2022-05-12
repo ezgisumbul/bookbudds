@@ -23,12 +23,19 @@ const clubSchema = new mongoose.Schema(
 
     picture: {
       type: String,
-      default: '/images/club-pp-default.png'
+      default: '/images/club-cover.jpg'
     },
 
     memberCount: {
       type: Number
-    }
+    },
+
+    members: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
   },
   { timestamps: true }
 );
