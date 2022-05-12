@@ -27,7 +27,9 @@
         {{/if}}
       </div>
       {{#unless notifyMessage}}
-     
+      {{!--<form action='' method='POST'>
+        <button class="fav-btn"> &#9829; </button>
+      </form> --}} 
       {{/unless}}
       {{message}}
       
@@ -46,12 +48,15 @@
 
       </div>
     </div>
-    
-   <form action='' method='POST'>
+       {{!-- <form action='' method='POST'>
         <button class="fav-btn"> &#9829; </button>
-      </form> 
+      </form>  --}}
+  
     <button class="under-book-btn"> <a href='' > + Bookshelf </a> </button>
     <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}' > Write review </a> </button>
+
+   
+      </div>
   
   </div>
   

@@ -1,6 +1,6 @@
 <div class='container'>
 
-  <div class="page-hero">
+  <div class='page-hero'>
 
     <div class='banner-img-box profile-banner'>
       <img src='/images/hero-profile-edit.svg' alt='Your BookBudds profile' />
@@ -12,15 +12,27 @@
       <form method='POST'>
         <div>
           <label for=''>Name</label>
-          <input value='{{profile.name}}' id='input-name' name='name' type='text' placeholder='Your name...' />
+          <input
+            value='{{profile.name}}'
+            id='input-name'
+            name='name'
+            type='text'
+            placeholder='Your name...'
+          />
         </div>
 
         <div>
           <label for='input-email'>Email address</label>
-          <input value='{{profile.email}}' id='input-email' name='email' type='text' placeholder='Email address' />
+          <input
+            value='{{profile.email}}'
+            id='input-email'
+            name='email'
+            type='text'
+            placeholder='Email address'
+          />
         </div>
 
-        <button class="button">Edit club</button>
+        <button class='button'>Edit club</button>
       </form>
     </div>
   </div>
