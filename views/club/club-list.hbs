@@ -53,6 +53,19 @@
 
         <div class='list-view-btn item-btn'>
 
+          <a href="/profile/{{creator._id}}" class="button profile-btn">View Creator
+            <span class="material-symbols-outlined">
+              person_filled
+            </span>
+          </a>
+
+          <form action='/clubs/club/{{_id}}' method='GET'>
+            <button class='button'>
+              <span class="material-symbols-outlined">auto_stories</span>
+              View Club
+            </button>
+          </form>
+
           {{#unless isClubMember}}
           <form action='/clubs/club/{{_id}}/join' method='POST'>
             <button class='button'>
@@ -62,18 +75,6 @@
           </form>
           {{/unless}}
 
-          <form action='/clubs/club/{{_id}}' method='GET'>
-            <button class='button'>
-              <span class="material-symbols-outlined">auto_stories</span>
-              Club
-            </button>
-          </form>
-
-          <a href="/profile/{{creator._id}}" class="button profile-btn">View Profile
-            <span class="material-symbols-outlined">
-              person_filled
-            </span>
-          </a>
         </div>
       </div>
 
