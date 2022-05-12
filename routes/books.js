@@ -49,7 +49,7 @@ bookRouter.get('/book/:id', (req, res) => {
         .populate('creator')
         .sort({ createdAt: -1 })
         .then((reviews) => {
-          console.log(reviews);
+          // console.log(reviews);
           res.render('book/book-single', {
             bookTitle,
             book,
@@ -107,6 +107,7 @@ bookRouter.post('/book/:id', (req, res, next) => {
   axios
     .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
     .then((result) => {
+      console.log(result);
       Book.findOne({ bookId: bookId })
         .then((book) => {
           if (!book) {
