@@ -47,6 +47,38 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
 
 reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
   const { message } = req.body;
+  const { title } = req.body;
+  const id = req.params.id;
+
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then((book) => {
+      console.log(book);
+      const bookTitle = book.data.volumeInfo.title;
+      const bookCover = book.data.volumeInfo.imageLinks;
+      const bookAuthor = book.data.volumeInfo.authors;
+      Review.create({
+        message,
+        title,
+        creator: req.user._id,
+        book: req.params.id,
+        bookTitle: bookTitle,
+        bookCover: bookCover,
+        bookAuthor: bookAuthor
+      });
+    })
+    .then(() => {
+      res.redirect(`/books/book/${id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// Handles review creation
+
+reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
+  const { message } = req.body;
   const id = req.params.id;
 
   axios
