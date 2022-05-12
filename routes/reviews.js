@@ -42,7 +42,7 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
       // console.log(bookTitle);
       res.render('review-create', { bookTitle });
     })
-    .then(() => { })
+    .then(() => {})
     .catch((err) => next(err));
 });
 
