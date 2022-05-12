@@ -14,7 +14,7 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
-const clubRouter = require('./routes/club-router');
+const clubRouter = require('./routes/clubs');
 const reviewRouter = require('./routes/reviews');
 const bookRouter = require('./routes/books');
 const profileRouter = require('./routes/profile');
@@ -23,10 +23,14 @@ const app = express();
 
 // Format dates nicely in hbs
 hbs.registerHelper('date', (value) => {
-  return `${value.toLocaleDateString([], { day: '2-digit', month: 'long', year: 'numeric' })}`;
+  return `${value.toLocaleDateString([], {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  })}`;
 });
 hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
-  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
 });
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));

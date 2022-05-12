@@ -3,9 +3,6 @@ const express = require('express');
 const Review = require('./../models/review');
 const routeGuard = require('./../middleware/route-guard');
 const reviewRouter = new express.Router();
-const Book = require('../models/book');
-const User = require('../models/user');
-const bookRouter = express.Router();
 const axios = require('axios');
 
 reviewRouter.get('/', (req, res, next) => {
@@ -20,7 +17,7 @@ reviewRouter.get('/', (req, res, next) => {
       } else {
         isLogged = false;
       }
-      res.render('reviews', { reviews, isLogged });
+      res.render('review/reviews', { reviews, isLogged });
     })
     .catch((error) => {
       next(error);
@@ -40,7 +37,7 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
     .then((book) => {
       const bookTitle = book.data.volumeInfo.title;
       // console.log(bookTitle);
-      res.render('review-create', { bookTitle });
+      res.render('review/review-create', { bookTitle });
     })
     .then(() => {})
     .catch((err) => next(err));
@@ -84,7 +81,7 @@ reviewRouter.get('/:id/edit', routeGuard, (req, res, next) => {
       if (!reviews) {
         throw new Error('PUBLICATION_NOT_FOUND');
       } else {
-        res.render('review-edit', { reviews });
+        res.render('review/review-edit', { reviews });
       }
     })
     .catch((error) => {
@@ -117,12 +114,12 @@ reviewRouter.get('/:id', (req, res, next) => {
       if (req.user) {
         let isReviewCreator =
           String(req.user._id) === String(reviews.creator._id);
-        res.render('review-single', {
+        res.render('review/review-single', {
           reviews,
           isReviewCreator
         });
       } else {
-        res.render('review-single', { reviews });
+        res.render('review/review-single', { reviews });
       }
     })
     .catch((error) => {
@@ -136,7 +133,7 @@ reviewRouter.post('/:id/delete', routeGuard, (req, res, next) => {
   const { id } = req.params;
   Review.findByIdAndRemove(id)
     .then(() => {
-      res.redirect('/');
+      res.redirect('/reviews');
     })
     .catch((error) => {
       next(error);
