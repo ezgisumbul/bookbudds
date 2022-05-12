@@ -1,6 +1,6 @@
 <div class='container'>
 
-  <div class="page-hero">
+  <div class='page-hero'>
 
     <div class='banner-img-box'>
       <img src='/images/book-club.png' alt='BookBudds Book-Club' />
@@ -12,7 +12,17 @@
       <form method='POST'>
         <div>
           <label for='input-message'>Edit review</label>
-          <textarea id='input-message' name='message' placeholder='Your message...'>{{reviews.message}}</textarea>
+          <input
+            type='text'
+            id='input-reviewTitle'
+            name='reviewTitle'
+            placeholder='{{reviews.reviewTitle}}'
+          />
+          <textarea
+            id='input-message'
+            name='message'
+            placeholder='Your message...'
+          >{{reviews.message}}</textarea>
         </div>
 
         <button class='button'>Edit Review</button>
