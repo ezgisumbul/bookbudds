@@ -1,6 +1,10 @@
 <div class='container'>
 
-  <div class='banner'>
+  <div class='banner banner-single-member'>
+    <div class='banner-img-box'>
+      <img id='members' src='/images/members.png' alt='book-club' />
+    </div>
+
     <div class='titles'>
       <h3 class='book-title'>Beter together!</h3>
       <p>Find people with similar interests!
@@ -10,22 +14,27 @@
 
     </div>
 
-    <div class='banner-img-box'>
-      <img id='members' src='/images/members.png' alt='book-club' />
-    </div>
   </div>
 
+</div>
+<div class='reviews member-box'>
   <h3 class='main-title'>Members</h3>
 
   <div class='list'>
     {{#each members}}
       <div club class='list-item'>
-        <div class='item-name'>
-          <li>
-            {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
-            <p class='list-text'>{{name}}</p>
-            {{! </a> }}
-          </li>
+        {{! <div class="review-single-all"> }}
+        <div class='member-pic-name'>
+          <div class='review-profile-photo member-photo'>
+            <img src='{{picture}}' alt='{{name}}' />
+          </div>
+          <div class='item-name'>
+            <li>
+              {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
+              <p class='list-text'>{{name}}</p>
+              {{! </a> }}
+            </li>
+          </div>
         </div>
 
         <div class='list-view-btn item-btn'>

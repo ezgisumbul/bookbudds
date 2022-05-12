@@ -9,10 +9,17 @@ const clubRouter = express.Router();
 // Sometimes I use id sometimes I use clubId. Should be refactored.
 
 clubRouter.get('/', (req, res, next) => {
+  let isLogged;
+
   Club.find()
+    .populate('creator')
     .then((clubs) => {
-      console.log(clubs);
-      res.render('club/club-list', { clubs });
+      if (req.user) {
+        isLogged = true;
+      } else {
+        isLogged = false;
+      }
+      res.render('club/club-list', { clubs, isLogged });
     })
     .catch((err) => next(err));
 });
@@ -73,11 +80,11 @@ clubRouter.post('/club/create', routeGuard, fileUpload.single('picture'), async 
     memberCount: 1
   }).then((club) => {
     const clubId = club._id;
-    User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
-      () => {
+    User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
+      .then(() => {
         res.redirect(`/clubs/club/${clubId}`);
       }
-    );
+      );
 
     // let picture;
     // if (req.file) {
@@ -99,6 +106,11 @@ clubRouter.post('/club/:id/edit', (req, res, next) => {
 
   Club.findByIdAndUpdate(id, { name, description })
     .then(() => {
+      if (req.user) {
+        isLogged = true;
+      } else {
+        isLogged = false;
+      }
       //res.redirect('/clubs');
       res.redirect(`/clubs/club/${id}`); // does not work
     })
@@ -121,32 +133,35 @@ clubRouter.post('/club/:id/delete', (req, res, next) => {
 
 clubRouter.post('/club/:id/join', (req, res, next) => {
   const clubId = req.params.id;
+  console.log("join page");
 
   Club.findById(clubId)
     .then((club) => {
-      User.findById(req.user.id).then((user) => {
-        let isClubMember = user.clubs.includes(clubId);
+      User.findById(req.user.id)
+        .then((user) => {
+          let isClubMember = user.clubs.includes(clubId);
 
-        if (!isClubMember) {
-          User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
-            .then(() => {
-              User.countDocuments({ clubs: clubId }, function (err, count) {
-                // const memberCount = count;
-                Club.findByIdAndUpdate(clubId, {
-                  memberCount: count
-                }).catch((err) => next(err));
-              });
-            })
-            .then(() => {
-              console.log('club is added to the user');
-              res.redirect(`/clubs/club/${clubId}`); // does not work
-            })
-            .catch((err) => next(err));
-        } else {
-          console.log('this club exists for the user');
-          next();
-        }
-      });
+          if (!isClubMember) {
+            User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
+              .then(() => {
+                User.countDocuments({ clubs: clubId }, function (err, count) {
+                  // const memberCount = count;
+                  Club.findByIdAndUpdate(clubId, {
+                    memberCount: count
+                  }).catch((err) => next(err));
+                });
+              })
+              .then(() => {
+                console.log('club is added to the user');
+                res.redirect(`/clubs/club/${clubId}`); // does not work
+              })
+              .catch((err) => next(err));
+          } else {
+            console.log('this club exists for the user');
+            res.redirect(`/clubs/club/${clubId}`);
+            //next();
+          }
+        });
     })
     .catch((err) => next(err));
 });

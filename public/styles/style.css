@@ -170,6 +170,74 @@ nav button:first-child {
   font-weight: 700;
 }
 
+p.quote {
+  font-size: 0.8125rem;
+}
+
+.block {
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.button {
+  position: relative;
+  width: 125px;
+  height: 40px;
+  border: 1px #c5b094 solid;
+  border-radius: 3px;
+  color: #3b352d;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.button:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #c5b094;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.button:hover {
+  color: #fff;
+}
+
+.button:hover:after {
+  top: 0;
+  color: #fff;
+}
+
+.page-hero {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-inline: auto;
+  align-items: center;
+}
+
+.page-hero .banner-img-box {
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.page-hero .button {
+  width: auto;
+  min-width: 125px;
+  margin-top: 1rem;
+}
+
 /**
  * HOME
  * 
@@ -373,6 +441,10 @@ form#search-form button {
   line-height: 20px;
 }
 
+.item-info p {
+  font-weight: 100;
+}
+
 .item-btn {
   margin-top: auto;
 }
@@ -489,6 +561,30 @@ form#search-form button {
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
+}
+
+.items-profile {
+  margin-top: 2rem;
+}
+
+.profile-empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-empty-state .btn-bundle {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.profile-empty-state .btn-bundle span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  display: block;
+  font-weight: 700;
 }
 
 .fav-btn {
@@ -709,60 +805,45 @@ form#search-form button {
 
 .banner {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 4rem;
 }
 
-.banner .banner-img-box img {
-  width: 700px;
-  margin: 0;
+.banner-btn {
+  margin-top: 2rem;
 }
 
-.banner .banner-img-box #club-single {
-  width: 550px;
-}
-
-.banner .banner-img-box #members {
-  width: 550px;
-}
-
-.banner .button {
-  margin-top: 4rem;
-  position: relative;
-  width: 180px;
-  height: 40px;
-  border: 1px #c5b094 solid;
-  border-radius: 3px;
-  color: #3b352d;
-  font-weight: 700;
-  font-size: 0.9375rem;
+.banner-single-member {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: all 0.3s;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  max-width: 1060px;
 }
 
-.banner .button:after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #c5b094;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transition: all 0.3s;
+.banner-img-box {
+  max-width: 500px;
+  margin-inline: auto;
 }
 
-.banner .button:hover {
-  color: #fff;
+.banner-img-box.review-banner, .banner-img-box.profile-banner {
+  max-width: 300px;
 }
 
-.banner .button:hover:after {
-  top: 0;
-  color: #fff;
+#club-single {
+  width: 550px;
+}
+
+#members {
+  width: 550px;
+}
+
+.member-box {
+  max-width: 800px;
+}
+
+.member-photo {
+  width: 70px;
+  height: 70px;
 }
 
 .list {
@@ -776,7 +857,14 @@ form#search-form button {
   margin-bottom: 0.2rem;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.list .list-item .member-pic-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .list .list-view-btn {
@@ -882,6 +970,10 @@ form#search-form button {
   transition: all 0.3s;
 }
 
+.single-column .single-info {
+  margin-bottom: 4rem;
+}
+
 /**  redirect page
  * 
  * 
@@ -929,7 +1021,8 @@ form#search-form button {
  * AUTH FORMS
  * 
  */
-.auth-forms-container {
+.auth-forms-container,
+.crud-forms-container {
   max-width: 500px;
   margin-inline: auto;
   border: 1px #c5b094 solid;
@@ -940,18 +1033,21 @@ form#search-form button {
   align-items: center;
 }
 
-.auth-forms-container h3 {
+.auth-forms-container h3,
+.crud-forms-container h3 {
   margin-bottom: 30px;
   font-size: 1.1875rem;
   font-family: "Montserrat", sans-serif;
   color: #3b352d;
 }
 
-.auth-forms-container img {
+.auth-forms-container img,
+.crud-forms-container img {
   max-width: 200px;
 }
 
-.auth-forms-container form {
+.auth-forms-container form,
+.crud-forms-container form {
   width: 100%;
   max-width: 350px;
   margin-top: 25px;
@@ -959,11 +1055,15 @@ form#search-form button {
   color: #3b352d;
 }
 
-.auth-forms-container form > div {
+.auth-forms-container form > div,
+.crud-forms-container form > div {
   margin-bottom: 20px;
 }
 
-.auth-forms-container form input {
+.auth-forms-container form input,
+.auth-forms-container form textarea,
+.crud-forms-container form input,
+.crud-forms-container form textarea {
   background: #f6f6f6;
   border: 1px #c5b094 solid;
   border-radius: 3px;
@@ -973,29 +1073,37 @@ form#search-form button {
   font-size: 0.9375rem;
 }
 
-.auth-forms-container form input[type='file'] {
+.auth-forms-container form input[type='file'],
+.auth-forms-container form textarea[type='file'],
+.crud-forms-container form input[type='file'],
+.crud-forms-container form textarea[type='file'] {
   height: auto;
 }
 
-.auth-forms-container form label {
+.auth-forms-container form label,
+.crud-forms-container form label {
   font-size: 0.8125rem;
   font-weight: 500;
   display: block;
 }
 
-.auth-forms-container form .auth-forms-actions {
+.auth-forms-container form .auth-forms-actions,
+.crud-forms-container form .auth-forms-actions {
   position: relative;
 }
 
-.auth-forms-container form .auth-forms-actions span {
+.auth-forms-container form .auth-forms-actions span,
+.crud-forms-container form .auth-forms-actions span {
   font-size: 0.8125rem;
 }
 
-.auth-forms-container form .auth-forms-actions span span {
+.auth-forms-container form .auth-forms-actions span span,
+.crud-forms-container form .auth-forms-actions span span {
   font-weight: 700;
 }
 
-.auth-forms-container form .auth-forms-actions .button {
+.auth-forms-container form .auth-forms-actions .button,
+.crud-forms-container form .auth-forms-actions .button {
   position: relative;
   width: 125px;
   height: 40px;
@@ -1011,7 +1119,8 @@ form#search-form button {
   transition: all 0.3s;
 }
 
-.auth-forms-container form .auth-forms-actions .button:after {
+.auth-forms-container form .auth-forms-actions .button:after,
+.crud-forms-container form .auth-forms-actions .button:after {
   content: '';
   position: absolute;
   top: 100%;
@@ -1023,13 +1132,20 @@ form#search-form button {
   transition: all 0.3s;
 }
 
-.auth-forms-container form .auth-forms-actions .button:hover {
+.auth-forms-container form .auth-forms-actions .button:hover,
+.crud-forms-container form .auth-forms-actions .button:hover {
   color: #fff;
 }
 
-.auth-forms-container form .auth-forms-actions .button:hover:after {
+.auth-forms-container form .auth-forms-actions .button:hover:after,
+.crud-forms-container form .auth-forms-actions .button:hover:after {
   top: 0;
   color: #fff;
+}
+
+.crud-forms-container {
+  width: 100%;
+  margin-top: 50px;
 }
 
 /**  FOOTER
@@ -1070,6 +1186,92 @@ footer {
   white-space: break-spaces;
   color: #cd5d49;
   font-size: 0.9rem;
+}
+
+.clubs-reviews .list-item {
+  display: flex;
+  gap: 2rem;
+  margin-block: 4rem;
+  margin-block-end: 100px;
+}
+
+.clubs-reviews .list-item .photo {
+  max-width: 150px;
+  max-height: 150px;
+  min-width: 150px;
+  min-height: 150px;
+  background: #dbd2be;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.clubs-reviews .list-item .photo.cover {
+  max-width: initial;
+  max-height: initial;
+  background: none;
+  border-radius: 0;
+}
+
+.clubs-reviews .list-item .creator {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+  gap: 1rem;
+}
+
+.clubs-reviews .list-item .name {
+  font-weight: 700;
+}
+
+.clubs-reviews .list-item .member {
+  font-size: 0.875rem;
+  margin-top: -15px;
+}
+
+.clubs-reviews .list-item .member span {
+  font-weight: 500;
+}
+
+.clubs-reviews .list-item .post-date {
+  margin-left: auto;
+  font-size: 0.875rem;
+  flex: 0 0 20%;
+  text-align: right;
+}
+
+.clubs-reviews .list-item p {
+  font-size: 0.9063rem;
+}
+
+.clubs-reviews .list-item .list-view-btn.item-btn {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.clubs-reviews .list-item .button {
+  width: 180px;
+  padding-left: 40px;
+}
+
+.clubs-reviews .list-item .button .material-symbols-outlined {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  color: #ff7e68;
+  border-right: 1px #c5b094 solid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  transition: 0.5s;
+}
+
+.clubs-reviews .list-item .button:hover .material-symbols-outlined {
+  color: #fff;
 }
 
 /*# sourceMappingURL=style.css.map */

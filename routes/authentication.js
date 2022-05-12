@@ -16,10 +16,21 @@ const handleSignUpError = (err) => {
   if (err.message.includes('Please enter an email')) {
     error.message += 'Please enter an email\n';
   }
-
-  // incorrect password
+  if (err.message.includes('Please enter a valid email')) {
+    error.message += 'Please enter a valid email\n';
+  }
+  if (err.message.includes('There\'s no user with that email')) {
+    error.message += 'There\'s no user with that email\n';
+  }
+  // password validation
   if (err.message.includes('Please enter a password')) {
     error.message += 'Please enter a password\n';
+  }
+  if (err.message.includes('Minimum Password length')) {
+    error.message += 'Minimum Password length is 6 characters\n';
+  }
+  if (err.message.includes('Wrong password')) {
+    error.message += 'Wrong Password. Please try again\n';
   }
 
   // name validation
@@ -28,10 +39,8 @@ const handleSignUpError = (err) => {
   } else if (err.message.includes('Minimum Name length')) {
     error.message += 'Minimum Name length is 6 characters\n';
   }
-
   // duplicate email error
   if (err.code === 11000) {
-    console.log(err)
     error.message += 'That email is already registered.\n';
   }
 
@@ -76,7 +85,7 @@ router.post('/sign-up', fileUpload.single('picture'), async (req, res, next) => 
     })
     .catch((err) => {
       const error = handleSignUpError(err);
-      res.render('sign-up', { error });
+      res.render('sign-up', { error, name, email });
     });
 });
 
@@ -106,7 +115,7 @@ router.post('/sign-in', (req, res, next) => {
     })
     .catch((err) => {
       const error = handleSignUpError(err);
-      res.render('sign-in', { error });
+      res.render('sign-in', { error, email });
       //next(error);
     });
 });
