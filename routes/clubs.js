@@ -3,6 +3,7 @@ const fileUpload = require('../middleware/file-upload');
 const routeGuard = require('../middleware/route-guard');
 const User = require('../models/user');
 const Club = require('../models/club');
+const nodemailer = require('nodemailer')
 
 const clubRouter = express.Router();
 
