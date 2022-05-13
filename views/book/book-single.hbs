@@ -33,8 +33,14 @@
       </div>
 
       <div class='single-info'>
+        {{#if book.volumeInfo.description}}
         <p>{{book.volumeInfo.description}}</p>
+        {{else}}
+        <div style="margin-top:3rem;">
+        <p>Description is not available for this book.</p>
+        </div>
 
+        {{/if}}
         {{!-- <p style="font-weight: bold;">user is logged and book IS-SAVED in user "saved list" => show only a notification "already saved"</p>  --}}
 
         <div class='list-view-btn item-btn'>
