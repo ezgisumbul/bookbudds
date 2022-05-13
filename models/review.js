@@ -8,6 +8,12 @@ const reviewSchema = new mongoose.Schema(
       trim: true,
       maxlength: 400
     },
+    reviewTitle: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100
+    },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

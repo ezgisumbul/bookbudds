@@ -10,16 +10,37 @@ const clubRouter = express.Router();
 
 clubRouter.get('/', (req, res, next) => {
   let isLogged;
+  let isMember;
 
   Club.find()
     .populate('creator')
+    .populate('members')
     .then((clubs) => {
+      // console.log(clubs);
       if (req.user) {
         isLogged = true;
       } else {
         isLogged = false;
       }
-      res.render('club/club-list', { clubs, isLogged });
+      // console.log(clubs);
+      clubs.forEach((club) => {
+        //console.log('THIS IS A' + club);
+        club.members.forEach((member) => {
+          if (String(req.user.id) === String(member._id)) {
+            console.log('Current user is a member of ' + club.name);
+            isMember = true;
+            Club.findOneAndUpdate(club, {
+              $push: { isMember: isMember }
+            });
+          } else {
+            isMember = false;
+            Club.findOneAndUpdate(club, {
+              $push: { isMember: isMember }
+            });
+          }
+        });
+      });
+      res.render('club/club-list', { clubs, isLogged, isMember });
     })
     .catch((err) => next(err));
 });
@@ -82,25 +103,18 @@ clubRouter.post(
       creator: req.user._id,
       picture,
       memberCount: 1
-    }).then((club) => {
-      const clubId = club._id;
-      User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } }).then(
-        () => {
-          res.redirect(`/clubs/club/${clubId}`);
-        }
-      );
-
-      // let picture;
-      // if (req.file) {
-      //   picture = req.file.path;
-      // }
-
-      // Club.create({ name, description, creator: req.user._id, picture })
-      //   .then(() => {
-      //     res.redirect('/clubs');
-      //   })
-      //   .catch((err) => next(err));
-    });
+    })
+      .then((club) => {
+        const clubId = club._id;
+        User.findByIdAndUpdate(req.user.id, {
+          $push: { clubs: club._id }
+        }).catch((err) => next(err));
+        Club.findByIdAndUpdate(club._id, {
+          $push: { members: req.user._id }
+        }).catch((err) => next(err));
+        res.redirect(`/clubs/club/${clubId}`);
+      })
+      .catch((err) => next(err));
   }
 );
 
@@ -147,11 +161,12 @@ clubRouter.post('/club/:id/join', (req, res, next) => {
 
         if (!isClubMember) {
           User.findByIdAndUpdate(req.user.id, { $push: { clubs: club._id } })
-            .then(() => {
+            .then((user) => {
               User.countDocuments({ clubs: clubId }, function (err, count) {
                 // const memberCount = count;
                 Club.findByIdAndUpdate(clubId, {
-                  memberCount: count
+                  memberCount: count,
+                  $push: { members: user._id }
                 }).catch((err) => next(err));
               });
             })
@@ -170,12 +185,46 @@ clubRouter.post('/club/:id/join', (req, res, next) => {
     .catch((err) => next(err));
 });
 
+clubRouter.post('/club/:id/leave', (req, res, next) => {
+  const clubId = req.params.id;
+
+  Club.findById(clubId)
+    .then((club) => {
+      User.findById(req.user.id).then((user) => {
+        let isClubMember = user.clubs.includes(clubId);
+        console.log(user);
+
+        if (isClubMember) {
+          User.findByIdAndUpdate(req.user.id, { $pull: { clubs: club._id } })
+            .then((user) => {
+              User.countDocuments({ clubs: clubId }, function (err, count) {
+                // const memberCount = count;
+                Club.findByIdAndUpdate(clubId, {
+                  memberCount: count,
+                  $pull: { members: user._id }
+                }).catch((err) => next(err));
+              });
+            })
+            .then(() => {
+              console.log('club is added to the user');
+              res.redirect(`/clubs/club/${clubId}`); // does not work
+            })
+            .catch((err) => next(err));
+        } else {
+          console.log('this club exists for the user');
+          res.redirect(`/clubs/club/${clubId}`);
+          //next();
+        }
+      });
+    })
+    .catch((err) => next(err));
+});
 clubRouter.get('/club/:id/members', (req, res, next) => {
   const clubId = req.params.id;
 
-  Club.findById(clubId).then(() => {
+  Club.findById(clubId).then((club) => {
     User.find({ clubs: clubId }).then((members) => {
-      res.render('club/member-list', { members });
+      res.render('club/member-list', { club, members });
     });
   });
 });

@@ -620,6 +620,11 @@ form#search-form button {
   max-width: 70%;
 }
 
+.review-title {
+  font-family: "Merriweather", serif;
+  font-style: italic;
+}
+
 .reviews-top {
   display: flex;
   justify-content: space-around;
@@ -759,6 +764,17 @@ form#search-form button {
   resize: none;
 }
 
+.reviews-edit input {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #c5b094;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
 .reviews-edit.inner {
   margin-block: 80px;
 }
@@ -800,7 +816,8 @@ form#search-form button {
  * 
  */
 .main-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .banner {

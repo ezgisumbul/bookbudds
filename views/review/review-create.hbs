@@ -6,11 +6,20 @@
       database as the review is yet to be created in the database 
       with submission of this form here: }}
       <span style='font-weight: bold;'>{{bookTitle}}</span>?</label>
+
+    <input
+      type='text'
+      id='input-reviewTitle'
+      name='reviewTitle'
+      placeholder='Write a title...'
+    />
+
     <textarea
       name='message'
       id='input-message'
       placeholder='Write a review...'
     ></textarea>
+
     <button class='buttons'>Submit review</button>
   </form>
 </div>

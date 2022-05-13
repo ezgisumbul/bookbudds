@@ -9,7 +9,7 @@
     <div class='crud-forms-container'>
       <h3>Edit your profile</h3>
 
-      <form method='POST'>
+      <form method='POST' enctype='multipart/form-data'>
         <div>
           <label for=''>Name</label>
           <input
@@ -32,7 +32,13 @@
           />
         </div>
 
-        <button class='button'>Edit club</button>
+        {{#if profile.picture}}
+          <img src='{{profile.picture}}' alt='Existing Picture' />
+        {{/if}}
+        <label for='input-picture'>Your current profile picture</label>
+        <input id='input-picture' type='file' accept='image/*' name='picture' />
+
+        <button class='button'>Edit profile</button>
       </form>
     </div>
   </div>

@@ -102,83 +102,67 @@
     <!-- member clubs -->
     <div class='profile-bookshelf'>
 
-      {{!-- <div class="container inner">
-
+    {{#if userClubs}}
+      <div class="container inner">
         <div class="titles">
           <h2>{{capitalize profile.name}}’s Clubs</h2>
-          <p>Choice Awards, the only major book awards decided by readers
-            <span>Congratulations to the best books of the year!</span>
+          <p>Access all the clubs you joined
+            <span>do not miss new content!</span>
           </p>
-        </div> --}}
+        </div>
+      </div>
+    <div class='container inner'>
+      {{#each userClubs}}
+        <section class="clubs-reviews">
+          <div class="list-item">
+            {{#if picture}}
+              <div class="photo"><img src="{{picture}}" alt="{{name}}" /></div>
+            {{else}}
+              <div class="photo"><img src="/images/club-cover.jpg" alt="{{name}}" /></div>
+            {{/if}}
 
-        {{#if userClubs}}
-        <div class="container inner">
+          <div class="creator">
+
+            <div class="name">{{capitalize name}}</div>
+
+            <div class="member">Created: {{date createdAt}}</div>
+              <p>{{truncate description 50}}</p>
+
+            <div class='list-view-btn item-btn'>
+              <form action='/clubs/club/{{_id}}' method='GET'>
+                <button class='button'>
+                <span class="material-symbols-outlined">auto_stories</span>
+                View Club
+                </button>
+              </form>
+            </div>
+          </div>
+          </div>
+        </section>
+      {{/each}}
+    </div>
+    {{else}}
+      <div class="container inner">
+        <div class="items profile profile-empty-state"> 
           <div class="titles">
             <h2>{{capitalize profile.name}}’s Clubs</h2>
-            <p>Access all the clubs you joined
-              <span>do not miss new content!</span>
+            <p>You are not part of any clubs yet.
+            <span> To share your thoughts with others,</span>
             </p>
           </div>
-        </div>
-        <div class='container inner'>
-
-          <div class='list'>
-            {{#each userClubs}}
-            <div club class='list-item shelf-condensed'>
-              <div class='profile-photo'>
-                {{#if picture}}
-                <div class="photo"><img src="{{picture}}" alt="{{name}}" /></div>
-                {{else}}
-                <div class="photo"><img src="/images/club-cover.jpg" alt="{{name}}" /></div>
-                {{/if}}
-              </div>
-              <div class='item-name'>
-                <li>
-                  {{!-- <a class='club-list-text' href='/clubs/club/{{_id}}'> --}}
-                    <p class='list-text'>{{name}}</p>
-                    {{!
-                  </a> }}
-                </li>
-              </div>
-
-              <div class='list-view-btn item-btn'>
-                <form action='/clubs/club/{{_id}}' method='GET'>
-                  <button class='button btn-small'>View</button>
-                </form>
-              </div>
-            </div>
-            {{/each}}
+        <div class="btn-bundle">
+          <div class="item-btn">
+            <a href='/clubs' class="button">Explore clubs</a>
           </div>
-          {{else}}
-          <div class="container inner">
-            <div class="items profile profile-empty-state"> {{!-- <div class="profile-empty-state"> --}}
-                <div class="titles">
-                  <h2>{{capitalize profile.name}}’s Clubs</h2>
-                  <p>You are not part of any clubs yet.
-                    <span> To share your thoughts with others,</span>
-                  </p>
-                </div>
-                <div class="btn-bundle">
-                  <div class="item-btn">
-                    <a href='/clubs' class="button">Explore clubs</a>
-                  </div>
-
-                  <div><span>or</span></div>
-
-                  <div class="item-btn">
-                    <a href='/clubs/club/create' class="button">Create a club</a>
-                  </div>
-                </div>
-
-              </div>
+          <div><span>or</span></div>
+            <div class="item-btn">
+              <a href='/clubs/club/create' class="button">Create a club</a>
             </div>
-
           </div>
-          {{/if}}
-
-
-
         </div>
-
       </div>
     </div>
+    {{/if}}
+    </div>
+  </div>
+</div>

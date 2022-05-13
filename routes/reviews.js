@@ -47,6 +47,7 @@ reviewRouter.get('/create/:id', routeGuard, (req, res) => {
 
 reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
   const { message } = req.body;
+  const { reviewTitle } = req.body;
   const id = req.params.id;
 
   axios
@@ -58,6 +59,7 @@ reviewRouter.post('/create/:id', routeGuard, (req, res, next) => {
       const bookAuthor = book.data.volumeInfo.authors;
       Review.create({
         message,
+        reviewTitle,
         creator: req.user._id,
         book: req.params.id,
         bookTitle: bookTitle,
@@ -93,9 +95,13 @@ reviewRouter.get('/:id/edit', routeGuard, (req, res, next) => {
 reviewRouter.post('/:id/edit', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { message } = req.body;
+  const { reviewTitle } = req.body;
   console.log(id);
   console.log(message);
-  Review.findOneAndUpdate({ _id: id, creator: req.user._id }, { message })
+  Review.findOneAndUpdate(
+    { _id: id, creator: req.user._id },
+    { message, reviewTitle }
+  )
     .then(() => {
       res.redirect(`/reviews/${id}`);
     })

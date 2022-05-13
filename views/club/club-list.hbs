@@ -53,7 +53,7 @@
 
         <div class='list-view-btn item-btn'>
 
-          <a href="/profile/{{creator._id}}" class="button profile-btn">View Creator
+          <a href="/profile/{{creator._id}}" class="button profile-btn">Creator Profile
             <span class="material-symbols-outlined">
               person_filled
             </span>
@@ -66,14 +66,14 @@
             </button>
           </form>
 
-          {{#unless isClubMember}}
+          {{!-- {{#unless isMember}}
           <form action='/clubs/club/{{_id}}/join' method='POST'>
             <button class='button'>
               <span class="material-symbols-outlined">join_full</span>
               Join
             </button>
           </form>
-          {{/unless}}
+          {{/unless}} --}}
 
         </div>
       </div>
@@ -82,6 +82,7 @@
     </div>
 
     {{/each}}
+
   </section>
   {{/if}}
 </div>

@@ -1,20 +1,24 @@
 <div class='reviews-edit'>
-  <h3>{{reviews.bookTitle}}</h3>
+  <a href='/books/book/{{reviews.book.id}}'><h3>{{reviews.bookTitle}}</h3></a>
+
+  <br />
+  <p class='review-title'>{{reviews.reviewTitle}}</p>
   <br />
   <p>{{reviews.message}}</p>
+  <br />
   <hr />
   <br />
   <small>{{date reviews.createdAt}}</small>
   <em>{{review.creator.name}}</em>
 
   {{#if isReviewCreator}}
-  <div class='review-edit-btns'>
-    <button class='buttons'><a href='/reviews/{{reviews._id}}/edit'>Edit
-        review</a></button>
-    <form method='POST' action='/reviews/{{reviews._id}}/delete'>
-      <button class='buttons'>Delete review</button>
-    </form>
+    <div class='review-edit-btns'>
+      <button class='buttons'><a href='/reviews/{{reviews._id}}/edit'>Edit
+          review</a></button>
+      <form method='POST' action='/reviews/{{reviews._id}}/delete'>
+        <button class='buttons'>Delete review</button>
+      </form>
 
-  </div>
+    </div>
   {{/if}}
 </div>
