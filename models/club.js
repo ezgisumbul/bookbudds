@@ -37,9 +37,11 @@ const clubSchema = new mongoose.Schema(
       }
     ],
 
-    isMember: {
-      type: Boolean
-    }
+    isMember: [
+      {
+        type: Boolean
+      }
+    ]
   },
   { timestamps: true }
 );

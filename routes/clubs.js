@@ -11,6 +11,7 @@ const clubRouter = express.Router();
 clubRouter.get('/', (req, res, next) => {
   let isLogged;
   let isMember;
+
   Club.find()
     .populate('creator')
     .populate('members')
@@ -25,45 +26,20 @@ clubRouter.get('/', (req, res, next) => {
       clubs.forEach((club) => {
         //console.log('THIS IS A' + club);
         club.members.forEach((member) => {
-          // console.log('IS THIS A MEMBER OF' + club.name + member._id);
           if (String(req.user.id) === String(member._id)) {
-            console.log('Current user is a member of' + club.name);
+            console.log('Current user is a member of ' + club.name);
             isMember = true;
+            Club.findOneAndUpdate(club, {
+              $push: { isMember: isMember }
+            });
           } else {
             isMember = false;
-            // console.log('Current user is NOT a member of' + club.name);
+            Club.findOneAndUpdate(club, {
+              $push: { isMember: isMember }
+            });
           }
         });
-        // console.log('MEMBER ID' + club.members);
-        // if (club.members.includes(req.user.id)) {
-        //   isMember = true;
-        //   console.log('Member of club');
-        // } else {
-        //   isMember = false;
-        //   console.log('Not a member');
-        // }
       });
-
-      // clubs.forEach((club) => {
-      //   if (req.user.clubs.includes(club)) {
-      //     isMember = true;
-      //   } else {
-      //     isMember = false;
-      //   }
-      // });
-      // let isClubMember = req.user.clubs.includes(clubId);
-      // User.findById(req.user.id)
-      //   .populate('clubs')
-      //   // .then((user) => {
-      //   //   clubs.forEach((club) => {
-      //   //     if (user.clubs.includes(club)) {
-      //   //       isMember = true;
-      //   //     } else {
-      //   //       isMember = false;
-      //   //     }
-      //   //   });
-      //   // })
-      //   .catch((err) => next(err));
       res.render('club/club-list', { clubs, isLogged, isMember });
     })
     .catch((err) => next(err));
@@ -209,6 +185,40 @@ clubRouter.post('/club/:id/join', (req, res, next) => {
     .catch((err) => next(err));
 });
 
+clubRouter.post('/club/:id/leave', (req, res, next) => {
+  const clubId = req.params.id;
+
+  Club.findById(clubId)
+    .then((club) => {
+      User.findById(req.user.id).then((user) => {
+        let isClubMember = user.clubs.includes(clubId);
+        console.log(user);
+
+        if (isClubMember) {
+          User.findByIdAndUpdate(req.user.id, { $pull: { clubs: club._id } })
+            .then((user) => {
+              User.countDocuments({ clubs: clubId }, function (err, count) {
+                // const memberCount = count;
+                Club.findByIdAndUpdate(clubId, {
+                  memberCount: count,
+                  $pull: { members: user._id }
+                }).catch((err) => next(err));
+              });
+            })
+            .then(() => {
+              console.log('club is added to the user');
+              res.redirect(`/clubs/club/${clubId}`); // does not work
+            })
+            .catch((err) => next(err));
+        } else {
+          console.log('this club exists for the user');
+          res.redirect(`/clubs/club/${clubId}`);
+          //next();
+        }
+      });
+    })
+    .catch((err) => next(err));
+});
 clubRouter.get('/club/:id/members', (req, res, next) => {
   const clubId = req.params.id;
 

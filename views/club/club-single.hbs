@@ -11,15 +11,14 @@
     <p class="quote text-center">
       <span class="block"><strong>Join a conversation!</strong></span>
       <span>Book clubs created by our users are a great place to share your thoughts and make new friends!</span>
+    {{#unless isClubMember}}
       <span> Not a member yet?</span>
     </p>
-
-
-    {{#unless isClubMember}}
     <form action='/clubs/club/{{club._id}}/join' method='POST'>
       <button class='button'>Join</button>
     </form>
     {{/unless}}
+
   </div>
 </div>
 
@@ -66,6 +65,12 @@
       </div>
 
       {{/if}}
+
+    {{#if isClubMember}}
+    <form action='/clubs/club/{{club._id}}/leave' method='POST'>
+      <button class='button'>Leave club</button>
+    </form>
+    {{/if}}
 
     </div>
   </div>
