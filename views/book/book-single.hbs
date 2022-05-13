@@ -39,7 +39,13 @@
           {{#if isLogged}}
           {{#if bookCheck}}
           user is logged and book IS-SAVED in user "saved list" => show only a notification "already saved"
-          <button class="btn notification">Book is already saved</button>
+          <button class='button notification'>
+            <span class="material-symbols-outlined">check</span>
+            Saved in your list
+          </button>
+
+
+
           {{else}}
           user is logged but book is NOT is his list => show the button to save
           <form action='' method='POST'>
