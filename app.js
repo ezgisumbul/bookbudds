@@ -52,6 +52,7 @@ app.use(
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
   expressSession({
     secret: process.env.SESSION_SECRET,

@@ -1,12 +1,17 @@
-<div class="container-single-book">
+<div class="container">
+
+
+
 
   <div class="titles">
     <h2>{{book.volumeInfo.title}}</h2>
-    <p> <b>Author:</b> {{#each book.volumeInfo.authors}}
+    <p><strong>Author:</strong> {{#each book.volumeInfo.authors}}
       {{this}}
       {{/each}}
     </p>
   </div>
+
+
 
   <div class="container inner">
 
@@ -26,99 +31,94 @@
         {{/if}}
         {{/if}}
       </div>
-      {{#unless notifyMessage}}
-      <form action='' method='POST'>
-        <button class="fav-btn"> &#9829; </button>
-      </form>
-      {{/unless}}
-      {{message}}
 
       <div class='single-info'>
         <p>{{book.volumeInfo.description}}</p>
+
+        <div class='list-view-btn item-btn'>
+          {{#if isLogged}}
+          {{#if bookCheck}}
+          user is logged and book IS-SAVED in user "saved list" => show only a notification "already saved"
+          <button class="btn notification">Book is already saved</button>
+          {{else}}
+          user is logged but book is NOT is his list => show the button to save
+          <form action='' method='POST'>
+            <button class="under-book-btn">+ bookshaelf</button>
+          </form>
+          {{/if}}
+          {{else}}
+          <a href="/authentication/sign-in" class="button">Bookshelf /to login</a>
+          user is not logged in => show button that is taking the user to the sing-up
+          {{/if}}
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}'> Write review </a> </button>
+
       </div>
 
 
       <div class="single-sidebar">
-        <div>{{notifyMessage}}</div>
-
-        <p><span>Categories:</span> {{{book.volumeInfo.categories}}}
         <p><span>Published date:</span>{{book.volumeInfo.publishedDate}}</p>
         <p><span>Rating:</span>{{book.volumeInfo.averageRating}}</p>
         <p><span>Page Count:</span>{{book.volumeInfo.pageCount}}</p>
-
+        <div>{{notifyMessage}}</div>
+        <p><span>Categories:</span> {{{book.volumeInfo.categories}}}
       </div>
     </div>
-    {{!-- <form action='' method='POST'>
-      <button class="fav-btn"> &#9829; </button>
-    </form> --}}
-
-    <button class="under-book-btn"> <a href=''> + Bookshelf </a> </button>
-    <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}'> Write review </a> </button>
-
-
-    {{!-- <button class="under-book-btn"> <a href=''> + Bookshelf </a> </button> --}}
-    <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}'> Write review </a> </button>
-
-
   </div>
 
-</div>
 
-
-</div>
-
-
-
-<div class="reviews">
-  <div class="reviews-top-text">
-    <div class="titles">
-      <h2>Community reviews</h2>
-      <p>See what other people think of this book.</p>
-    </div>
-    {{!-- <h4><button class="review-btn"> <a href='/reviews/create/{{bookId}}'>Write a review</a> </button></h4>--}}
-  </div>
-  {{!--
-  <h1>{{bookId}}</h1>
-
-  <h1>{{book}}</h1>
-
-  <h1>{{id}}</h1>
-  <h1>{{bookTitle}}</h1> --}}
-
-  <div>
-
-    {{#each reviews}}
-
-    <div class="review-single-all">
-      <div class='review-profile-photo'>
-        <img src="{{creator.picture}}" alt="{{creator.name}}" />
+  <div class="reviews">
+    <div class="reviews-top-text">
+      <div class="titles">
+        <h2>Community reviews</h2>
+        <p>See what other people think of this book.</p>
       </div>
+    </div>
 
-      <div>
+    <div>
 
-        <div class="review-name-date">
+      {{#each reviews}}
 
-          <div>
-            <small> writren by</small>
-            <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
-              class="review-see-btn">{{creator.name}}</a>
+      <div class="review-single-all">
+        <div class='review-profile-photo'>
+          <img src="{{creator.picture}}" alt="{{creator.name}}" />
+        </div>
+
+        <div>
+
+          <div class="review-name-date">
+
+            <div>
+              <small> written by</small>
+              <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
+                class="review-see-btn">{{creator.name}}</a>
+            </div>
+
+            <div><small>{{date createdAt}}</small></div>
+
+          </div>
+          <a href='/reviews/{{_id}}' class='publication-item'>
+            <div class="review-single">
+              {{message}}
+          </a>
+
+          <div class="review-view-btn">
+            <h4><button class="under-book-btn"> <a href='/reviews/{{_id}}'>See review</a> </button></h4>
           </div>
 
-          <div><small>{{date createdAt}}</small></div>
-
+          <hr>
         </div>
-        <a href='/reviews/{{_id}}' class='publication-item'>
-          <div class="review-single">
-            {{message}}
-        </a>
-
-        <div class="review-view-btn">
-          <h4><button class="under-book-btn"> <a href='/reviews/{{_id}}'>See review</a> </button></h4>
-        </div>
-
-        <hr>
       </div>
     </div>
+    {{/each}}
   </div>
-  {{/each}}
-</div>
