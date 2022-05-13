@@ -35,7 +35,11 @@ const clubSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
       }
-    ]
+    ],
+
+    isMember: {
+      type: Boolean
+    }
   },
   { timestamps: true }
 );

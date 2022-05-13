@@ -35,6 +35,7 @@
   </div>
 
   <section class="clubs-reviews">
+{{#if isMember}}
 
     {{#each clubs}}
 
@@ -66,14 +67,14 @@
             </button>
           </form>
 
-          {{#unless isClubMember}}
+          {{!-- {{#unless isClubMember}} --}}
           <form action='/clubs/club/{{_id}}/join' method='POST'>
             <button class='button'>
               <span class="material-symbols-outlined">join_full</span>
               Join
             </button>
           </form>
-          {{/unless}}
+          {{!-- {{/unless}} --}}
 
         </div>
       </div>
@@ -82,6 +83,55 @@
     </div>
 
     {{/each}}
+
+{{else}}
+    {{#each clubs}}
+
+    <div class="list-item">
+      {{#if picture}}
+      <div class="photo"><img src="{{picture}}" alt="{{name}}" /></div>
+      {{else}}
+      <div class="photo"><img src="/images/club-cover.jpg" alt="{{name}}" /></div>
+      {{/if}}
+
+      <div class="creator">
+
+        <div class="name">{{capitalize name}}</div>
+        <div class="member"><span>Created By:</span> {{capitalize creator.name}}</div>
+        <p>{{description}}</p>
+
+        <div class='list-view-btn item-btn'>
+
+          <a href="/profile/{{creator._id}}" class="button profile-btn">Creator Profile
+            <span class="material-symbols-outlined">
+              person_filled
+            </span>
+          </a>
+
+          <form action='/clubs/club/{{_id}}' method='GET'>
+            <button class='button'>
+              <span class="material-symbols-outlined">auto_stories</span>
+              View Club
+            </button>
+          </form>
+
+          {{!-- {{#unless isClubMember}} --}}
+          {{!-- <form action='/clubs/club/{{_id}}/join' method='POST'>
+            <button class='button'>
+              <span class="material-symbols-outlined">join_full</span>
+              Join
+            </button>
+          </form> --}}
+          {{!-- {{/unless}} --}}
+
+        </div>
+      </div>
+
+      <div class="post-date">Created: {{date createdAt}}</div>
+    </div>
+
+    {{/each}}
+{{/if}}
   </section>
   {{/if}}
 </div>
