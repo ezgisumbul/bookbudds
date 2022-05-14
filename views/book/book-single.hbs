@@ -77,9 +77,9 @@
             <div class="list-item">
               <div class='list-view-btn item-btn'>
                 <form action='' method='POST'>
-                  <button class="button profile-btn">
-                    <span class="material-symbols-outlined">add</span>
-                    Bookshelf
+                  <button class="button profile-btn add-to-bookshelf">
+                    <span id="add-to-bookshelf" class="material-symbols-outlined">add</span>
+                    Add to Bookshelf
                   </button>
                 </form>
               </div>
@@ -87,14 +87,19 @@
           </section>
           {{/if}}
           {{else}}
-          {{!-- <p style="font-weight: bold;">user is not logged in => show button that is taking the user to the
-            sing-up</p> --}}
-
-          <div class="list-item">
-            <div class='list-view-btn item-btn'>
-              <a href="/authentication/sign-in" id="log-in-to-save" class="button">Log in to save</a>
+          {{!-- <p style="font-weight: bold;">user is not logged in => show button that is taking the user to the sing-up</p> --}}
+          <section class="clubs-reviews">
+            <div class="list-item">
+              <div class='list-view-btn item-btn'>
+                <form action='/authentication/sign-in' method='GET'>
+                  <button class="button profile-btn add-to-bookshelf">
+                    <span id="add-to-bookshelf" class="material-symbols-outlined">add</span>
+                    Add to Bookshelf
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
+          </section>
           {{/if}}
         </div>
         {{!-- <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}'> Write review </a> </button> --}}

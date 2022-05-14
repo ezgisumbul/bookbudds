@@ -27,16 +27,31 @@
   </div>
 
   <div class='container'>
-
   <div class='single'>
     <div class="single-column">
+      {{!-- <div class="titles">
+        <h2>Welcome to {{club.name}}</h2>
+        <p>Share your thoughts with 
+          <span>BookBudds community club members</span>
+        </p>
+      </div> --}}
+    <div class='single-info'>
+      <div class='profile-info'>
+      <div class="profile-info-intro">
+
+      <div class='profile-photo'>
+        <img src="{{club.picture}}" alt="{{club.name}}" />
+      </div>
+
       <div class="titles">
         <h2>Welcome to {{club.name}}</h2>
         <p>Share your thoughts with 
           <span>BookBudds community club members</span>
         </p>
       </div>
-    <div class='single-info'>
+
+    </div>
+    </div>
       <h4 class="main-title">Description</h3>
       <p>{{club.description}}</p>
       
