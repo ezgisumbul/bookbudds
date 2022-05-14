@@ -20,7 +20,7 @@ const checkBook = (req, res, next) => {
   // CHECK if Book exists in the Books collection
   Book.findOne({ bookId: bookId })
     .then((book) => {
-      if (book) {
+      if (isLogged) {
         // CHECK multiple conditions on FindOne: user-id + the book +id
         User.findOne({ _id: req.user._id, books: book._id })
           .then((user) => {
@@ -37,7 +37,7 @@ const checkBook = (req, res, next) => {
       } else {
         console.log("The book is not yet is the Books collection")
       }
-    });
+    })
   next();
 }
 module.exports = checkBook;
