@@ -33,11 +33,15 @@ const checkBook = (req, res, next) => {
               bookCheck = false;
             }
             res.locals.bookCheck = bookCheck;
+            next();
           })
       } else {
-        console.log("The book is not yet is the Books collection")
+        console.log("The user is not logged")
+        next();
       }
     })
-  next();
+    .catch(error => {
+      next(error);
+    })
 }
 module.exports = checkBook;

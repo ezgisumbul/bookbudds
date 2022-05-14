@@ -126,7 +126,9 @@ bookRouter.post('/book/:id', (req, res, next) => {
               });
           }
         })
-    })
+    }).catch(error => {
+      next(error);
+    });
 });
 
 
