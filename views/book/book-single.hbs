@@ -34,32 +34,33 @@
 
       <div class='single-info'>
         {{#if book.volumeInfo.description}}
-        <p>{{book.volumeInfo.description}}</p>
+        <p>{{stripScripts book.volumeInfo.description}}</p>
         {{else}}
         <div style="margin-top:3rem;">
-        <p>Description is not available for this book.</p>
+          <p>Description is not available for this book.</p>
         </div>
 
         {{/if}}
-        {{!-- <p style="font-weight: bold;">user is logged and book IS-SAVED in user "saved list" => show only a notification "already saved"</p>  --}}
+        {{!-- <p style="font-weight: bold;">user is logged and book IS-SAVED in user "saved list" => show only a
+          notification "already saved"</p> --}}
 
         <div class='list-view-btn item-btn'>
           {{#if isLogged}}
           {{#if bookCheck}}
           <section class="clubs-reviews">
-            <div >
-              <div >
+            <div>
+              <div>
                 <button id="locked-save-btn" class='button profile-btn'>
                   <div id="locked-save-btn-inner">
-                  <div>
-                    {{!-- <span class="material-symbols-outlined">check</span> --}}
-                    <span class="material-symbols-outlined">
-                    collections_bookmark
-                    </span>
-                  </div>
-                  <div>
-                    <p style="text-align: end;">Saved in Bookshelf</p>
-                  </div>
+                    <div>
+                      {{!-- <span class="material-symbols-outlined">check</span> --}}
+                      <span class="material-symbols-outlined">
+                        collections_bookmark
+                      </span>
+                    </div>
+                    <div>
+                      <p style="text-align: end;">Saved in Bookshelf</p>
+                    </div>
                   </div>
                 </button>
               </div>
@@ -67,7 +68,8 @@
           </section>
 
           {{else}}
-          {{!-- <p style="font-weight: bold;">user is logged but book is NOT is his list => show the button to save</p>  --}}
+          {{!-- <p style="font-weight: bold;">user is logged but book is NOT is his list => show the button to save</p>
+          --}}
           {{!-- <form action='' method='POST'>
             <button class="under-book-btn">+ bookshaelf</button>
           </form> --}}
@@ -75,9 +77,9 @@
             <div class="list-item">
               <div class='list-view-btn item-btn'>
                 <form action='' method='POST'>
-                  <button class="button profile-btn">
-                    <span class="material-symbols-outlined">add</span>
-                    Bookshelf
+                  <button class="button profile-btn add-to-bookshelf">
+                    <span id="add-to-bookshelf" class="material-symbols-outlined">add</span>
+                    Add to Bookshelf
                   </button>
                 </form>
               </div>
@@ -86,12 +88,18 @@
           {{/if}}
           {{else}}
           {{!-- <p style="font-weight: bold;">user is not logged in => show button that is taking the user to the sing-up</p> --}}
-
-          <div class="list-item">
-            <div class='list-view-btn item-btn'>
-              <a href="/authentication/sign-in" id="log-in-to-save" class="button">Log in to save</a>
+          <section class="clubs-reviews">
+            <div class="list-item">
+              <div class='list-view-btn item-btn'>
+                <form action='/authentication/sign-in' method='GET'>
+                  <button class="button profile-btn add-to-bookshelf">
+                    <span id="add-to-bookshelf" class="material-symbols-outlined">add</span>
+                    Add to Bookshelf
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
+          </section>
           {{/if}}
         </div>
         {{!-- <button class="under-book-btn"> <a href='/reviews/create/{{bookId}}'> Write review </a> </button> --}}
@@ -109,96 +117,96 @@
     </div>
   </div>
 
-<div class="container">
-  {{!-- <div class="reviews">
-    <div class="reviews-top-text"> --}}
-      <div id="rev-title-btn-box">
-        <div class="titles">
-          <h2>Community reviews</h2>
-          <p>See what other people think of this book.
-          <span>Write a review to share your thoughts</span>
-          </p>
-        </div>
+  <div class="container">
+    {{!-- <div class="reviews">
+      <div class="reviews-top-text"> --}}
+        <div id="rev-title-btn-box">
+          <div class="titles">
+            <h2>Community reviews</h2>
+            <p>See what other people think of this book.
+              <span>Write a review to share your thoughts</span>
+            </p>
+          </div>
 
-        <div id="write-rev-box">
-          <button class='button' id="write-review">
-            <a href='/reviews/create/{{bookId}}'> Write a review </a> 
+          <div id="write-rev-box">
+            <button class='button' id="write-review">
+              <a href='/reviews/create/{{bookId}}'> Write a review </a>
             </button>
-        </div>
-      </div>
-   
-
-    
-
-      {{!-- {{#each reviews}}
-
-      <div class="review-single-all">
-        <div class='review-profile-photo'>
-          <img src="{{creator.picture}}" alt="{{creator.name}}" />
+          </div>
         </div>
 
-        <div>
 
-          <div class="review-name-date">
 
-            <div>
-              <small> written by</small>
-              <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
-                class="review-see-btn">{{creator.name}}</a>
+
+        {{!-- {{#each reviews}}
+
+        <div class="review-single-all">
+          <div class='review-profile-photo'>
+            <img src="{{creator.picture}}" alt="{{creator.name}}" />
+          </div>
+
+          <div>
+
+            <div class="review-name-date">
+
+              <div>
+                <small> written by</small>
+                <a class="review-creator" href='/profile/{{creator.id}}' class='publication-item'
+                  class="review-see-btn">{{creator.name}}</a>
+              </div>
+
+              <div><small>{{date createdAt}}</small></div>
+
+            </div>
+            <a href='/reviews/{{_id}}' class='publication-item'>
+              <div class="review-single">
+                {{message}}
+            </a>
+
+            <div class="review-view-btn">
+              <h4><button class="under-book-btn"> <a href='/reviews/{{_id}}'>See review</a> </button></h4>
             </div>
 
-            <div><small>{{date createdAt}}</small></div>
-
+            <hr>
           </div>
-          <a href='/reviews/{{_id}}' class='publication-item'>
-            <div class="review-single">
-              {{message}}
-          </a>
-
-          <div class="review-view-btn">
-            <h4><button class="under-book-btn"> <a href='/reviews/{{_id}}'>See review</a> </button></h4>
-          </div>
-
-          <hr>
         </div>
       </div>
-    </div>
-    {{/each}} --}}
+      {{/each}} --}}
 
-  <section class="clubs-reviews">
+      <section class="clubs-reviews">
 
-    {{#each reviews}}
-    <div class="list-item">
-      {{!-- <div class="photo cover"><a href='/books/book/{{book.id}}'><img src="{{bookCover.thumbnail}}"
-            alt="{{creator.name}}" /></a></div> --}}
-      <div class='review-profile-photo'>
-        <img src="{{creator.picture}}" alt="{{creator.name}}" />
-      </div>
-      <div class="creator">
-        <div class="name"><a href='/books/book/{{book.id}}'>{{bookTitle}}</a></div>
-        <div class="member"><span>Review By:</span> {{capitalize creator.name}}</div>
-        <p class="review-title">{{reviewTitle}}</p>
-        <p>{{message}}</p>
-        
+        {{#each reviews}}
+        <div class="list-item">
+          {{!-- <div class="photo cover"><a href='/books/book/{{book.id}}'><img src="{{bookCover.thumbnail}}"
+                alt="{{creator.name}}" /></a></div> --}}
+          <div class='review-profile-photo'>
+            <img src="{{creator.picture}}" alt="{{creator.name}}" />
+          </div>
+          <div class="creator">
+            <div class="name"><a href='/books/book/{{book.id}}'>{{bookTitle}}</a></div>
+            <div class="member"><span>Review By:</span> {{capitalize creator.name}}</div>
+            <p class="review-title">{{reviewTitle}}</p>
+            <p>{{message}}</p>
 
-        <div class='list-view-btn item-btn'>
-          <a href="/profile/{{creator.id}}" class="button profile-btn">View Profile
-            <span class="material-symbols-outlined">
-              person_filled
-            </span>
-          </a>
 
-          <a href="/reviews/{{_id}}" class="button profile-btn">View Review
-            <span class="material-symbols-outlined">
-              visibility
-            </span>
-          </a>
+            <div class='list-view-btn item-btn'>
+              <a href="/profile/{{creator.id}}" class="button profile-btn">View Profile
+                <span class="material-symbols-outlined">
+                  person_filled
+                </span>
+              </a>
+
+              <a href="/reviews/{{_id}}" class="button profile-btn">View Review
+                <span class="material-symbols-outlined">
+                  visibility
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="post-date">Created: {{date createdAt}}</div>
         </div>
-      </div>
+        {{/each}}
 
-      <div class="post-date">Created: {{date createdAt}}</div>
+      </section>
     </div>
-    {{/each}}
-
-  </section>
-</div>

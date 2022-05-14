@@ -1347,4 +1347,9 @@ footer {
   color: #fff;
 }
 
+.clubs-reviews .list-item .add-to-bookshelf {
+  width: 220px !important;
+  padding-left: 52px !important;
+}
+
 /*# sourceMappingURL=style.css.map */
