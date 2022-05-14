@@ -3,6 +3,7 @@ const fileUpload = require('../middleware/file-upload');
 const routeGuard = require('../middleware/route-guard');
 const User = require('../models/user');
 const Club = require('../models/club');
+const nodemailer = require('nodemailer');
 
 const clubRouter = express.Router();
 
@@ -23,24 +24,25 @@ clubRouter.get('/', (req, res, next) => {
         isLogged = false;
       }
       // console.log(clubs);
-      clubs.forEach((club) => {
-        //console.log('THIS IS A' + club);
-        club.members.forEach((member) => {
-          if (String(req.user.id) === String(member._id)) {
-            console.log('Current user is a member of ' + club.name);
-            isMember = true;
-            Club.findOneAndUpdate(club, {
-              $push: { isMember: isMember }
-            });
-          } else {
-            isMember = false;
-            Club.findOneAndUpdate(club, {
-              $push: { isMember: isMember }
-            });
-          }
-        });
-      });
-      res.render('club/club-list', { clubs, isLogged, isMember });
+      // clubs.forEach((club) => {
+      //   //console.log('THIS IS A' + club);
+      //   club.members.forEach((member) => {
+      //     if (String(req.user.id) === String(member._id)) {
+      //       console.log('Current user is a member of ' + club.name);
+      //       isMember = true;
+      //       Club.findOneAndUpdate(club, {
+      //         $push: { isMember: isMember }
+      //       });
+      //     } else {
+      //       isMember = false;
+      //       Club.findOneAndUpdate(club, {
+      //         $push: { isMember: isMember }
+      //       });
+      //     }
+      //   });
+      // });
+      res.render('club/club-list', { clubs, isLogged });
+      // res.render('club/club-list', { clubs, isLogged, isMember });
     })
     .catch((err) => next(err));
 });

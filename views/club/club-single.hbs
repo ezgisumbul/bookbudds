@@ -45,7 +45,9 @@
     </div>
     <div class='single-sidebar'>
       <div class='single-sidebar-text'>
+        <p><span>Created:</span> {{date club.createdAt}}</p>
         <p> <a href="/profile/{{{club.creator._id}}}"><span>Created by:</span> {{{club.creator.name}}}</a></p>
+        
         <p><span>Members:</span> <a href="/clubs/club/{{club._id}}/members">{{club.memberCount}}</p></a>
       </div>
 
