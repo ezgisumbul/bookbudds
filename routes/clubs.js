@@ -120,24 +120,32 @@ clubRouter.post(
   }
 );
 
-clubRouter.post('/club/:id/edit', (req, res, next) => {
-  const { name, description } = req.body;
-  const { id } = req.params;
+clubRouter.post(
+  '/club/:id/edit',
+  fileUpload.single('picture'),
+  (req, res, next) => {
+    const { name, description } = req.body;
+    const { id } = req.params;
+    let picture;
+    if (req.file) {
+      picture = req.file.path;
+    }
 
-  Club.findByIdAndUpdate(id, { name, description })
-    .then(() => {
-      if (req.user) {
-        isLogged = true;
-      } else {
-        isLogged = false;
-      }
-      //res.redirect('/clubs');
-      res.redirect(`/clubs/club/${id}`); // does not work
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+    Club.findByIdAndUpdate(id, { name, description, picture })
+      .then(() => {
+        if (req.user) {
+          isLogged = true;
+        } else {
+          isLogged = false;
+        }
+        //res.redirect('/clubs');
+        res.redirect(`/clubs/club/${id}`); // does not work
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+);
 
 clubRouter.post('/club/:id/delete', (req, res, next) => {
   const { id } = req.params;
