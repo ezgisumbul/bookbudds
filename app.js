@@ -32,6 +32,11 @@ hbs.registerHelper('date', (value) => {
 hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
   return arg1 == arg2 ? options.fn(this) : options.inverse(this);
 });
+hbs.registerHelper('stripScripts', function (param) {
+  var regex = /(<([^>]+)>)/ig
+  return param.replace(regex, "");
+});
+
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.set('views', path.join(__dirname, 'views'));

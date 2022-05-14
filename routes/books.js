@@ -106,9 +106,8 @@ bookRouter.post('/book/:id', (req, res, next) => {
                 next(error);
               });
           } else {
-            User.findOne({ books: book._id })
+            User.findOne({ _id: req.user._id, books: book._id })
               .then((match) => {
-                console.log(book._id);
                 if (match) {
                   res.redirect(`/books/book/${bookId}`);
                 } else {
