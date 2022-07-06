@@ -74,6 +74,8 @@ router.post(
     let picture;
     if (req.file) {
       picture = req.file.path;
+      // console.log(req.file);
+      // console.log(req.file.path);
     }
 
     return User.create({
@@ -85,10 +87,14 @@ router.post(
       .then((user) => {
         req.session.userId = user._id;
         res.redirect(`/profile/${user._id}`);
+        // console.log(req.file);
+        // console.log(req.file.path);
       })
       .catch((err) => {
         const error = handleSignUpError(err);
         res.render('authentication/sign-up', { error, name, email });
+        // console.log(req.file);
+        // console.log(req.file.path);
       });
   }
 );
