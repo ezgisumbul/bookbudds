@@ -1,136 +1,52 @@
-# Views
+# Bookbudds
 
-Hi, its me!
-Hi It's also me
-Hi it's me finally
+A project by: [Ezgi Sümbül](https://github.com/ezgisumbul), [Ilan Lavi](https://github.com/ilanlavi22) & [Piotr Dembinski](https://github.com/Roku013)
 
-Home
+## Table of content
 
-- Book collection
-- Sign up & Log in
-- Club list
-- Connect
+- [General Info](https://github.com/ezgisumbul/bookbudds#general-info)
+- [Demo](https://github.com/ezgisumbul/bookbudds#demo)
+- [Techstack](https://github.com/ezgisumbul/bookbudds#techstack)
+- [Features](https://github.com/ezgisumbul/bookbudds#features)
+- [Setup](https://github.com/ezgisumbul/bookbudds#setup)
 
-Sign up - Allows visiters to create an account ✅
-Sign in - Allows existing users to sign in ✅
+## General Info
 
-Club list - Allows unauthenticated users to see the full list of clubs
-Single club - Allows to read and post comments for registered users
-CRUD club - Allows creator to edit / delete single club
+Bookbudds is a social book cataloging app. Bookbudds is a server side application using Express.js. In Bookbudds, users can create a profile, search for books they want to read, bookmark them, write reviews and edit them, create book clubs or join the clubs created by others.
 
-Single club comment - Allows to read single comment and to delete or edit comment
-CRUD club comment - Allows creator to edit single comment
+## Demo
 
-Single book - Allows to read single book information and to comment on the book, add book button
-Single book comment - Allows to read single comment and to delete or edit comment
-CRUD book comment - Allows creator to edit single comment
+Here is a live demo : https://bookbudds.herokuapp.com/
 
-Comment creation - Displays a form which allows user to submit new post
+## Techstack
 
-Profile - Allows us to view single user's username, picture, registered date, list of clubs, latest comments, list of added books
-Profile edit - Allows user to edit user profile
+JavaScript, MongoDB, Handlebars, Express.js, HTML, CSS, Google Books API, Axios, Cloudinary, Sketch
 
-## Route Handlers
 
-GET '/' - Renders home page
+## Features
+- Creating a profile
+- Book search
+- Bookmarking
+- Writing book reviews
+- Creating an joining book clubs
 
-GET '/authentication/sign-up' - Renders sign up page ✅
-POST '/authentication/sign-up' - Handles account registration ✅
+## Setup
+#### Prerequisites: 
 
-GET '/authentication/sign-in' - Renders sign in page ✅
-POST '/authentication/sign-in' - Handles existing user authentication ✅
+node.js, npm and MongoDB Compass are installed.
 
-POST '/authentication/sign-out' - Handles user sign out ✅
+#### Steps:
 
-GET '/book/comment/create' - Renders comment creation page
-POST '/book/comment/create' - Handles new comment creation
+1. Clone the repo `$ git clone https://github.com/ezgisumbul/bookbudds.git`
+2. Navigate into the client directory `cd bookbudds`
+3. Install the dependencies
+`$ npm install`
+4. Remove the .dist extension of the provided .env.dist file in the root of the project
+5. [Create a Google Books API key ](https://developers.google.com/books/docs/v1/using) and update **GBOOKSKEY**
+6. Set up a **SESSION_SECRET**
+7. [Create a Cloudinary account](https://cloudinary.com) and [update](https://www.youtube.com/watch?v=1SIp9VL5TMo&ab_channel=Cloudinary) **CLOUDINARY_URL**
 
-GET '/club/:id' - Renders single club page
-POST '/club/:id/join' - Handles join to a club
+Now you are ready to run the application.
 
-GET '/club/comment/create' - Renders comment creation page
-POST '/club/comment/create' - Handles new comment creation
-
-GET '/book/comment/:id' - Loads comment from database, renders single comment page
-GET '/club/comment/:id' - Loads comment from database, renders single comment page
-
-GET '/book/comment/:id/edit' - Loads mow from database, renders edit page
-POST '/club/comment/:id/edit' - Handles edit form submission
-
-POST '/book/comment/:id/delete' - Delete comment
-POST '/club/comment/:id/delete' - Delete comment
-
-GET '/profile/:id' - Loads user with params/id from collection, renders profile page
-GET '/profile/:id/edit' - Loads user, renders edit page
-POST '/profile/:id/edit' - Handles profile edit form submission
-
-### Models
-
-User
-id
-
-- name: String, required
-- email: String, required
-- passwordHashAndSalt: String, required
-- picture: String, required
-- creationDate: timestamp
-- bookComments: ObjectId
-- clubComments: ObjectId
-
-Book
-id
-
-- name: String, required, maxlength 300
-- author: String, required
-
-Comments
-
-- message: String, required, maxlength 300
-- creator: required, ObjectId //of a user, should hold a referance to the user created the publication
-- createdAt: Date (add timestemps option to the publicationSchema)
-- updatedAt: Date (add timestemps option to the publicationSchema)
-
-Club
-id
-
-- name: String, required, maxlength 300
-- creator: required, ObjectId //of a user, should hold a referance to the user created the publication
-
-Join
-
-- club id -> populate
-- user id
-
-Favorite
-
-- book id
-- user id
-
-### Wishlist
-
-- Add date formatting helper to hbs
-
-- Like comments
-
-- Friendship (send invite by email)
-
-- Send an email notification to the user on friendship requests
-
-TASKS
-
-Book related tasks:
-
-- Create json for books
-- baseRoute
-- Populate list of books on home
-- Link it to a single book page
-- Single book view
-- Save to list button
-- Saved books in a user model
-
-User:
-
-- Show listed books
-- User information to be displayed
-- Show clubs
-- List of comments
+8. Run
+`$ npm run dev`
